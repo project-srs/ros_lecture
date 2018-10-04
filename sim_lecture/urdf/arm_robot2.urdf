@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<robot name="arm_robot">
+  <link name="world"/>
+
+  <joint name="world_joint" type="fixed">
+      <parent link="world"/>
+      <child link="base_link"/> 
+  </joint>
+
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0 0 0.5" rpy="0 0 0"/>
+      <mass value="1.0"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0.5" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.1 0.1 1.0"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.5" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.1 0.1 1.0"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <gazebo reference="base_link">
+    <material>Gazebo/Red</material>
+  </gazebo>
+
+  <joint name="arm1_joint" type="continuous">
+    <parent link="base_link"/>
+    <child link="arm1_link"/>
+    <axis xyz="0 1 0"/>
+    <origin xyz="0 0.1 1.0" rpy="0 0 0"/>
+    <dynamics damping="0.7"/>
+  </joint>
+
+  <transmission name="arm1_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="arm1_joint">
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="arm1_motor">
+       <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+       <mechanismReduction>1</mechanismReduction>
+    </actuator>
+  </transmission>
+
+  <link name="arm1_link">
+    <inertial>
+      <mass value="1.0"/>
+      <origin xyz="0 0 0.25" rpy="0 0 0"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0.25" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.1 0.1 0.5"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0.25" rpy="0 0 0"/>
+      <geometry>
+        <box size="0.1 0.1 0.5"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <gazebo reference="arm1_link">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/arm_robot</robotNamespace>
+    </plugin>
+  </gazebo>
+</robot>

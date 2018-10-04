@@ -1,0 +1,53 @@
+<robot name="test_robot">
+    <material name="red">
+        <color rgba="1.0 0.0 0.0 2.0"/>
+    </material>
+
+    <link name="base_link"/>
+
+    <link name="link1">
+        <visual>
+            <geometry>
+                <box size="0.1 0.1 0.5"/>
+            </geometry>
+            <origin xyz="0 0 0.25" rpy="0 0 0"/>
+            <material name="red"/>
+        </visual>
+    </link>
+    <joint name="joint1" type="fixed">
+        <parent link="base_link"/>
+        <child  link="link1"/>
+    </joint>
+
+    <link name="link2">
+        <visual>
+            <geometry>
+              <box size="0.1 0.1 0.4"/>
+              </geometry>
+            <origin xyz="0 0 0.2" rpy="0 0 0"/>
+            <material name="red"/>
+        </visual>
+    </link>
+    <joint name="joint2" type="revolute">
+        <parent link="link1"/>
+        <child  link="link2"/>
+        <origin xyz="0.1 0 0.5" rpy="0 0 0"/>
+        <limit lower="-1.5" upper="1.5" effort="0" velocity="0"/>
+    </joint>
+
+    <link name="link3">
+        <visual>
+            <geometry>
+              <box size="0.1 0.1 0.4"/>
+              </geometry>
+            <origin xyz="0 0 0.2" rpy="0 0 0"/>
+            <material name="red"/>
+        </visual>
+    </link>
+    <joint name="joint3" type="revolute">
+        <parent link="link2"/>
+        <child  link="link3"/>
+        <origin xyz="0.1 0 0.4" rpy="0 0 0"/>
+        <limit lower="-1.5" upper="1.5" effort="0" velocity="0"/>
+    </joint>
+</robot>

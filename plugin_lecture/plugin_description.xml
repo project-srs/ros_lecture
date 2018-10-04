@@ -1,0 +1,5 @@
+<library path="lib/libplugin_lecture">
+  <class type="add" base_class_type="calc_base">
+    <description>This is a add plugin.</description>
+  </class>
+</library>

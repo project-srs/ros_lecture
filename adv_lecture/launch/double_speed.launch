@@ -1,0 +1,5 @@
+<launch>
+  <rosparam param="/use_sim_time">true</rosparam>
+  <node name="rosbag_play" pkg="rosbag" type="play" args="$(find adv_lecture)/resources/empty.bag -r 2.0 -l --clock" />
+  <node name="adv_time" pkg="adv_lecture" type="adv_time" output="screen" />
+</launch>

@@ -1,0 +1,7 @@
+<launch>
+  <machine name="raspi1" address="raspi1" env-loader="/home/eio/catkin_ws/devel/env.sh" user="eio" password="419000"/>
+  <node name="basic_simple_listener" pkg="basic_lecture" type="basic_simple_listener" output="screen" />
+  <node machine="raspi1" name="basic_simple_talker" pkg="basic_lecture" type="basic_simple_talker" />
+</launch>
+
+

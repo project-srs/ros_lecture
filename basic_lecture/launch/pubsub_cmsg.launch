@@ -1,0 +1,5 @@
+<launch>
+  <node name="basic_cmsg_talker"   pkg="basic_lecture" type="basic_cmsg_talker" />
+  <node name="adv_cmsg_listener" pkg="adv_lecture" type="adv_cmsg_listener" output="screen"/>
+</launch>
+

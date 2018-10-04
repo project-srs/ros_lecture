@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<robot name="my_robo" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find sim_lecture)/urdf/odm_common.xacro"/>
+  <xacro:include filename="$(find sim_lecture)/urdf/odm_omni_wheel.xacro"/>
+
+  <link name="base_link"/>
+
+  <xacro:motor prefix="motor0" parent="base_link" />
+    <joint name="wheel0_base_joint" type="fixed">
+      <parent link="motor0_shaft_link"/>
+      <child  link="whell0_base_link"/>
+      <origin xyz="0.0105 0 0" rpy="0 ${pi/2} 0"/>
+    </joint>
+    <link name="whell0_base_link" />
+  <xacro:omni_wheel prefix="wheel0" parent="whell0_base_link" />
+
+  <!-- ===============  Gazebo =============== -->
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/odm_robot</robotNamespace>
+    </plugin>
+  </gazebo>
+
+</robot>

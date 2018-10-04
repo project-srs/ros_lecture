@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <arg name="model" default="$(find sim_lecture)/urdf/odm_try_wheel_robot.xacro" />
+  <arg name="gui" default="true" />
+  <arg name="rvizconfig" default="$(find sim_lecture)/rviz/odm_wheel_display.rviz" />
+
+  <param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" />
+  <param name="use_gui" value="$(arg gui)"/>
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model odm_robot" />
+
+  <rosparam>
+    odm_robot:
+      joint_state_controller:
+        type: joint_state_controller/JointStateController
+        publish_rate: 50  
+      
+      joint_controller0:
+        type: velocity_controllers/JointVelocityController
+        joint: motor0_shaft_joint
+
+      joint_controller1:
+        type: velocity_controllers/JointVelocityController
+        joint: motor1_shaft_joint
+
+      joint_controller2:
+        type: velocity_controllers/JointVelocityController
+        joint: motor2_shaft_joint
+  </rosparam>
+  
+  <node name="controller_spawner" pkg="controller_manager"
+        type="spawner" respawn="false"
+        output="screen" ns="/odm_robot"
+        args="joint_controller0 joint_controller1 joint_controller2 joint_state_controller"/>
+
+  <node name="sim_omni_commander" pkg="sim_lecture" type="sim_omni_commander">
+    <param name="wheel_base" value="0.1" />
+    <param name="wheel_radius" value="0.019" />
+    <remap from="wheel0" to="/odm_robot/joint_controller0/command"/>
+    <remap from="wheel1" to="/odm_robot/joint_controller1/command"/>
+    <remap from="wheel2" to="/odm_robot/joint_controller2/command"/>
+  </node>
+</launch>

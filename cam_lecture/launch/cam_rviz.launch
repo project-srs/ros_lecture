@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="rvizconfig" default="$(find cam_lecture)/rviz/cam_rviz.rviz" />
+  <node name="uvc_camera_node" pkg="uvc_camera" type="uvc_camera_node" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+</launch>

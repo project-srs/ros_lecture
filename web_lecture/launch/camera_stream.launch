@@ -1,0 +1,6 @@
+<launch>
+  <include file="$(find roswww)/launch/roswww.launch" />
+  <node pkg="web_video_server" type="web_video_server" name="web_video_server" />
+  <node name="uvc_camera_node" pkg="uvc_camera" type="uvc_camera_node" />
+</launch>
+

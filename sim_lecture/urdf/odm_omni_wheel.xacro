@@ -1,0 +1,173 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">  
+  <xacro:macro name="barrel" params="prefix parent dir">
+    <joint name="${prefix}_joint" type="continuous">
+      <parent link="${parent}"/>
+      <child link="${prefix}_link"/>
+      <origin rpy="${pi/2} 0 ${dir}" xyz="${0.014*cos(dir)} ${0.014*sin(dir)} 0.006"/>
+      <axis xyz="0 0 1"/>
+      <dynamics damping="0.001"/>
+    </joint>
+    <link name="${prefix}_link">
+      <visual>
+        <geometry>
+          <mesh filename="package://sim_lecture/stl/omni_barrel.stl" />
+        </geometry>
+        <material name="black"/>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://sim_lecture/stl/omni_barrel.stl" />
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="0.001"/>
+        <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/>
+      </inertial>  
+    </link>
+    <gazebo reference="${prefix}_link">
+      <mu1 value="3.0" />
+      <mu2 value="3.0" />
+      <kp value="10000" />
+      <kd value="100" />
+      <material>Gazebo/Black</material>
+    </gazebo>
+    <transmission name="${prefix}_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}_joint">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}_motor">
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <joint name="${prefix}_mark_joint" type="fixed">
+      <parent link="${prefix}_link"/>
+      <child link="${prefix}_mark_link"/>
+      <origin rpy="0 0 0" xyz="0.005 0 0"/>
+    </joint>
+    <link name="${prefix}_mark_link">
+      <visual>
+        <geometry>
+          <box size="0.005 0.005 0.005"/>
+        </geometry>
+        <material name="white"/>
+      </visual>
+      <inertial>
+        <mass value="0.001"/>
+        <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/>
+      </inertial>  
+    </link>
+    <gazebo reference="${prefix}_mark_link">
+      <material>Gazebo/White</material>
+    </gazebo>
+  </xacro:macro>
+
+  <xacro:macro name="omni_wheel" params="prefix parent">
+    <joint name="${prefix}_housing_joint" type="fixed">
+      <parent link="${parent}"/>
+      <child link="${prefix}_housing_link"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </joint>
+    <link name="${prefix}_housing_link">
+      <visual>
+        <geometry>
+          <mesh filename="package://sim_lecture/stl/omni_housing.stl" />
+        </geometry>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <material name="gray"/>
+      </visual>
+      <inertial>
+        <mass value="0.009"/>
+        <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/>
+      </inertial>  
+    </link>
+    <gazebo reference="${prefix}_housing_link">
+      <material>Gazebo/Gray</material>
+    </gazebo>
+
+    <joint name="${prefix}_housing_s_joint" type="fixed">
+      <parent link="${prefix}_housing_link"/>
+      <child link="${prefix}_housing_s_link"/>
+      <origin rpy="0 ${pi} ${pi/4}" xyz="0 0 0"/>
+    </joint>
+    <link name="${prefix}_housing_s_link">
+      <inertial>
+        <mass value="0.001"/>
+        <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0.00001"/>
+      </inertial>  
+    </link>
+
+    <xacro:barrel prefix="${prefix}_barrel_1" parent="${prefix}_housing_link" dir="0"/>
+    <xacro:barrel prefix="${prefix}_barrel_2" parent="${prefix}_housing_link" dir="${pi/2}"/>
+    <xacro:barrel prefix="${prefix}_barrel_3" parent="${prefix}_housing_link" dir="${pi}"/>
+    <xacro:barrel prefix="${prefix}_barrel_4" parent="${prefix}_housing_link" dir="${-pi/2}"/>
+    <xacro:barrel prefix="${prefix}_barrel_5" parent="${prefix}_housing_s_link" dir="0"/>
+    <xacro:barrel prefix="${prefix}_barrel_6" parent="${prefix}_housing_s_link" dir="${pi/2}"/>
+    <xacro:barrel prefix="${prefix}_barrel_7" parent="${prefix}_housing_s_link" dir="${pi}"/>
+    <xacro:barrel prefix="${prefix}_barrel_8" parent="${prefix}_housing_s_link" dir="${-pi/2}"/>
+  </xacro:macro>
+
+  <xacro:macro name="motor" params="prefix parent">
+    <joint name="${prefix}_joint" type="fixed">
+      <parent link="${parent}"/>
+      <child  link="${prefix}_body_link"/>
+    </joint>
+    <link name="${prefix}_body_link">
+      <visual>
+        <geometry>
+          <mesh filename="package://sim_lecture/stl/ga25_body.stl" />
+        </geometry>
+        <material name="gray"/>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="package://sim_lecture/stl/ga25_body.stl" />
+        </geometry>
+      </collision>
+      <inertial>
+        <mass value="0.150"/>
+        <inertia ixx="0.001" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.0005"/>
+      </inertial>  
+    </link>
+    <gazebo reference="${prefix}_body_link">
+      <material>Gazebo/Gray</material>
+    </gazebo>
+
+    <joint name="${prefix}_shaft_joint" type="continuous">
+      <parent link="${prefix}_body_link"/>
+      <child  link="${prefix}_shaft_link"/>
+      <origin rpy="0 0 0" xyz="0.012 0 0"/>
+      <axis xyz="1 0 0"/>
+      <dynamics damping="0.7"/>
+    </joint>
+    <transmission name="${prefix}_shaft_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}_shaft_joint">
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}_shaft_motor">
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+    <link name="${prefix}_shaft_link">
+      <visual>
+        <geometry>
+          <mesh filename="package://sim_lecture/stl/ga25_shaft.stl" />
+        </geometry>
+        <material name="gray"/>
+      </visual>
+      <inertial>
+        <mass value="0.001"/>
+        <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/>
+      </inertial>  
+    </link>
+    <gazebo reference="${prefix}_shaft_link">
+      <material>Gazebo/Gray</material>
+    </gazebo>
+  </xacro:macro>
+</robot>
+

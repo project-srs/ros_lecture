@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <arg name="model" default="$(find nav_lecture)/urdf/wheel_robot_normal.urdf" />
+  <arg name="rvizconfig" default="$(find nav_lecture)/rviz/wheel_robot_local1.rviz" />
+  <arg name="joy" default="false" />
+  <arg name="tracking_noise" default="0.0" />
+  <arg name="tracking_hz" default="10" />
+  <param name="robot_description" type="str" textfile="$(arg model)"/>
+  <param name="/use_sim_time" value="true" />
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="use_sim_time" value="true"/>
+    <arg name="paused" value="false"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model wheel_robot" />
+
+  <rosparam command="load" file="$(find nav_lecture)/config/diff_drive.yaml" />  
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+        ns="/wheel_robot" args="joint_state_controller diff_drive_controller"/>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher"
+        type="robot_state_publisher"
+        respawn="false" output="screen" ns="/wheel_robot"/>
+   
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+
+  <node name="nav_gazebo_odom" pkg="nav_lecture" type="nav_gazebo_odom"  output="screen">
+    <param name="model_name"  value="wheel_robot" />
+    <param name="world_frame" value="wheel_robot/odom" />
+    <param name="odom_frame"  value="wheel_robot/tracking_odom" />
+    <param name="true_frame"  value="wheel_robot/tracking_true" />
+    <param name="publish_rate"  value="$(arg tracking_hz)" />
+    <param name="noise"  value="$(arg tracking_noise)" />
+    <param name="tf_enable"  value="true" />
+    <remap from="odom" to="/wheel_robot/tracking/odom" />
+  </node>
+
+  <group if="$(arg joy)">
+    <node name="joy_node"   pkg="joy" type="joy_node" />
+    <node name="basic_twist_publisher" pkg="basic_lecture" type="basic_twist_publisher">
+      <remap from="cmd_vel" to="/wheel_robot/diff_drive_controller/cmd_vel" />
+    </node>
+  </group>
+
+  <node name="tf_map_to_odom" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 map wheel_robot/odom 100" />
+
+  <!-- robot_localization -->
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_se" clear_params="true">
+    <rosparam command="load" file="$(find nav_lecture)/config/ekf_localization.yaml" />
+    <remap from="/odometry/filtered" to="/wheel_robot/ekf/odom" />
+    <remap from="set_pose" to="/wheel_robot/ekf/set_pose" />
+  </node>
+</launch>

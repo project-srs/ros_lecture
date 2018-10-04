@@ -1,0 +1,12 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+  <head>
+    <title>ROS Image Web Viewer</title>
+  </head>
+
+  <body>
+    <h1>/image_raw</h1>
+    <script>
+      document.write("<img src='http://"+location.hostname +":8080/stream?topic=/image_raw&type=ros_compressed'></img>");
+    </script>
+ </body>
+</html>

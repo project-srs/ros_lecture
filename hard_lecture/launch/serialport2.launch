@@ -1,0 +1,4 @@
+<launch>
+  <node name="hard_serialport_retry" pkg="hard_lecture" type="hard_serialport_retry" output="screen" />
+  <node name="rostopic_pub" pkg="rostopic" type="rostopic" args="pub -r 2 /Serial_out std_msgs/String -- 'data00'" />
+</launch>

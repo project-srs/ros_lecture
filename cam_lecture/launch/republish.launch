@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="use_compressed" default="false" />
+
+  <group if="$(arg use_compressed)">
+    <node name="image_republish" pkg="image_transport" type="republish" args="compressed raw">
+      <remap from="in" to="/image_raw" />
+      <remap from="out" to="/image_exp" />
+    </node>
+    <node name="image_view" pkg="image_view" type="image_view" >
+      <remap from="image" to="/image_exp"/>
+    </node>
+  </group>
+  <group unless="$(arg use_compressed)">
+    <node name="image_view" pkg="image_view" type="image_view" >
+      <remap from="image" to="/image_raw"/>
+    </node>
+  </group>
+</launch>
+

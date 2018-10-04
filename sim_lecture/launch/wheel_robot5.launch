@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <arg name="model" default="$(find sim_lecture)/urdf/wheel_robot5.urdf" />
+  <arg name="rvizconfig" default="$(find sim_lecture)/rviz/wheel_robot5.rviz" />
+  <param name="robot_description" type="str" textfile="$(arg model)"/>
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find sim_lecture)/world/wheel_robot5.world" />
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model wheel_robot" />
+
+  <rosparam>
+    wheel_robot:
+      joint_state_controller:
+        type: joint_state_controller/JointStateController
+        publish_rate: 50  
+      
+      diff_drive_controller:
+        type        : "diff_drive_controller/DiffDriveController"
+        left_wheel  : 'left_wheel_joint'
+        right_wheel : 'right_wheel_joint'
+        publish_rate: 50.0               # default: 50
+        pose_covariance_diagonal : [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 1000.0]
+        twist_covariance_diagonal: [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 1000.0]
+
+        # Wheel separation and diameter. These are both optional.
+        # diff_drive_controller will attempt to read either one or both from the
+        # URDF if not specified as a parameter
+        wheel_separation : 0.20
+        wheel_radius : 0.05
+
+        # Wheel separation and radius multipliers
+        wheel_separation_multiplier: 1.0 # default: 1.0
+        wheel_radius_multiplier    : 1.0 # default: 1.0
+
+        # Velocity commands timeout [s], default 0.5
+        cmd_vel_timeout: 1.0
+          
+        # Base frame_id
+        base_frame_id: base_footprint #default: base_link
+          
+        # Velocity and acceleration limits
+        # Whenever a min_* is unspecified, default to -max_*
+        linear:
+          x:
+            has_velocity_limits    : true
+            max_velocity           : 0.55  # m/s
+            min_velocity           : -0.55 # m/s
+            has_acceleration_limits: true
+            max_acceleration       : 1.0  # m/s^2
+            min_acceleration       : -1.0 # m/s^2
+        angular:
+          z:
+            has_velocity_limits    : true
+            max_velocity           : 0.3  # rad/s
+            min_velocity           : -0.3
+            has_acceleration_limits: true
+            max_acceleration       : 0.3  # rad/s^2
+            min_acceleration       : -0.3
+  </rosparam>
+
+  <node name="controller_spawner" pkg="controller_manager"
+        type="spawner" respawn="false"
+        output="screen" ns="/wheel_robot"
+        args="joint_state_controller diff_drive_controller"/>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher"
+        type="robot_state_publisher"
+        respawn="false" output="screen" ns="/wheel_robot"/>
+   
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+
+  <node name="sim_model_base_publisher" pkg="sim_lecture" type="sim_model_base_publisher"  output="screen">
+    <param name="model_name"  value="wheel_robot" />
+    <param name="world_frame" value="/world" />
+    <param name="base_frame"  value="/base_link" />
+  </node>
+
+
+</launch>

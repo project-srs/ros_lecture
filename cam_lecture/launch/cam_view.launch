@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+  <node name="uvc_camera_node" pkg="uvc_camera" type="uvc_camera_node" />
+  <node name="image_view" pkg="image_view" type="image_view" >
+    <remap from="image" to="/image_raw"/>
+  </node>
+</launch>
+

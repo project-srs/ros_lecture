@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+  <param name="robot_description" type="str" textfile="$(find sim_lecture)/urdf/arm_robot1.urdf"/>
+
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model arm_robot" />
+
+  <rosparam>
+    arm_robot:
+      joint_state_controller:
+        type: joint_state_controller/JointStateController
+        publish_rate: 50  
+      
+      arm1_joint_position_controller:
+        type: effort_controllers/JointPositionController
+        joint: arm1_joint
+        pid: {p: 100.0, i: 0.01, d: 10.0}
+  </rosparam>
+
+  <node name="controller_spawner" pkg="controller_manager"
+        type="spawner" respawn="false"
+        output="screen" ns="/arm_robot"
+        args="arm1_joint_position_controller joint_state_controller"/>
+
+</launch>

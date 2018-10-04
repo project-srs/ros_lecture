@@ -1,0 +1,8 @@
+<launch>
+  <node name="joy_node" pkg="joy" type="joy_node" />
+  <node name="basic_twist_publisher" pkg="basic_lecture" type="basic_twist_publisher">
+    <remap from="cmd_vel" to="turtle1/cmd_vel"/>
+  </node>
+  <node name="turtlesim_node" pkg="turtlesim" type="turtlesim_node" />
+</launch>
+

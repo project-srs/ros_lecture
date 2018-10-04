@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<launch>
+    <group ns="gs1">
+        <node name="reconf1" pkg="adv_lecture" type="reconfigure1"  />
+    </group>
+
+    <group ns="gs1">
+        <node name="reconf2" pkg="adv_lecture" type="reconfigure1"  />
+    </group>
+
+</launch>
+

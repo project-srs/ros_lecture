@@ -1,0 +1,35 @@
+<launch>
+  <arg name="HZ_ALL" default="1"/>
+  <node name="basic_timing_talker1" pkg="basic_lecture" type="basic_timing_talker"   output="screen">
+    <remap from="chatter" to="chatter1"/>
+    <param name="HZ" value="1"/>
+  </node>
+  <node name="basic_timing_bridge1" pkg="basic_lecture" type="basic_timing_bridge"   output="screen">
+    <param name="number" value="1"/>
+    <remap from="chatter_in"  to="chatter1"/>
+    <remap from="chatter_out" to="chatter2"/>
+    <param name="HZ" value="$(arg HZ_ALL)"/>
+  </node>
+  <node name="basic_timing_bridge2" pkg="basic_lecture" type="basic_timing_bridge"   output="screen">
+    <param name="number" value="2"/>
+    <remap from="chatter_in"  to="chatter2"/>
+    <remap from="chatter_out" to="chatter3"/>
+    <param name="HZ" value="$(arg HZ_ALL)"/>
+  </node>
+  <node name="basic_timing_bridge3" pkg="basic_lecture" type="basic_timing_bridge"   output="screen">
+    <param name="number" value="3"/>
+    <remap from="chatter_in"  to="chatter3"/>
+    <remap from="chatter_out" to="chatter4"/>
+    <param name="HZ" value="$(arg HZ_ALL)"/>
+  </node>
+  <node name="basic_timing_bridge4" pkg="basic_lecture" type="basic_timing_bridge"   output="screen">
+    <param name="number" value="4"/>
+    <remap from="chatter_in"  to="chatter4"/>
+    <remap from="chatter_out" to="chatter5"/>
+    <param name="HZ" value="$(arg HZ_ALL)"/>
+  </node>
+  <node name="basic_timing_listener1" pkg="basic_lecture" type="basic_timing_listener" output="screen">
+    <remap from="chatter" to="chatter5"/>
+    <param name="HZ" value="$(arg HZ_ALL)"/>
+  </node>
+</launch>

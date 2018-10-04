@@ -1,0 +1,18 @@
+<robot name="test_robot">
+    <material name="red">
+        <color rgba="1.0 0.0 0.0 2.0"/>
+    </material>
+    <link name="world"/>
+    
+    <link name="base_link"/>
+    <joint name="base_joint" type="floating">
+        <parent link="world"/>
+        <child  link="base_link"/>
+    </joint>
+    
+    <link name="link1"/>
+    <joint name="joint1" type="fixed">
+        <parent link="base_link"/>
+        <child  link="link1"/>
+    </joint>
+</robot>

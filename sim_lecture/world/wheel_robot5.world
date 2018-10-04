@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+    <world name="default">
+    <include>
+        <uri>model://sun</uri>
+    </include>
+    <include>
+        <uri>model://ground_plane</uri>
+    </include>
+    <population name="can_population1">
+        <model name="beer1">
+        <include>
+            <static>false</static>
+            <uri>model://beer</uri>
+        </include>
+        </model>
+        <pose>0 0 0 0 0 0</pose>
+        <box>
+        <size>2 2 0.01</size>
+        </box>
+        <model_count>10</model_count>
+        <distribution>
+        <type>random</type>
+        </distribution>
+    </population>
+    </world>
+</sdf>

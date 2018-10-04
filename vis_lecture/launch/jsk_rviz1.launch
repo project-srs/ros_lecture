@@ -1,0 +1,6 @@
+<launch>
+  <arg name="rvizconfig" default="$(find vis_lecture)/rviz/jsk_rviz1.rviz" />
+
+  <node name="vis_float32_publisher" pkg="vis_lecture" type="vis_float32_publisher" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+</launch>

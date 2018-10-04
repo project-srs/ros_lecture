@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <node name="nav_gazebo_odom" pkg="nav_lecture" type="nav_gazebo_odom"  output="screen">
+    <param name="model_name"  value="wheel_robot" />
+    <param name="world_frame" value="wheel_robot/odom" />
+    <param name="base_frame"  value="wheel_robot/tracking_refference" />
+    <param name="publish_rate"  value="2" />
+    <param name="noise"  value="0.0" />
+    <param name="tf_enable"  value="true" />
+    <remap from="odom" to="/wheel_robot/tracking/odom" />
+  </node>
+</launch>

@@ -1,0 +1,4 @@
+<launch>
+  <node name="logger1" pkg="basic_lecture" type="basic_logger" />
+  <node name="logger2" pkg="basic_lecture" type="basic_logger" />
+</launch>

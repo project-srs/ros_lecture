@@ -1,0 +1,19 @@
+<launch>
+  <arg name="model" default="$(find vis_lecture)/urdf/move_robot1.urdf" />
+  <arg name="gui" default="false" />
+  <arg name="rvizconfig" default="$(find vis_lecture)/rviz/marker2.rviz" />
+  <arg name="joy" default="false" />
+  
+  <param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" />
+  <param name="use_gui" value="$(arg gui)"/>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+  <node name="vis_marker_publisher2" pkg="vis_lecture" type="vis_marker_publisher2" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+
+  <group if="$(arg joy)">
+    <node name="joy_node"   pkg="joy" type="joy_node" />
+    <node name="twist_publisher" pkg="basic_lecture" type="twist_publisher"/>
+  </group>
+
+  <node name="vis_robot_sim" pkg="vis_lecture" type="vis_robot_sim"/>
+</launch>
