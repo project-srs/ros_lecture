@@ -71,6 +71,6 @@
         type="robot_state_publisher"
         respawn="false" output="screen" ns="/wheel_robot"/>
    
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find omni_test)/config/SETTING.rviz" required="true" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find sim_lecture)/config/SETTING.rviz" required="true" />
 
 </launch>
