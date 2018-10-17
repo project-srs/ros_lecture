@@ -63,9 +63,18 @@
   <exec_depend>tf</exec_depend>
   <exec_depend>adv_lecture</exec_depend>
 
+  <build_depend>qtbase5-dev</build_depend>
+  <build_depend>rviz</build_depend>
+
+  <exec_depend>libqt5-core</exec_depend>
+  <exec_depend>libqt5-gui</exec_depend>
+  <exec_depend>libqt5-widgets</exec_depend>
+  <exec_depend>rviz</exec_depend>
+
   <!-- The export tag contains other, unspecified, tags -->
   <export>
     <!-- Other tools can request additional information be placed here -->
     <adv_lecture plugin="${prefix}/plugin_description.xml" />
+    <rviz plugin="${prefix}/plugin_description.xml"/>
   </export>
 </package>

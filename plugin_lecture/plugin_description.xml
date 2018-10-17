@@ -2,4 +2,8 @@
   <class type="add" base_class_type="calc_base">
     <description>This is a add plugin.</description>
   </class>
+
+  <class type="qt_twist_panel" base_class_type="rviz::Panel">
+    <description>twist panel</description>
+  </class>
 </library>

@@ -14,6 +14,7 @@ find_package(catkin REQUIRED COMPONENTS
   tf
   pluginlib
   adv_lecture
+  rviz
 )
 
 ## System dependencies are found with CMake's conventions
@@ -112,6 +113,15 @@ catkin_package(
 #  DEPENDS system_lib
 )
 
+#Qt5 configulation
+set(CMAKE_AUTOMOC ON)
+find_package(Qt5 ${rviz_QT_VERSION} EXACT REQUIRED
+  Core
+  Widgets
+)
+set(QT_LIBRARIES Qt5::Widgets)
+add_definitions(-DQT_NO_KEYWORDS)
+
 ###########
 ## Build ##
 ###########
@@ -126,7 +136,10 @@ include_directories(
 ## Declare a C++ library
 add_library(${PROJECT_NAME}
   src/plugin_calc_add.cpp
+  src/qt_twist_panel.cpp
+  src/qt_touch.cpp
 )
+
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
@@ -152,6 +165,10 @@ add_library(${PROJECT_NAME}
 # target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
 # )
+target_link_libraries(${PROJECT_NAME}
+  ${catkin_LIBRARIES}
+  ${QT_LIBRARIES}
+)
 
 
 #############
