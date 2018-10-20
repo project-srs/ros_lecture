@@ -14,6 +14,12 @@ TouchWidget::TouchWidget(QWidget* parent): QWidget( parent )
   grayout=false;
 }
 
+void TouchWidget::setEnabled( bool enable ){
+  grayout=!enable;
+  update();
+}
+
+
 void TouchWidget::paintEvent( QPaintEvent* event )
 {
   int w = width();
@@ -61,13 +67,6 @@ void TouchWidget::paintEvent( QPaintEvent* event )
     painter.drawPolyline( arrows, 2 );
   }
 }
-
-void TouchWidget::checkGrayout(int state){
-  if(state>0)grayout=true;
-  else grayout=false;
-  update();
-} 
-
 
 void TouchWidget::mouseMoveEvent( QMouseEvent* event )
 {
