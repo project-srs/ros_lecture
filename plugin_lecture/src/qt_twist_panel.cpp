@@ -148,7 +148,6 @@ void qt_twist_panel::tick()
   }
 }
 
-
 void qt_twist_panel::save( rviz::Config config ) const
 {
   rviz::Panel::save( config );

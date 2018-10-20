@@ -3,17 +3,15 @@
 # include <rviz/panel.h>
 #endif
 
-#include <QPainter>
 #include <QLineEdit>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QLabel>
-#include <QTimer>
 #include <QCheckBox>
 #include <QLineEdit>
-#include <QGroupBox>
 #include <QRadioButton>
 #include <QButtonGroup>
+#include <QTimer>
 
 #include <string>
 
