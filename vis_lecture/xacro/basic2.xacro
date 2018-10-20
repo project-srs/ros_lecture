@@ -1,56 +1,56 @@
 <robot name="test_robot" xmlns:xacro="http://ros.org/wiki/xacro">
-    <xacro:property name="side" value="0.5" />
-    <material name="red">
-        <color rgba="1.0 0.0 0.0 2.0"/>
-    </material>
-    
-    <link name="world"/>
-    
-    <joint name="base_joint" type="fixed">
-        <parent link="world"/>
-        <child  link="base_link"/>
-    </joint>
-    <link name="base_link"/>
+  <xacro:property name="side" value="0.5" />
+  <material name="red">
+    <color rgba="1.0 0.0 0.0 2.0"/>
+  </material>
 
-    <joint name="joint0" type="fixed">
-        <origin rpy="0 0 0" xyz="${0.5*cos(radians(0))} ${0.5*sin(radians(0))} 0"/>
-        <parent link="base_link"/>
-        <child  link="link0"/>
-    </joint>
-    <link name="link0">
-        <visual>
-            <geometry>
-                <box size="0.1 0.1 0.1" />
-            </geometry>
-            <material name="red"/>
-        </visual>
-    </link>
+  <link name="world"/>
 
-    <joint name="joint1" type="fixed">
-        <origin rpy="0 0 0" xyz="${0.5*cos(radians(30))} ${0.5*sin(radians(30))} 0"/>
-        <parent link="base_link"/>
-        <child  link="link1"/>
-    </joint>
-    <link name="link1">
-        <visual>
-            <geometry>
-                <box size="0.1 0.1 0.1" />
-            </geometry>
-            <material name="red"/>
-        </visual>
-    </link>
+  <joint name="base_joint" type="fixed">
+    <parent link="world"/>
+    <child  link="base_link"/>
+  </joint>
+  <link name="base_link"/>
 
-    <joint name="joint2" type="fixed">
-        <origin rpy="0 0 0" xyz="${0.5*cos(radians(60))} ${0.5*sin(radians(60))} 0"/>
-        <parent link="base_link"/>
-        <child  link="link2"/>
-    </joint>
-    <link name="link2">
-        <visual>
-            <geometry>
-                <box size="0.1 0.1 0.1" />
-            </geometry>
-            <material name="red"/>
-        </visual>
-    </link>
+  <joint name="joint0" type="fixed">
+    <origin rpy="0 0 0" xyz="${0.5*cos(radians(0))} ${0.5*sin(radians(0))} 0"/>
+    <parent link="base_link"/>
+    <child  link="link0"/>
+  </joint>
+  <link name="link0">
+    <visual>
+      <geometry>
+        <box size="0.1 0.1 0.1" />
+      </geometry>
+      <material name="red"/>
+    </visual>
+  </link>
+
+  <joint name="joint1" type="fixed">
+    <origin rpy="0 0 0" xyz="${0.5*cos(radians(30))} ${0.5*sin(radians(30))} 0"/>
+    <parent link="base_link"/>
+    <child  link="link1"/>
+  </joint>
+  <link name="link1">
+    <visual>
+      <geometry>
+        <box size="0.1 0.1 0.1" />
+      </geometry>
+      <material name="red"/>
+    </visual>
+  </link>
+
+  <joint name="joint2" type="fixed">
+    <origin rpy="0 0 0" xyz="${0.5*cos(radians(60))} ${0.5*sin(radians(60))} 0"/>
+    <parent link="base_link"/>
+    <child  link="link2"/>
+  </joint>
+  <link name="link2">
+    <visual>
+      <geometry>
+        <box size="0.1 0.1 0.1" />
+      </geometry>
+      <material name="red"/>
+    </visual>
+  </link>
 </robot>

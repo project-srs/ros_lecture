@@ -1,0 +1,24 @@
+<robot name="test_robot" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:arg name="length" default="1.0"/>
+
+  <material name="red">
+    <color rgba="1.0 0.0 0.0 2.0"/>
+  </material>
+
+  <link name="base_link"/>
+
+  <joint name="joint0" type="fixed">
+    <origin rpy="0 0 0" xyz="$(arg length) 0 0"/>
+    <parent link="base_link"/>
+    <child  link="link0"/>
+  </joint>
+  <link name="link0">
+    <visual>
+      <geometry>
+        <box size="0.1 0.1 0.1" />
+      </geometry>
+      <material name="red"/>
+    </visual>
+  </link>
+
+</robot>
