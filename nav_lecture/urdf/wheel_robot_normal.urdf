@@ -82,8 +82,8 @@
     </collision>
   </link>
   <gazebo reference="/wheel_robot/left_wheel_link">
-    <mu1 value="0.5" />
-    <mu2 value="0.5" />
+    <mu1 value="1.5" />
+    <mu2 value="1.5" />
     <kp value="10000" />
     <kd value="100" />
     <material>Gazebo/Red</material>
@@ -131,8 +131,8 @@
     </collision>
   </link>
   <gazebo reference="/wheel_robot/right_wheel_link">
-    <mu1 value="0.5" />
-    <mu2 value="0.5" />
+    <mu1 value="1.5" />
+    <mu2 value="1.5" />
     <kp value="10000" />
     <kd value="100" />
     <material>Gazebo/Red</material>

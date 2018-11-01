@@ -37,7 +37,7 @@ wheel_robot:
         max_velocity           : 0.55  # m/s
         min_velocity           : -0.55 # m/s
         has_acceleration_limits: true
-        max_acceleration       : 0.5  # m/s^2
+        max_acceleration       : 0.2  # m/s^2
         min_acceleration       : -0.2 # m/s^2
     angular:
       z:
