@@ -137,6 +137,8 @@ include_directories(
 # add_executable(${PROJECT_NAME}_node src/hard_lecture_node.cpp)
 add_executable(hard_serialport src/hard_serialport.cpp)
 add_executable(hard_serialport_retry src/hard_serialport_retry.cpp)
+add_executable(hard_gy955 src/hard_gy955.cpp)
+add_executable(hard_imu_to_pose src/hard_imu_to_pose.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -156,6 +158,12 @@ target_link_libraries(hard_serialport
   ${catkin_LIBRARIES}
 )
 target_link_libraries(hard_serialport_retry
+  ${catkin_LIBRARIES}
+)
+target_link_libraries(hard_gy955
+  ${catkin_LIBRARIES}
+)
+target_link_libraries(hard_imu_to_pose
   ${catkin_LIBRARIES}
 )
 

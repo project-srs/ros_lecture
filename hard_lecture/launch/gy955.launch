@@ -1,0 +1,6 @@
+<launch>
+  <arg name="rvizconfig" default="$(find hard_lecture)/rviz/gy955.rviz" />
+  <node name="hard_gy955" pkg="hard_lecture" type="hard_gy955" output="screen" />
+  <node name="hard_imu_to_pose" pkg="hard_lecture" type="hard_imu_to_pose" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+</launch>
