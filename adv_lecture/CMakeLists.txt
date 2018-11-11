@@ -148,6 +148,10 @@ add_executable(adv_orientation src/adv_orientation.cpp)
 add_executable(adv_time src/adv_time.cpp)
 add_executable(adv_call_plugin src/adv_call_plugin.cpp)
 
+add_executable(adv_nodetype_sync     src/adv_nodetype_sync.cpp)
+add_executable(adv_nodetype_async    src/adv_nodetype_async.cpp)
+add_executable(adv_nodetype_semisync src/adv_nodetype_semisync.cpp)
+
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use
@@ -180,6 +184,15 @@ target_link_libraries(adv_time
   ${catkin_LIBRARIES}
 )
 target_link_libraries(adv_call_plugin
+  ${catkin_LIBRARIES}
+)
+target_link_libraries(adv_nodetype_sync
+  ${catkin_LIBRARIES}
+)
+target_link_libraries(adv_nodetype_async
+  ${catkin_LIBRARIES}
+)
+target_link_libraries(adv_nodetype_semisync
   ${catkin_LIBRARIES}
 )
 
