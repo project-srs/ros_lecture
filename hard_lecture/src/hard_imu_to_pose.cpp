@@ -20,4 +20,3 @@ int main(int argc, char **argv)
 	ros::Subscriber serial_sub = n.subscribe("imu", 10, imu_callback); 
 	ros::spin();
 }
-

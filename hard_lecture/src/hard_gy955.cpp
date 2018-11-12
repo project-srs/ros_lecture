@@ -29,7 +29,7 @@ int open_serial(const char *device_name){
 int fd1;
 int main(int argc, char **argv)
 {
-	ros::init(argc, argv, "s4_comport_serialport");
+	ros::init(argc, argv, "hard_gy955");
 	ros::NodeHandle n;
 
 	//Publisher
@@ -81,6 +81,11 @@ int main(int argc, char **argv)
 						float quat_y=tmp_y/10000.0;
 						int16_t tmp_z=(buffer_data[i+8]*256+buffer_data[i+9]);
 						float quat_z=tmp_z/10000.0;
+						int d0=(buffer_data[i+10]>>6)&0x03;
+						int d1=(buffer_data[i+10]>>4)&0x03;
+						int d2=(buffer_data[i+10]>>2)&0x03;
+						int d3=(buffer_data[i+10]>>0)&0x03;
+
 						state++;
 						next_index=i+12;
 						float quat_size=quat_w * quat_w + quat_x * quat_x + quat_y * quat_y + quat_z * quat_z;
@@ -98,6 +103,7 @@ int main(int argc, char **argv)
 						else{
 							ROS_WARN("quat size error: %f",quat_size);
 						}
+						ROS_INFO_THROTTLE(2.0, "check: %i, %i, %i, %i",d0, d1, d2, d3);
 					}
 				}
 			}
