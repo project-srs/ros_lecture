@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<launch>
+  <node name="uvc_camera_node" pkg="uvc_camera" type="uvc_camera_node" output="screen">
+    <param name="camera_info_url" value="file://$(find cam_lecture)/config/camera.yaml"/>
+  </node>
+  <node name="cam_call_camera_info" pkg="cam_lecture" type="cam_call_camera_info" output="screen">
+    <rosparam command="load" file="$(find cam_lecture)/config/camera.yaml" />
+  </node>
+</launch>
