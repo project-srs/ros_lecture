@@ -26,10 +26,10 @@
       </inertial>  
     </link>
     <gazebo reference="${prefix}_link">
-      <mu1 value="3.0" />
-      <mu2 value="3.0" />
-      <kp value="10000" />
-      <kd value="100" />
+      <mu1 value="2.5" />
+      <mu2 value="2.5" />
+      <kp value="1000" />
+      <kd value="10" />
       <material>Gazebo/Black</material>
     </gazebo>
     <transmission name="${prefix}_trans">
