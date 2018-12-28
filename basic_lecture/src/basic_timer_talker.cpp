@@ -11,7 +11,7 @@ void timer_callback(const ros::TimerEvent&)
 }
 
 int main(int argc, char **argv){
-  ros::init(argc, argv, "basic_simple_talker");
+  ros::init(argc, argv, "basic_timer_talker");
   ros::NodeHandle n;
   chatter_pub = n.advertise<std_msgs::String>("chatter", 10);
 
