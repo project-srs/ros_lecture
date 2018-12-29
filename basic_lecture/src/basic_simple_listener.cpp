@@ -6,7 +6,7 @@ void chatterCallback(const std_msgs::String& msg){
 }
 
 int main(int argc, char **argv){
-  ros::init(argc, argv, "basic_listener");
+  ros::init(argc, argv, "basic_simple_listener");
   ros::NodeHandle n;
   ros::Subscriber sub = n.subscribe("chatter", 10, chatterCallback);
   ros::Rate loop_rate(10);

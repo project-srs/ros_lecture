@@ -3,7 +3,7 @@
 #include <string>
 
 int main(int argc, char **argv){
-  ros::init(argc, argv, "basic_oaram_talker");
+  ros::init(argc, argv, "basic_param_talker");
   ros::NodeHandle n;
   ros::NodeHandle pn("~");
   ros::Publisher chatter_pub = n.advertise<std_msgs::String>("chatter", 10);
