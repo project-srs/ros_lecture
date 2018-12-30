@@ -1,0 +1,15 @@
+<robot name="test_robot" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:property name="side" value="0.5" />
+
+  <link name="base_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="${side} ${side} ${side}" />
+      </geometry>
+      <material name="red">
+        <color rgba="1.0 0.0 0.0 2.0"/>
+      </material>
+    </visual>
+  </link>
+</robot>

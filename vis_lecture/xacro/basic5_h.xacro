@@ -1,0 +1,22 @@
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <material name="red">
+    <color rgba="1.0 0.0 0.0 2.0"/>
+  </material>
+    
+  <xacro:macro name="box_macro" params="suffix parent radius">
+    <joint name="${suffix}_joint" type="fixed">
+      <origin rpy="0 0 0" xyz="${0.5*cos(radians(radius))} ${0.5*sin(radians(radius))} 0"/>
+      <parent link="${parent}"/>
+      <child  link="${suffix}_link"/>
+    </joint>
+    
+    <link name="${suffix}_link">
+      <visual>
+        <geometry>
+          <box size="0.1 0.1 0.1" />
+        </geometry>
+        <material name="red"/>
+      </visual>
+    </link>
+  </xacro:macro>  
+</robot>

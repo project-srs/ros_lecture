@@ -1,0 +1,15 @@
+<launch>
+  <arg name="model" default="$(find vis_lecture)/urdf/move_robot.urdf" />
+  <arg name="rvizconfig" default="$(find vis_lecture)/rviz/move_robot.rviz" />
+  <arg name="joy" default="false" />
+  <param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" />
+  
+  <group if="$(arg joy)">
+    <node name="joy_node"   pkg="joy" type="joy_node" />
+    <node name="basic_twist_publisher" pkg="basic_lecture" type="basic_twist_publisher"/>
+  </group>
+  <node name="vis_robot_sim" pkg="vis_lecture" type="vis_robot_sim"/>
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+</launch>

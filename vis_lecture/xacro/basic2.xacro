@@ -1,0 +1,50 @@
+<robot name="test_robot" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:property name="side" value="0.5" />
+  <material name="red">
+    <color rgba="1.0 0.0 0.0 2.0"/>
+  </material>
+
+  <link name="base_link"/>
+
+  <joint name="body0_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="${0.5*cos(radians(0))} ${0.5*sin(radians(0))} 0"/>
+    <parent link="base_link"/>
+    <child  link="body0_link"/>
+  </joint>
+  <link name="body0_link">
+    <visual>
+      <geometry>
+        <box size="0.1 0.1 0.1" />
+      </geometry>
+      <material name="red"/>
+    </visual>
+  </link>
+
+  <joint name="body1_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="${0.5*cos(radians(30))} ${0.5*sin(radians(30))} 0"/>
+    <parent link="base_link"/>
+    <child  link="body1_link"/>
+  </joint>
+  <link name="body1_link">
+    <visual>
+      <geometry>
+        <box size="0.1 0.1 0.1" />
+      </geometry>
+      <material name="red"/>
+    </visual>
+  </link>
+
+  <joint name="body2_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="${0.5*cos(radians(60))} ${0.5*sin(radians(60))} 0"/>
+    <parent link="base_link"/>
+    <child  link="body2_link"/>
+  </joint>
+  <link name="body2_link">
+    <visual>
+      <geometry>
+        <box size="0.1 0.1 0.1" />
+      </geometry>
+      <material name="red"/>
+    </visual>
+  </link>
+</robot>

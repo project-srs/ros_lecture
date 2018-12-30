@@ -1,0 +1,9 @@
+<robot name="test_robot" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find vis_lecture)/xacro/basic5_h.xacro" />
+
+  <link name="base_link"/>
+  <xacro:box_macro suffix="box0" parent="base_link" radius="0"/>
+  <xacro:box_macro suffix="box1" parent="base_link" radius="30"/>
+  <xacro:box_macro suffix="box2" parent="base_link" radius="60"/>
+  <xacro:box_macro suffix="box3" parent="base_link" radius="90"/>
+</robot>

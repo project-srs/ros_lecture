@@ -1,0 +1,9 @@
+<launch>
+  <arg name="model" default="$(find vis_lecture)/xacro/basic6.xacro"/>
+  <arg name="rvizconfig" default="$(find vis_lecture)/rviz/xacro_expand6.rviz" />
+  <arg name="length0" default="1.0" />
+
+  <param name="robot_description" command="$(find xacro)/xacro $(arg model)  length:=$(arg length0) --inorder" />
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+</launch>

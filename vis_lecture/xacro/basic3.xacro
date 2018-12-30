@@ -1,0 +1,24 @@
+<robot name="test_robot" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:property name="color" value="blue" />
+
+  <material name="red">
+    <color rgba="1.0 0.0 0.0 2.0"/>
+  </material>
+  <material name="blue">
+    <color rgba="0.0 0.0 1.0 2.0"/>
+  </material>
+
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="0.1 0.1 0.1" />
+      </geometry>
+      <xacro:if value="${color=='red'}">
+        <material name="red"/>
+      </xacro:if>
+      <xacro:if value="${color=='blue'}">
+        <material name="blue"/>
+      </xacro:if>
+    </visual>
+  </link>
+</robot>
