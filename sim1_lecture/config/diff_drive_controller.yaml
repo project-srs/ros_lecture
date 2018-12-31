@@ -1,0 +1,34 @@
+diff_drive_controller:
+  type        : "diff_drive_controller/DiffDriveController"
+  left_wheel  : 'left_wheel_joint'
+  right_wheel : 'right_wheel_joint'
+
+  publish_rate: 20.0
+  cmd_vel_timeout: 1.0
+  wheel_separation : 0.20
+  wheel_radius : 0.05
+  pose_covariance_diagonal : [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 1000.0]
+  twist_covariance_diagonal: [0.001, 0.001, 1000000.0, 1000000.0, 1000000.0, 1000.0]
+    
+  # tf
+  #enable_odom_tf: true
+  base_frame_id: base_link
+  odom_frame_id: odom
+    
+  # limits
+  linear:
+    x:
+      has_velocity_limits    : true
+      max_velocity           :  0.55 # m/s
+      min_velocity           : -0.55 # m/s
+      has_acceleration_limits: true
+      max_acceleration       :  1.0 # m/s^2
+      min_acceleration       : -1.0 # m/s^2
+  angular:
+    z:
+      has_velocity_limits    : true
+      max_velocity           :  1.5 # rad/s
+      min_velocity           : -1.5 # rad/s
+      has_acceleration_limits: true
+      max_acceleration       :  1.0  # rad/s^2
+      min_acceleration       : -1.0 # rad/s^2

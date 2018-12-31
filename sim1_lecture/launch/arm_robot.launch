@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <arg name="model" default="$(find sim1_lecture)/urdf/arm_robot.urdf"/>   
+  <param name="robot_description" command="$(find xacro)/xacro $(arg model)"/>
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch"/>
+
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model arm_robot" />
+
+  <rosparam>
+    arm_robot:      
+      arm1_joint_position_controller:
+        type: effort_controllers/JointPositionController
+        joint: arm1_joint
+        pid: {p: 100.0, i: 0.01, d: 10.0}
+  </rosparam>
+  <node name="controller_spawner" pkg="controller_manager"
+        type="spawner" respawn="false"
+        output="screen" ns="/arm_robot"
+        args="arm1_joint_position_controller joint_state_controller"/>
+</launch>
