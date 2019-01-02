@@ -1,0 +1,14 @@
+joint_controller0:
+  type: effort_controllers/JointVelocityController
+  joint: wheel0_motor_shaft_joint
+  pid: {p: 0.05, i: 0.0, d: 0.0001, i_clamp: 1.0, antiwindup: true}
+
+joint_controller1:
+  type: effort_controllers/JointVelocityController
+  joint: wheel1_motor_shaft_joint
+  pid: {p: 0.05, i: 0.0, d: 0.0001, i_clamp: 1.0, antiwindup: true}
+
+joint_controller2:
+  type: effort_controllers/JointVelocityController
+  joint: wheel2_motor_shaft_joint
+  pid: {p: 0.05, i: 0.0, d: 0.0001, i_clamp: 1.0, antiwindup: true}

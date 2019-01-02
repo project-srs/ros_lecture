@@ -1,0 +1,14 @@
+sus_controller0:
+  type: effort_controllers/JointPositionController
+  joint: wheel0_sus_joint
+  pid: {p: 5000, i: 100.0, d: 100, i_clamp: 10.0}
+    
+sus_controller1:
+  type: effort_controllers/JointPositionController
+  joint: wheel1_sus_joint
+  pid: {p: 5000, i: 100.0, d: 100, i_clamp: 10.0}
+
+sus_controller2:
+  type: effort_controllers/JointPositionController
+  joint: wheel2_sus_joint
+  pid: {p: 5000, i: 100.0, d: 100, i_clamp: 10.0}

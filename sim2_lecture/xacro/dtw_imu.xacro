@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<robot name="dtw_robot" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find sim2_lecture)/xacro/move_macro.xacro" />
+  <xacro:include filename="$(find sim2_lecture)/xacro/imu_macro.xacro" />
+
+  <link name="base_link"/>
+
+  <xacro:body_macro parent="base_link" />
+  <xacro:wheel_macro prefix="left_wheel"  parent="base_link" xyz="0 0.1 0.05"/>
+  <xacro:wheel_macro prefix="right_wheel" parent="base_link" xyz="0 -0.1 0.05"/>
+
+  <xacro:imu_macro prefix="imu" parent="base_link" xyz="-0.05 0 0.10"/>
+
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/dtw_robot</robotNamespace>
+    </plugin>
+  </gazebo>
+</robot>

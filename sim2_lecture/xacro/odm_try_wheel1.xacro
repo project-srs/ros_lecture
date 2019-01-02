@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<robot name="odm_robot" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find sim2_lecture)/xacro/odm_common.xacro"/>
+  <xacro:include filename="$(find sim2_lecture)/xacro/odm_omni_wheel_set1.xacro"/>
+
+  <link name="base_link"/>
+
+  <joint name="body_joint" type="fixed">
+    <parent link="base_link"/>
+    <child  link="body_link"/>
+    <origin xyz="0 0 0.05" rpy="0 0 0"/>
+  </joint>
+  <link name="body_link">
+    <visual>
+      <geometry>
+        <box size="0.14 0.08 0.02" />
+      </geometry>
+      <material name="gray"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.14 0.08 0.02" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="2.0"/>
+      <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
+    </inertial>  
+  </link>
+
+  <joint name="wheel0_attach_joint" type="fixed">
+    <parent link="base_link"/>
+    <child  link="wheel0_attach_link"/>
+    <origin xyz="${0.07*cos(radians(60))} ${0.07*sin(radians(60))} 0.019" rpy="0 0 ${radians(60)}"/>
+  </joint>
+  <link name="wheel0_attach_link" />
+  <xacro:omni_wheel_set prefix="wheel0" parent="wheel0_attach_link" />
+
+  <joint name="wheel1_attach_joint" type="fixed">
+    <parent link="base_link"/>
+    <child  link="wheel1_attach_link"/>
+    <origin xyz="${0.07*cos(radians(180))} ${0.07*sin(radians(180))} 0.019" rpy="0 0 ${radians(180)}"/>
+  </joint>
+  <link name="wheel1_attach_link" />
+  <xacro:omni_wheel_set prefix="wheel1" parent="wheel1_attach_link" />
+
+  <joint name="wheel2_attach_joint" type="fixed">
+    <parent link="base_link"/>
+    <child  link="wheel2_attach_link"/>
+    <origin xyz="${0.07*cos(radians(300))} ${0.07*sin(radians(300))} 0.019" rpy="0 0 ${radians(300)}"/>
+  </joint>
+  <link name="wheel2_attach_link" />
+  <xacro:omni_wheel_set prefix="wheel2" parent="wheel2_attach_link" />
+
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/odm_robot</robotNamespace>
+    </plugin>
+  </gazebo>
+
+</robot>

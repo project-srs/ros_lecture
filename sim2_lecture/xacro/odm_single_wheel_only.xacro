@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<robot name="my_robo" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find sim2_lecture)/xacro/odm_common.xacro"/>
+  <xacro:include filename="$(find sim2_lecture)/xacro/odm_omni_wheel_set1.xacro"/>
+
+  <link name="base_link"/>
+
+
+  <xacro:omni_wheel_set prefix="wheel0" parent="base_link" />
+
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/odm_robot</robotNamespace>
+    </plugin>
+  </gazebo>
+
+</robot>

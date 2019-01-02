@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <arg name="model" default="$(find sim2_lecture)/xacro/dtw_move_only.xacro" />
+  <arg name="rvizconfig" default="$(find sim2_lecture)/rviz/dtw_sensor.rviz" />  
+  <param name="robot_description" command="$(find xacro)/xacro $(arg model) --inorder"/>
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model dtw_robot" />
+
+  <param name="/dtw_robot/diff_drive_controller/enable_odom_tf" value="true" />
+  <rosparam command="load"  file="$(find sim2_lecture)/config/diff_drive_controller.yaml" ns="/dtw_robot"/>
+  <rosparam command="load"  file="$(find sim2_lecture)/config/joint_state_controller.yaml" ns="/dtw_robot"/>
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/dtw_robot" 
+      args="diff_drive_controller joint_state_controller" />
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" output="screen" ns="/dtw_robot"/>
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+</launch>
