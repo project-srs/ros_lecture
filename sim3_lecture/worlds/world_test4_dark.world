@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <world name="default">
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <include>
+      <name>coke_can</name>
+      <uri>model://coke_can</uri>
+      <static>true</static>
+      <pose>0 0 0 0 0 0</pose>
+    </include>
+  </world>
+</sdf>
+
