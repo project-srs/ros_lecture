@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <arg name="target" default="localhost"/>
+
+  <machine name="localhost"  address="localhost" />
+  <machine name="server0" address="server0" env-loader="/home/s_user/catkin_ws/devel/env.sh"  user="s_user"  password="password"/>
+
+  <env name="GAZEBO_MASTER_URI" value="http://$(arg target):11345" /> 
+  <include file="$(find sim_lecture)/launch/remote_gazebo.launch">
+    <arg name="target" value="$(arg target)"/>
+  </include>
+</launch>

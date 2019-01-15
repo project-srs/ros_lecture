@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <arg name="target" default="localhost"/>
+  <arg name="gui" default="true"/>
+  <arg name="world_name" default="worlds/empty.world"/> 
+  <env name="GAZEBO_MASTER_URI" value="http://$(arg target):11345" /> 
+
+  <node machine="$(arg target)" name="gazebo" pkg="gazebo_ros" type="gzserver" args="$(arg world_name) -r -u --verbose"/>
+
+  <group if="$(arg gui)">
+    <node name="gazebo_gui" pkg="gazebo_ros" type="gzclient" respawn="false" />
+  </group>
+</launch>

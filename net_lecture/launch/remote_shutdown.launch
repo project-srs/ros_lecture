@@ -1,0 +1,4 @@
+<launch>
+  <machine name="robot1" address="192.168.1.20" env-loader="/home/r_user/catkin_ws/devel/env.sh" user="r_user" password="password"/>
+  <node machine="robot1" pkg="adv_lecture" type="robot_shutdown" name="robot_shutdown" required="true"/> 
+</launch>
