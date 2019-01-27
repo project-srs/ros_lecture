@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <arg name="model" default="$(find nav_lecture)/xacro/dtw_robot.xacro" />
+  <arg name="rvizconfig" default="$(find nav_lecture)/rviz/fusion.rviz" />  
+  <arg name="mode" default="none"/>
+  <!-- 
+  none
+  wheel
+  fusion1 wheel + imu
+  fusion2 wheel + tracker(noise)
+  fusion3 wheel + trakcer(interval)
+  -->
+
+  <!-- gazebo world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+  <!-- dtw_robot -->
+  <include file="$(find nav_lecture)/launch/dtw_spawn.launch">
+    <arg name="robot_name" value="dtw_robot1"/>
+  </include>
+
+  <group ns="dtw_robot1">
+    <!-- ground truth -->
+    <node name="gazebo_odom_truth" pkg="nav_lecture" type="nav_gazebo_odom"  output="screen">
+      <param name="model_name"  value="dtw_robot1" />
+      <param name="odom_frame" value="dtw_robot1/odom" />
+      <param name="base_frame"  value="dtw_robot1/ground_truth" />
+      <param name="publish_rate"  value="20" />
+      <param name="noise"  value="0.0" />
+      <param name="tf_enable" value="true" />
+      <remap from="odom" to="tracking/groundtruth" />
+    </node>
+
+    <!-- traking with noise -->
+    <node name="gazebo_odom_noise" pkg="nav_lecture" type="nav_gazebo_odom"  output="screen">
+      <param name="model_name"  value="dtw_robot1" />
+      <param name="odom_frame" value="dtw_robot1/odom" />
+      <param name="base_frame"  value="dtw_robot1/base_link" />
+      <param name="publish_rate"  value="20" />
+      <param name="noise"  value="0.05" />
+      <remap from="odom" to="tracking/noise" />
+    </node>
+
+    <!-- tracking choppy -->
+    <node name="gazebo_odom_choppy" pkg="nav_lecture" type="nav_gazebo_odom"  output="screen">
+      <param name="model_name"  value="dtw_robot1" />
+      <param name="odom_frame" value="dtw_robot1/odom" />
+      <param name="base_frame"  value="dtw_robot1/base_link" />
+      <param name="publish_rate"  value="2" />
+      <param name="noise"  value="0.0" />
+      <remap from="odom" to="tracking/choppy" />
+    </node>
+
+    <group if="$(eval mode=='mode1')">
+      <!-- to increase the wheel odometry error -->
+      <param name="/dtw_robot1/diff_drive_controller/wheel_radius" value="0.055" />
+      <!-- robot localization -->
+      <node pkg="robot_localization" type="ekf_localization_node" name="ekf_se" clear_params="true" output="screen">
+        <rosparam command="load" file="$(find nav_lecture)/config/ekf_localization/mode1.yaml" />
+        <param name="tf_prefix" value="dtw_robot1"/>
+        <remap from="/odometry/filtered" to="fusion/odom" />
+        <remap from="odom0" to="diff_drive_controller/odom" />
+        <remap from="imu0"  to="imu/data" />
+      </node>
+    </group>
+    <group if="$(eval mode=='mode2')">
+      <!-- to increase the wheel odometry error -->
+      <param name="/dtw_robot1/diff_drive_controller/wheel_radius" value="0.055" />
+      <!-- robot localization -->
+      <node pkg="robot_localization" type="ekf_localization_node" name="ekf_se" clear_params="true" output="screen">
+        <rosparam command="load" file="$(find nav_lecture)/config/ekf_localization/mode2.yaml" />
+        <param name="tf_prefix" value="dtw_robot1"/>
+        <remap from="/odometry/filtered" to="/dtw_robot1/fusion/odom" />
+        <remap from="odom0" to="diff_drive_controller/odom" />
+        <remap from="odom1" to="tracking/noise" />
+      </node>
+    </group>
+    <group if="$(eval mode=='mode3')">
+      <!-- to increase the wheel odometry error -->
+      <param name="/dtw_robot1/diff_drive_controller/wheel_radius" value="0.055" />
+      <!-- robot localization -->
+      <node pkg="robot_localization" type="ekf_localization_node" name="ekf_se" clear_params="true" output="screen">
+        <rosparam command="load" file="$(find nav_lecture)/config/ekf_localization/mode2.yaml" />
+        <param name="tf_prefix" value="dtw_robot1"/>
+        <remap from="/odometry/filtered" to="/dtw_robot1/fusion/odom" />
+        <remap from="odom0" to="diff_drive_controller/odom" />
+        <remap from="odom1" to="tracking/choppy" />
+      </node>
+    </group>
+  </group>
+  <!-- rviz -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+</launch>

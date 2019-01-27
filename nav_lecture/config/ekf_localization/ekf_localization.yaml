@@ -1,0 +1,58 @@
+frequency: 30
+sensor_timeout: 0.1
+two_d_mode: false
+transform_time_offset: 0.0
+transform_timeout: 0.0
+print_diagnostics: true
+publish_tf: true
+publish_acceleration: false
+
+map_frame: map                          # Defaults to "map" if unspecified
+odom_frame: wheel_robot/odom            # Defaults to "odom" if unspecified
+base_link_frame: wheel_robot/base_link  # Defaults to "base_link" if unspecified
+world_frame: wheel_robot/odom           # Defaults to the value of odom_frame if unspecified
+
+#odom0: wheel odometry
+odom0: /wheel_robot/diff_drive_controller/odom
+odom0_config: [false, false, false,
+               false, false, false,
+               true , true,  false,
+               false, false, true,
+               false, false, false]
+odom0_queue_size: 2
+odom0_nodelay: false
+
+odom0_differential: false
+odom0_relative: false
+odom0_pose_rejection_threshold: 5
+odom0_twist_rejection_threshold: 1
+
+#odom1: gazebo tracking
+odom1: /wheel_robot/tracking/odom
+odom1_config: [true , true , true,
+               true,  true,  true,
+               false, false, false,
+               false, false, false,
+               false, false, false]
+odom1_differential: false
+odom1_relative: true
+odom1_queue_size: 2
+odom1_pose_rejection_threshold: 2
+odom1_twist_rejection_threshold: 0.2
+odom1_nodelay: false
+
+#imu0
+imu0: /wheel_robot/tracking/imu/data
+imu0_config: [false, false, false,
+              true,  true,  true,
+              false, false, false,
+              false, false, false,
+              false, false, false]
+imu0_nodelay: false
+imu0_differential: false
+imu0_relative: false
+imu0_queue_size: 5
+imu0_pose_rejection_threshold: 0.8                 # Note the difference in parameter names
+imu0_twist_rejection_threshold: 0.8                #
+imu0_linear_acceleration_rejection_threshold: 0.8  #
+imu0_remove_gravitational_acceleration: true

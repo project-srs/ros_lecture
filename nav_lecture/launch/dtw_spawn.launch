@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <arg name="model" default="$(find nav_lecture)/xacro/dtw_robot.xacro" />
+  <arg name="robot_name" default="dtw_robot"/>
+  <arg name="enable_odom_tf" default="false"/>
+  <arg name="init_pose" default=""/>
+
+  <!-- dtw_robot -->
+  <group ns="$(arg robot_name)">
+    <param name="robot_description" command="$(find xacro)/xacro $(arg model) --inorder robot_name:=$(arg robot_name)"/>
+    <!-- spawn model -->
+    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model $(arg robot_name) $(arg init_pose)" />
+    <!-- ros control -->
+    <param name="/$(arg robot_name)/diff_drive_controller/enable_odom_tf" value="$(arg enable_odom_tf)" />
+    <param name="/$(arg robot_name)/diff_drive_controller/base_frame_id" value="$(arg robot_name)/base_link" />
+    <param name="/$(arg robot_name)/diff_drive_controller/odom_frame_id" value="$(arg robot_name)/odom" />
+    <rosparam command="load" file="$(find nav_lecture)/config/ros_control/diff_drive_controller.yaml"/>
+    <rosparam command="load" file="$(find nav_lecture)/config/ros_control/joint_state_controller.yaml"/>
+    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" 
+        args="diff_drive_controller joint_state_controller" />
+    <!-- static_tf -->
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" output="screen" >
+      <param name="tf_prefix" value="$(arg robot_name)"/>
+    </node>
+  </group>
+</launch>

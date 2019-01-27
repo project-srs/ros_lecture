@@ -1,0 +1,39 @@
+# http://wiki.ros.org/amcl#Parameters
+# overall filter parameters
+min_particles: 200  
+max_particles: 1000
+kld_err: 0.05
+kld_z: 0.99
+update_min_d: 0.2
+update_min_a: 0.5
+resample_interval: 1
+transform_tolerance: 0.2
+recovery_alpha_slow: 0.001
+recovery_alpha_fast: 0.1
+gui_publish_rate: 10.0
+use_map_topic: true 
+first_map_only : false
+
+# laser model parameters
+laser_min_range: -1.0
+laser_max_range: -1.0
+laser_max_beams: 30
+laser_z_hit: 0.95 
+laser_z_short: 0.05 
+laser_z_max: 0.05
+laser_z_rand: 0.05
+laser_sigma_hit: 0.2
+laser_lambda_short: 0.1
+laser_likelihood_max_dist: 2.0
+laser_model_type: likelihood_field
+
+# odometry model parameters
+odom_model_type: diff
+odom_alpha1: 0.2
+odom_alpha2: 0.2
+odom_alpha3: 0.2 
+odom_alpha4: 0.2 
+odom_alpha5: 0.2
+#odom_frame_id: odom 
+#base_frame_id: base_footprint
+#global_frame_id: map

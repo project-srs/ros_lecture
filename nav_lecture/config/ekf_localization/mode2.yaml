@@ -1,0 +1,30 @@
+# for wheel and imu fusion
+
+frequency: 30
+sensor_timeout: 0.1
+two_d_mode: true
+transform_time_offset: 0.0
+transform_timeout: 0.0
+print_diagnostics: true
+publish_tf: true
+publish_acceleration: false
+
+map_frame: map
+odom_frame: odom
+base_link_frame: base_link
+
+#odom0: wheel odometry
+odom0: odom0
+odom0_config: [false, false, false,
+               false, false, false,
+               true , false, false,
+               false, false, true,
+               false, false, false]
+
+#odom1: gazebo tracking
+odom1: odom1
+odom1_config: [true , true , false,
+               false, false, true,
+               false, false, false,
+               false, false, false,
+               false, false, false]

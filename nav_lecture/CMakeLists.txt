@@ -136,7 +136,6 @@ include_directories(
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/nav_lecture_node.cpp)
 add_executable(nav_gazebo_odom src/nav_gazebo_odom.cpp)
-add_executable(nav_test src/nav_test.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -153,9 +152,6 @@ add_executable(nav_test src/nav_test.cpp)
 #   ${catkin_LIBRARIES}
 # )
 target_link_libraries(nav_gazebo_odom
-  ${catkin_LIBRARIES}
-)
-target_link_libraries(nav_test
   ${catkin_LIBRARIES}
 )
 
