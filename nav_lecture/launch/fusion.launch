@@ -3,13 +3,6 @@
   <arg name="model" default="$(find nav_lecture)/xacro/dtw_robot.xacro" />
   <arg name="rvizconfig" default="$(find nav_lecture)/rviz/fusion.rviz" />  
   <arg name="mode" default="none"/>
-  <!-- 
-  none
-  wheel
-  fusion1 wheel + imu
-  fusion2 wheel + tracker(noise)
-  fusion3 wheel + trakcer(interval)
-  -->
 
   <!-- gazebo world -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
@@ -94,6 +87,7 @@
       </node>
     </group>
   </group>
+  
   <!-- rviz -->
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
 </launch>

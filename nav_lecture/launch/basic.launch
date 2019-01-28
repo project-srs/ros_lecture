@@ -19,6 +19,19 @@
     <arg name="enable_odom_tf" default="true"/>
   </include>
 
+  <group ns="dtw_robot1">
+    <!-- ground truth -->
+    <node name="gazebo_odom_truth" pkg="nav_lecture" type="nav_gazebo_odom"  output="screen">
+      <param name="model_name"  value="dtw_robot1" />
+      <param name="odom_frame" value="dtw_robot1/odom" />
+      <param name="base_frame"  value="dtw_robot1/ground_truth" />
+      <param name="publish_rate"  value="20" />
+      <param name="noise"  value="0.0" />
+      <param name="tf_enable" value="true" />
+      <remap from="odom" to="tracking/groundtruth" />
+    </node>
+  </group>
+
   <!-- rviz -->
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
 </launch>

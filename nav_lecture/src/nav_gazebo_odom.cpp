@@ -6,8 +6,6 @@
 
 #include "math.h"
 #include <string>
-#include <iostream>
-#include <sstream>
 #include <random>
 
 double sdlab_uniform(){
