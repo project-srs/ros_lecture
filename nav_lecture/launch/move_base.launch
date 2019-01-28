@@ -46,6 +46,15 @@
       <rosparam file="$(find nav_lecture)/config/move_base/local_costmap_params.yaml" command="load" />
       <rosparam file="$(find nav_lecture)/config/move_base/global_costmap_params.yaml" command="load" />
       <rosparam file="$(find nav_lecture)/config/move_base/base_local_planner_params.yaml" command="load" />
+
+      <param name="global_costmap/laser_scan_sensor/sensor_frame" value="dtw_robot1/front_laser_link" />
+      <param name="global_costmap/laser_scan_sensor/topic" value="/dtw_robot1/front_laser/scan" />
+      <param name="global_costmap/global_frame" value="dtw_robot1/map" />
+      <param name="global_costmap/robot_base_frame" value="dtw_robot1/base_link" />
+      <param name="local_costmap/laser_scan_sensor/sensor_frame" value="dtw_robot1/front_laser_link" />
+      <param name="local_costmap/laser_scan_sensor/topic" value="/dtw_robot1/front_laser/scan" />
+      <param name="local_costmap/global_frame" value="dtw_robot1/odom" />
+      <param name="local_costmap/robot_base_frame" value="dtw_robot1/base_link" />
       <remap from="cmd_vel" to="/dtw_robot1/diff_drive_controller/cmd_vel" />
     </node>
   </group>

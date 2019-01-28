@@ -30,5 +30,5 @@ diff_drive_controller:
       max_velocity           :  2.5 # rad/s
       min_velocity           : -2.5 # rad/s
       has_acceleration_limits: true
-      max_acceleration       :  1.0  # rad/s^2
-      min_acceleration       : -1.0 # rad/s^2
+      max_acceleration       :  2.0  # rad/s^2
+      min_acceleration       : -2.0 # rad/s^2
