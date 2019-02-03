@@ -55,7 +55,8 @@
       <param name="local_costmap/laser_scan_sensor/topic" value="/dtw_robot1/front_laser/scan" />
       <param name="local_costmap/global_frame" value="dtw_robot1/odom" />
       <param name="local_costmap/robot_base_frame" value="dtw_robot1/base_link" />
-      <remap from="cmd_vel" to="/dtw_robot1/diff_drive_controller/cmd_vel" />
+      <remap from="cmd_vel" to="diff_drive_controller/cmd_vel" />
+      <remap from="odom" to="diff_drive_controller/odom" />
     </node>
   </group>
 
