@@ -1,0 +1,47 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <world name="default">
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <model name="box1">
+      <include>
+        <uri>model://box1</uri>
+        <pose>0 2 0 0 0 0</pose>
+      </include>
+    </model>
+    <model name="box2">
+      <include>
+        <uri>model://box1</uri>
+        <pose>0 -2 0 0 0 0</pose>
+      </include>
+    </model>
+    <model name="box3">
+      <include>
+        <uri>model://box1</uri>
+        <pose>-2 0 0 0 0 0</pose>
+      </include>
+    </model>
+    <population name="can_population1">
+      <model name="can1">
+        <include>
+          <static>true</static>
+          <uri>model://coke_can</uri>
+        </include>
+      </model>
+      <pose>1.5 0 0 0 0 0</pose>
+      <box>
+        <size>1 2 0.01</size>
+      </box>
+      <model_count>5</model_count>
+      <distribution>
+        <type>random</type>
+      </distribution>
+    </population>
+  </world>
+</sdf>
+
