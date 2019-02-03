@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <arg name="model" default="$(find laser_lecture)/xacro/laser_box_nub.xacro" />
+  <arg name="rvizconfig" default="$(find laser_lecture)/rviz/laser_filter.rviz" />  
+  <param name="robot_description" command="$(find xacro)/xacro $(arg model) --inorder"/>
+  <arg name="laser_filter_file" default="laser_filter1.yaml"/>  
+
+  <!-- gazebo world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find sim3_lecture)/worlds/world_test5.world"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+  <!-- gazebo model -->
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model dtw_robot" />
+  <node pkg="tf" type="static_transform_publisher" name="tf_1" args="0 0 0 0 0 0 map base_link 10" />
+  <node pkg="tf" type="static_transform_publisher" name="tf_2" args="0 0 0 0 0 0 base_link front_laser_link 10" />
+
+  <!-- laser_filter -->
+  <node pkg="laser_filters" type="scan_to_scan_filter_chain" name="laser_filter">
+    <rosparam command="load" file="$(find laser_lecture)/config/$(arg laser_filter_file)" />
+    <remap from="scan" to="/front_laser/scan" />
+  </node>
+
+  <!-- rviz -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+</launch>

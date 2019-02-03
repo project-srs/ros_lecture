@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<robot name="dtw_robot" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find laser_lecture)/xacro/laser_macro.xacro" />
+
+  <link name="base_link"/>
+  <joint name="body_joint" type="fixed">
+    <parent link="base_link"/>
+    <child  link="body_link"/>
+    <origin xyz="-0.07 0 0.07" rpy="0 0 0"/>
+  </joint>
+  <link name="body_link">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1.0"/>
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.24 0.18 0.06" />
+      </geometry>
+      <material name="gray" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.24 0.178 0.06" />
+      </geometry>
+    </collision>
+  </link>
+  <gazebo reference="body_link">
+    <material>Gazebo/Gray</material>
+  </gazebo>
+
+  <xacro:laser_macro prefix="front_laser" parent="base_link" xyz="0 0 0.13"/>
+
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/dtw_robot</robotNamespace>
+    </plugin>
+  </gazebo>
+</robot>

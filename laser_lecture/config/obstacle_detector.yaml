@@ -1,0 +1,29 @@
+obstacle_extractor:
+  #active: true
+  use_scan: true
+  use_pcl: false
+  #use_split_and_merge: true
+  #circles_from_visibles: true
+  #discard_converted_segments: true
+  #transform_coordinates: true
+  #min_group_points: 5
+  #max_group_distance: 0.1
+  #distance_proportion: 0.00628
+  #max_split_distance: 0.2
+  #max_merge_separation: 0.2
+  #max_merge_spread: 0.2
+  #max_circle_radius: 0.6
+  #radius_enlargement: 0.3
+  #frame_id: map
+
+#obstacle_tracker:
+  #active: true
+  #loop_rate: 100.0
+  #tracking_duration: 2.0
+  #min_correspondence_cost: 0.6
+  #std_correspondence_dev: 0.15
+  #process_variance: 0.1
+  #process_rate_variance: 0.1
+  #measurement_variance: 1.0
+  #frame_id: map
+
