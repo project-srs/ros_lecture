@@ -149,7 +149,9 @@ add_executable(qt_basic1 src/qt_basic1.cpp)
 add_executable(qt_basic2 src/qt_basic2.cpp)
 add_executable(qt_basic3 src/qt_basic3.cpp)
 add_executable(qt_basic4 src/qt_basic4.cpp src/qt_mydialog.cpp)
-add_executable(qt_basic5 src/qt_basic5.cpp src/qt_touch.cpp)
+add_executable(qt_talker src/qt_talker.cpp src/qt_talker_class.cpp)
+add_executable(qt_listener src/qt_listener.cpp src/qt_listener_class.cpp)
+add_executable(qt_touch_app src/qt_touch_app.cpp src/qt_touch.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -181,7 +183,15 @@ target_link_libraries(qt_basic4
   ${catkin_LIBRARIES}
   ${QT_LIBRARIES}
 )
-target_link_libraries(qt_basic5
+target_link_libraries(qt_talker
+  ${catkin_LIBRARIES}
+  ${QT_LIBRARIES}
+)
+target_link_libraries(qt_listener
+  ${catkin_LIBRARIES}
+  ${QT_LIBRARIES}
+)
+target_link_libraries(qt_touch_app
   ${catkin_LIBRARIES}
   ${QT_LIBRARIES}
 )
