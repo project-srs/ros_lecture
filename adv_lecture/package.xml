@@ -70,6 +70,11 @@
   <build_depend>basic_lecture_containing_custom_msg</build_depend>
   <exec_depend>basic_lecture_containing_custom_msg</exec_depend>
 
+  <build_depend>actionlib</build_depend>
+  <build_depend>actionlib_msgs</build_depend>
+  <exec_depend>actionlib</exec_depend>
+  <exec_depend>actionlib_msgs</exec_depend>
+
   <!-- The export tag contains other, unspecified, tags -->
   <export>
     <!-- Other tools can request additional information be placed here -->

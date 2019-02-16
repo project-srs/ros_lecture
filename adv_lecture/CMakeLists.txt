@@ -15,6 +15,8 @@ find_package(catkin REQUIRED COMPONENTS
   tf
   basic_lecture
   pluginlib
+  genmsg
+  actionlib_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -65,17 +67,19 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate actions in the 'action' folder
-# add_action_files(
-#   FILES
-#   Action1.action
-#   Action2.action
-# )
+add_action_files(
+  FILES
+  Task.action
+#  Action1.action
+#  Action2.action
+)
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   std_msgs
-# )
+generate_messages(
+  DEPENDENCIES
+  std_msgs
+  actionlib_msgs
+)
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -152,6 +156,9 @@ add_executable(adv_nodetype_sync     src/adv_nodetype_sync.cpp)
 add_executable(adv_nodetype_async    src/adv_nodetype_async.cpp)
 add_executable(adv_nodetype_semisync src/adv_nodetype_semisync.cpp)
 
+add_executable(adv_action_client src/adv_action_client.cpp)
+add_executable(adv_action_server src/adv_action_server.cpp)
+
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use
@@ -163,6 +170,8 @@ add_executable(adv_nodetype_semisync src/adv_nodetype_semisync.cpp)
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(adv_cmsg_listener ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(reconfigure1 adv_lecture_gencfg)
+add_dependencies(adv_action_client ${${PROJECT_NAME}_EXPORTED_TARGETS})
+add_dependencies(adv_action_server ${${PROJECT_NAME}_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
 # target_link_libraries(${PROJECT_NAME}_node
@@ -193,6 +202,12 @@ target_link_libraries(adv_nodetype_async
   ${catkin_LIBRARIES}
 )
 target_link_libraries(adv_nodetype_semisync
+  ${catkin_LIBRARIES}
+)
+target_link_libraries(adv_action_client
+  ${catkin_LIBRARIES}
+)
+target_link_libraries(adv_action_server
   ${catkin_LIBRARIES}
 )
 
