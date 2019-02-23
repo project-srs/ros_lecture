@@ -23,13 +23,13 @@ int main(int argc, char** argv)
 
     if(server.isActive()){
       if(server.isPreemptRequested()){
-        server.setAborted();
-        //server.setPreempted();
+        server.setPreempted();
         printf("Preempt Goal\n");
       }
       else{
         if(start_time+ros::Duration(current_goal->duration)<ros::Time::now()){
           server.setSucceeded();
+          //server.setAborted();
           printf("Active: publish result id:%i\n", current_goal->task_id);
         }
         else{
