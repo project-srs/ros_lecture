@@ -12,8 +12,14 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
   tf
+  image_geometry
+  image_transport
+  cv_bridge
+  obstacle_detector
 )
 
+find_package(OpenCV)
+include_directories(${OpenCV_INCLUDE_DIRS})
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 
@@ -135,6 +141,9 @@ include_directories(
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/cam_lecture_node.cpp)
+add_executable(cam_call_camera_info src/cam_call_camera_info.cpp)
+add_executable(cam_display_objects src/cam_display_objects.cpp)
+add_executable(cam_model_objects src/cam_model_objects.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -150,6 +159,15 @@ include_directories(
 # target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
 # )
+target_link_libraries(cam_call_camera_info
+  ${catkin_LIBRARIES}
+)
+target_link_libraries(cam_model_objects
+  ${catkin_LIBRARIES}
+)
+target_link_libraries(cam_display_objects
+  ${catkin_LIBRARIES}
+)
 
 #############
 ## Install ##

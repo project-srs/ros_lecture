@@ -1,0 +1,46 @@
+<?xml version="1.0" ?>
+<sdf version='1.6'>
+  <world name='default'>
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+ 
+    <include>
+      <name>coke0</name>
+      <uri>model://coke_can</uri>
+      <pose>1 0 0 0 0 0</pose>
+    </include>
+    <include>
+      <name>coke1</name>
+      <uri>model://coke_can</uri>
+      <pose>2 -0.7 0 0 0 0</pose>
+    </include>
+    <include>
+      <name>coke2</name>
+      <uri>model://coke_can</uri>
+      <pose>3 0.7 0 0 0 0</pose>
+    </include>
+
+    <light name='user_spot_light_0' type='spot'>
+      <pose frame=''>0 0 1 0 -0.7 0</pose>
+      <diffuse>0.5 0.5 0.5 1</diffuse>
+      <specular>0.4 0.4 0.4 1</specular>
+      <direction>0 0 -1</direction>
+      <attenuation>
+        <range>20</range>
+        <constant>0.5</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <cast_shadows>0</cast_shadows>
+      <spot>
+        <inner_angle>0.6</inner_angle>
+        <outer_angle>1</outer_angle>
+        <falloff>1</falloff>
+      </spot>
+    </light>
+  </world>
+</sdf>

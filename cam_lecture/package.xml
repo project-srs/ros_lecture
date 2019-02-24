@@ -62,10 +62,15 @@
   <exec_depend>std_msgs</exec_depend>
   <exec_depend>tf</exec_depend>
 
+  <exec_depend>gazebo_ros</exec_depend>
+
+  <build_depend>obstacle_detector</build_depend>
+  <build_depend>obstacle_detector_containing_custom_msg</build_depend>
+  <exec_depend>obstacle_detector_containing_custom_msg</exec_depend>
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>
     <!-- Other tools can request additional information be placed here -->
-
+    <gazebo_ros gazebo_model_path="${prefix}/models"/>
   </export>
 </package>
