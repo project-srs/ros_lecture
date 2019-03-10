@@ -6,6 +6,7 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
+        - /OverlayDiagnostic1
       Splitter Ratio: 0.5
     Tree Height: 565
   - Class: rviz/Selection
@@ -70,6 +71,18 @@ Visualization Manager:
       Radius: 0.0500000007
       Reference Frame: <Fixed Frame>
       Value: true
+    - Class: jsk_rviz_plugin/OverlayDiagnostic
+      Enabled: true
+      Name: OverlayDiagnostic
+      Topic: /diagnostics
+      Value: true
+      alpha: 0.800000012
+      diagnostics namespace: "hard_gy955: Connect"
+      left: 10
+      size: 128
+      stall duration: 5
+      top: 10
+      type: SAC
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -95,7 +108,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 10
+      Distance: 5.52368546
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.0599999987
         Stereo Focal Distance: 1
@@ -110,10 +123,10 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.00999999978
-      Pitch: 0.785398006
+      Pitch: 0.555398285
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.785398006
+      Yaw: 0.740398109
     Saved: ~
 Window Geometry:
   Displays:
@@ -131,5 +144,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1200
-  X: 65
-  Y: 60
+  X: 379
+  Y: 51
