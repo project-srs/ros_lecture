@@ -1,0 +1,11 @@
+<launch>
+  <node name="publisher1" pkg="adv_lecture" type="adv_nodetype_point_publisher">
+    <remap from="output" to="input1"/>
+    <param name="hz" value="10" />
+  </node>
+  <node name="publisher2" pkg="adv_lecture" type="adv_nodetype_point_publisher">
+    <remap from="output" to="input2"/>
+    <param name="hz" value="20" />
+  </node>
+  <node name="timer_driven" pkg="adv_lecture" type="adv_nodetype_message_filter" />
+</launch>

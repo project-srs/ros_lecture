@@ -1,0 +1,7 @@
+<launch>
+  <node name="publisher1" pkg="adv_lecture" type="adv_nodetype_point_publisher">
+    <remap from="output" to="input1"/>
+    <param name="hz" value="7" />
+  </node>
+  <node name="event_driven" pkg="adv_lecture" type="adv_nodetype_event_driven" />
+</launch>

@@ -1,0 +1,11 @@
+<launch>
+  <node name="node1" pkg="adv_lecture" type="adv_param_display" output="screen">
+    <param name="int_param" value="1"/>
+  </node>
+
+  <param name="node2/int_param" value="2"/>
+  <node name="node2" pkg="adv_lecture" type="adv_param_display" output="screen"/>
+
+  <rosparam command="load" file="$(find adv_lecture)/config/param_config.yaml"/>
+  <node name="node3" pkg="adv_lecture" type="adv_param_display" output="screen"/>
+</launch>

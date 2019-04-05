@@ -17,6 +17,7 @@ find_package(catkin REQUIRED COMPONENTS
   pluginlib
   genmsg
   actionlib_msgs
+  message_filters
 )
 
 ## System dependencies are found with CMake's conventions
@@ -152,12 +153,16 @@ add_executable(adv_orientation src/adv_orientation.cpp)
 add_executable(adv_time src/adv_time.cpp)
 add_executable(adv_call_plugin src/adv_call_plugin.cpp)
 
-add_executable(adv_nodetype_sync     src/adv_nodetype_sync.cpp)
-add_executable(adv_nodetype_async    src/adv_nodetype_async.cpp)
-add_executable(adv_nodetype_semisync src/adv_nodetype_semisync.cpp)
+add_executable(adv_nodetype_timer_driven  src/adv_nodetype_timer_driven.cpp)
+add_executable(adv_nodetype_event_driven  src/adv_nodetype_event_driven.cpp)
+add_executable(adv_nodetype_semi_event_driven src/adv_nodetype_semi_event_driven.cpp)
+add_executable(adv_nodetype_message_filter src/adv_nodetype_message_filter.cpp)
+add_executable(adv_nodetype_point_publisher  src/adv_nodetype_point_publisher.cpp)
 
 add_executable(adv_action_client src/adv_action_client.cpp)
 add_executable(adv_action_server src/adv_action_server.cpp)
+
+add_executable(adv_param_display src/adv_param_display.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -195,19 +200,28 @@ target_link_libraries(adv_time
 target_link_libraries(adv_call_plugin
   ${catkin_LIBRARIES}
 )
-target_link_libraries(adv_nodetype_sync
+target_link_libraries(adv_nodetype_timer_driven
   ${catkin_LIBRARIES}
 )
-target_link_libraries(adv_nodetype_async
+target_link_libraries(adv_nodetype_event_driven
   ${catkin_LIBRARIES}
 )
-target_link_libraries(adv_nodetype_semisync
+target_link_libraries(adv_nodetype_semi_event_driven
+  ${catkin_LIBRARIES}
+)
+target_link_libraries(adv_nodetype_message_filter
   ${catkin_LIBRARIES}
 )
 target_link_libraries(adv_action_client
   ${catkin_LIBRARIES}
 )
 target_link_libraries(adv_action_server
+  ${catkin_LIBRARIES}
+)
+target_link_libraries(adv_param_display
+  ${catkin_LIBRARIES}
+)
+target_link_libraries(adv_nodetype_point_publisher
   ${catkin_LIBRARIES}
 )
 
