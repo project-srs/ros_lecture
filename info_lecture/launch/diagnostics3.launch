@@ -1,0 +1,6 @@
+<launch>
+  <arg name="rvizconfig" default="$(find info_lecture)/rviz/diagnostics.rviz" />
+
+  <node name="info_diagnostic" pkg="info_lecture" type="info_diagnostic" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+</launch>

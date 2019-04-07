@@ -1,0 +1,4 @@
+<launch>
+  <node name="joy_node" pkg="joy" type="joy_node" />
+  <node name="info_diagnostic" pkg="info_lecture" type="info_diagnostic" />
+</launch>

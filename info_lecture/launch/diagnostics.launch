@@ -1,0 +1,16 @@
+<launch>
+  <arg name="rviz" default="false"/>
+
+  <node name="joy_node" pkg="joy" type="joy_node" />
+  <node name="info_diagnostic" pkg="info_lecture" type="info_diagnostic" />
+
+  <node pkg="diagnostic_aggregator" type="aggregator_node" name="diagnostic_aggregator" >
+    <!-- Load the file you made above -->
+    <rosparam command="load" file="$(find yourpackage)/launch/analyzerSample.yaml" />
+  </node>
+
+  <group if="$(arg rviz)">
+    <arg name="rvizconfig" default="$(find info_lecture)/rviz/jsk_rviz4.rviz" />
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+  </group>
+</launch>

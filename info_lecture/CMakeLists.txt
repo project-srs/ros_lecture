@@ -141,6 +141,7 @@ add_executable(info_float32_publisher src/info_float32_publisher.cpp)
 add_executable(info_overlay_menu_publisher src/info_overlay_menu_publisher.cpp)
 add_executable(info_overlay_text_publisher src/info_overlay_text_publisher.cpp)
 add_executable(info_diagnostic src/info_diagnostic.cpp)
+add_executable(info_pictgram_publisher src/info_pictgram_publisher.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -172,6 +173,9 @@ target_link_libraries(info_overlay_text_publisher
   ${catkin_LIBRARIES}
 )
 target_link_libraries(info_diagnostic
+  ${catkin_LIBRARIES}
+)
+target_link_libraries(info_pictgram_publisher
   ${catkin_LIBRARIES}
 )
 

@@ -1,0 +1,11 @@
+type: AnalyzerGroup
+path: robot
+analyzers:
+  JoyDevice:
+    type: GenericAnalyzer
+    path: joy
+    startswith: joy_node
+  DummyDevice:
+    type: GenericAnalyzer
+    path: dummy
+    startswith: info_diagnostic
