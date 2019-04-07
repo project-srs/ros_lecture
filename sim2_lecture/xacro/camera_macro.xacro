@@ -35,7 +35,7 @@
           <imageTopicName>image_raw</imageTopicName>
           <cameraInfoTopicName>camera_info</cameraInfoTopicName>
           <frameName>${prefix}_link</frameName>
-          <hackBaseline>0.07</hackBaseline>
+          <hackBaseline>0.0</hackBaseline>
           <distortionK1>0.0</distortionK1>
           <distortionK2>0.0</distortionK2>
           <distortionK3>0.0</distortionK3>
