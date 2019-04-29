@@ -1,14 +1,14 @@
 #include <pluginlib/class_loader.h>
 #include <adv_lecture/adv_calc_base.h>
+#include <string>
 
-int main(int argc, char** argv)
-{
-  pluginlib::ClassLoader<calc_base> calc_loader("adv_lecture", "calc_base");
+int main(int argc, char** argv){
+  pluginlib::ClassLoader<adv_lecture::calc_base> calc_loader("adv_lecture", "calc_base");
 
-  try
-  {
-    boost::shared_ptr<calc_base> add = calc_loader.createInstance("add");
-    ROS_INFO("add(2,3)=%i",add->op(2,3));
+  std::string plugin_name = "plugin_lecture/add";
+  try{
+    boost::shared_ptr<adv_lecture::calc_base> add = calc_loader.createInstance(plugin_name);
+    ROS_INFO("%s(2,3)=%i", plugin_name.c_str(), add->op(2,3));
   }
   catch(pluginlib::PluginlibException& ex)
   {
