@@ -1,0 +1,15 @@
+<library path="lib/libplugin_lecture">
+  <class name="plugin_lecture/plugin_nodelet_talker"
+	 type="plugin_lecture::plugin_nodelet_talker"
+	 base_class_type="nodelet::Nodelet">
+    <description>
+    </description>
+  </class>
+  
+  <class name="plugin_lecture/plugin_nodelet_listener"
+	 type="plugin_lecture::plugin_nodelet_listener"
+	 base_class_type="nodelet::Nodelet">
+    <description>
+    </description>
+  </class>
+</library>

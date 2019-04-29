@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="manager_name" default="nodelet_manager" />
+  <arg name="manager_threads" default="4" />
+
+  <node pkg="nodelet" type="nodelet" name="$(arg manager_name)" args="manager" output="screen">
+    <param name="num_worker_threads" value="$(arg manager_threads)" />
+  </node>
+
+  <node pkg="nodelet" type="nodelet" name="node_loader0"
+        args="load plugin_lecture/plugin_nodelet_talker $(arg manager_name)" >
+    <remap from="chatter" to="chatter_alt" />
+    <param name="content" value="hello2" />
+  </node>    
+
+  <node pkg="nodelet" type="nodelet" name="node_loader1"
+        args="load plugin_lecture/plugin_nodelet_listener $(arg manager_name)" >
+    <remap from="chatter" to="chatter_alt" />
+  </node>    
+</launch>

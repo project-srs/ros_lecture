@@ -138,8 +138,9 @@ add_library(${PROJECT_NAME}
   src/plugin_calc_add.cpp
   src/rviz/qt_twist_panel.cpp
   src/rviz/qt_touch.cpp
-)
-
+  src/nodelets/plugin_nodelet_talker.cpp
+  src/nodelets/plugin_nodelet_listener.cpp
+) 
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries

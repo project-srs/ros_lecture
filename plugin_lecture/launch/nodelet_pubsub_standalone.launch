@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+  <node pkg="nodelet" type="nodelet" name="node0"
+        args="standalone plugin_lecture/plugin_nodelet_talker" output="screen">
+    <param name="content" value="hello2" />
+  </node>    
+
+  <node pkg="nodelet" type="nodelet" name="node1"
+        args="standalone plugin_lecture/plugin_nodelet_listener" output="screen">
+  </node>    
+</launch>
