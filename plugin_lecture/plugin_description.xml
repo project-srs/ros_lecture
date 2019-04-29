@@ -3,7 +3,7 @@
     <description>This is a add plugin.</description>
   </class>
 
-  <class type="qt_twist_panel" base_class_type="rviz::Panel">
+  <class name="plugin_lecture/qt_twist_panel" type="plugin_lecture::qt_twist_panel" base_class_type="rviz::Panel">
     <description>twist panel</description>
   </class>
 </library>

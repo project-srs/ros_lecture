@@ -136,8 +136,8 @@ include_directories(
 ## Declare a C++ library
 add_library(${PROJECT_NAME}
   src/plugin_calc_add.cpp
-  src/qt_twist_panel.cpp
-  src/qt_touch.cpp
+  src/rviz/qt_twist_panel.cpp
+  src/rviz/qt_touch.cpp
 )
 
 

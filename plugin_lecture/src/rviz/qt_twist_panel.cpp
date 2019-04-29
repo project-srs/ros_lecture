@@ -1,6 +1,7 @@
-#include <stdio.h>
-
 #include <ros/ros.h>
+#include <geometry_msgs/Twist.h>
+#include <geometry_msgs/TwistStamped.h>
+#include <pluginlib/class_list_macros.h>
 
 #include <QPainter>
 #include <QLineEdit>
@@ -15,12 +16,9 @@
 #include <QButtonGroup>
 
 #include "qt_touch.h"
-
-#include <geometry_msgs/Twist.h>
-#include <geometry_msgs/TwistStamped.h>
-
 #include "qt_twist_panel.h"
 
+namespace plugin_lecture{
 qt_twist_panel::qt_twist_panel( QWidget* parent )
   : rviz::Panel( parent )
 {
@@ -176,6 +174,5 @@ void qt_twist_panel::load( const rviz::Config& config )
   if( config.mapGetString( "max2", &tmp_text ))max2_edit_->setText( tmp_text );
   if( config.mapGetString( "max3", &tmp_text ))max3_edit_->setText( tmp_text );  
 }
-
-#include <pluginlib/class_list_macros.h>
-PLUGINLIB_EXPORT_CLASS(qt_twist_panel,rviz::Panel )
+}
+PLUGINLIB_EXPORT_CLASS(plugin_lecture::qt_twist_panel,rviz::Panel )

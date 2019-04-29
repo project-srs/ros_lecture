@@ -15,8 +15,8 @@
 
 #include <string>
 
-class qt_twist_panel: public rviz::Panel
-{
+namespace plugin_lecture{
+class qt_twist_panel: public rviz::Panel{
 Q_OBJECT
 public:
   qt_twist_panel( QWidget* parent = 0 );
@@ -52,3 +52,4 @@ public:
   bool pub_stamped_;
   std::string pub_frame_;
 };
+}
