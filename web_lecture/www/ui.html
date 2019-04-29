@@ -15,6 +15,8 @@
       object-fit: contain;
     }
     </style>
+    <script src="https://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
+    <script src="https://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
   </head>
   
   <body>
@@ -39,27 +41,81 @@ function gamepad_update() {
   if(pads) {
     document.getElementById("gamepad_status").innerHTML = "Connected";
 
-    //buttons
+    //buttons for display
     var but = "";
     for(var i = 0 ; i < pads.buttons.length; i++) {
       but += "but" + i + ":" + pads.buttons[i].value + "<br>";//or .pressed
     }
     document.getElementById("gamepad_buttons").innerHTML = but;
     
-    txt = "";
-    var axes = pads.axes;
-    for(var i = 0 ; i < axes.length; i++) {
-      txt += axes[i] + '<br>';
+    //axes for display
+    var ax = "";
+    for(var i = 0 ; i < pads.axes.length; i++) {
+      ax += pads.axes[i] + '<br>';
     }
-    document.getElementById("gamepad_axes").innerHTML = txt;
+    document.getElementById("gamepad_axes").innerHTML = ax;
+
+    //for json
+    var joy_data = new ROSLIB.Message({  axes:[], buttons:[]});
+    for(var i = 0 ; i < pads.buttons.length; i++) {
+      joy_data.buttons.push(Number(pads.buttons[i].pressed));      
+    }
+    for(var i = 0 ; i < pads.axes.length; i++) {
+      joy_data.axes.push(pads.axes[i]);
+    }    
+    for(var i = 0 ; i < pads.buttons.length; i++) {
+      joy_data.axes.push(pads.buttons[i].value);      
+    }
+    console.log(joy_data);
+    return joy_data
   }
   else{
     document.getElementById("gamepad_status").innerHTML = "Disonnected";
+    axes0 = 0;
+    axes1 = 0;
   }
 }
 
+var Talker = {
+  ros : null,
+  name : "",
+  axes0 : 0,
+  axes1 : 0,
+  init : function(){
+    this.ros = new ROSLIB.Ros();
+    this.ros.on('error', function(error) {
+        document.getElementById('rosbridge_status').innerHTML = "Error";
+    });
+    this.ros.on('connection', function(error) {
+        document.getElementById('rosbridge_status').innerHTML = "Connect";
+    });
+    this.ros.on('close', function(error) {
+        document.getElementById('rosbridge_status').innerHTML = "Close";
+    });
+    this.ros.connect('ws://' + location.hostname + ':9090');
+  },
+  send : function(joy_data){
+    var comment = "OK";
+    var pub = new ROSLIB.Topic({
+        ros : this.ros,
+        name : '/web/joy',
+        messageType : 'sensor_msgs/Joy'
+    });
+    //var joy_data = new ROSLIB.Message({ header:[1,1], axes:[], buttons:[]});
+    pub.publish(joy_data);
+  }
+}
+Talker.init();
+
+window.onload = function(){
+};
+window.onunload = function(){
+    Talker.ros.close();
+};
+
 function update(){
-  gamepad_update();
+  joy_data = gamepad_update();
+  Talker.send(joy_data);
 }
 setInterval("update()",100);
   </script>
