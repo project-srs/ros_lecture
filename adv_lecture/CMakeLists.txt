@@ -12,6 +12,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
+  geometry_msgs
   tf
   basic_lecture
   pluginlib
@@ -149,9 +150,9 @@ include_directories(
 add_executable(adv_cmsg_listener src/adv_cmsg_listener.cpp)
 add_executable(reconfigure1 src/reconfigure1.cpp)
 add_executable(adv_robot_sim src/adv_robot_sim.cpp)
-add_executable(adv_orientation src/adv_orientation.cpp)
 add_executable(adv_time src/adv_time.cpp)
 add_executable(adv_call_plugin src/adv_call_plugin.cpp)
+add_executable(adv_param_display src/adv_param_display.cpp)
 
 add_executable(adv_nodetype_timer_driven  src/adv_nodetype_timer_driven.cpp)
 add_executable(adv_nodetype_event_driven  src/adv_nodetype_event_driven.cpp)
@@ -162,7 +163,8 @@ add_executable(adv_nodetype_point_publisher  src/adv_nodetype_point_publisher.cp
 add_executable(adv_action_client src/adv_action_client.cpp)
 add_executable(adv_action_server src/adv_action_server.cpp)
 
-add_executable(adv_param_display src/adv_param_display.cpp)
+add_executable(adv_orientation src/adv_orientation.cpp)
+add_executable(adv_type_convert src/adv_type_convert.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -192,6 +194,9 @@ target_link_libraries(adv_robot_sim
   ${catkin_LIBRARIES}
 )
 target_link_libraries(adv_orientation
+  ${catkin_LIBRARIES}
+)
+target_link_libraries(adv_type_convert
   ${catkin_LIBRARIES}
 )
 target_link_libraries(adv_time
