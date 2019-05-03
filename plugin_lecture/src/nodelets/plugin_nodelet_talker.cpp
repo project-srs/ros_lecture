@@ -6,8 +6,6 @@
 namespace plugin_lecture{
 class plugin_nodelet_talker : public nodelet::Nodelet{
 public:
-  plugin_nodelet_talker();
-  ~plugin_nodelet_talker();
   virtual void onInit();
   void timer_callback(const ros::TimerEvent&);
 private:
@@ -17,14 +15,6 @@ private:
   ros::Timer timer_;
   std::string content_;
 };
-
-plugin_nodelet_talker::plugin_nodelet_talker(){
-  NODELET_INFO("Talker Constructor");
-}
-
-plugin_nodelet_talker::~plugin_nodelet_talker(){
-  NODELET_INFO("Talker Destructor");
-}
 
 void plugin_nodelet_talker::onInit(){
   NODELET_INFO("Talker Init");
@@ -44,4 +34,4 @@ void plugin_nodelet_talker::timer_callback(const ros::TimerEvent&){
   pub_.publish(string_msg);
 }
 } // namespace plugin_lecture
-PLUGINLIB_EXPORT_CLASS(plugin_lecture::plugin_nodelet_talker, nodelet::Nodelet)
+PLUGINLIB_EXPORT_CLASS(plugin_lecture::plugin_nodelet_talker, nodelet::Nodelet);

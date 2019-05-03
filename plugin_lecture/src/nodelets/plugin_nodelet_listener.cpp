@@ -6,23 +6,12 @@
 namespace plugin_lecture{
 class plugin_nodelet_listener : public nodelet::Nodelet{
 public:
-  plugin_nodelet_listener();
-  ~plugin_nodelet_listener();
   virtual void onInit();
   void chatter_callback(const std_msgs::String& string_msg);
 private:
   ros::NodeHandle nh_;
   ros::Subscriber sub_;
-  ros::Timer timer_;
 };
-
-plugin_nodelet_listener::plugin_nodelet_listener(){
-  NODELET_INFO("Listener Constructor");
-}
-
-plugin_nodelet_listener::~plugin_nodelet_listener(){
-  NODELET_INFO("Listener Destructor");
-}
 
 void plugin_nodelet_listener::onInit(){
   NODELET_INFO("Listener Init");

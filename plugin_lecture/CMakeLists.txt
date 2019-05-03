@@ -13,6 +13,7 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   tf
   pluginlib
+  nodelet
   adv_lecture
   rviz
 )

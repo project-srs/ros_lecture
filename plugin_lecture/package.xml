@@ -61,15 +61,19 @@
   <exec_depend>rospy</exec_depend>
   <exec_depend>std_msgs</exec_depend>
   <exec_depend>tf</exec_depend>
+
   <exec_depend>adv_lecture</exec_depend>
 
   <build_depend>qtbase5-dev</build_depend>
   <build_depend>rviz</build_depend>
-
   <exec_depend>libqt5-core</exec_depend>
   <exec_depend>libqt5-gui</exec_depend>
   <exec_depend>libqt5-widgets</exec_depend>
   <exec_depend>rviz</exec_depend>
+
+  <build_depend>pluginlib</build_depend>
+  <build_depend>nodelet</build_depend>
+  <exec_depend>pluginlib</exec_depend>
   <exec_depend>nodelet</exec_depend>
 
   <!-- The export tag contains other, unspecified, tags -->
