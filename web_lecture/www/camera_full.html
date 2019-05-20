@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <title>ROS Image Web Viewer</title>  
+    <style>
+    *{
+      margin: 0px;
+      padding: 0px;
+      border: 0px;
+    }
+    .full_picture{
+      width: 100vw;
+      height: 100vh;
+      object-fit: contain;
+    }
+    </style>
+  </head>
+
+  <body>
+    <script>
+      var image_topic = "/head_camera/image_raw";
+      document.write("<img class='full_picture' src='http://"+location.hostname +":8080/stream?topic=" + image_topic + "&type=ros_compressed'></img>");
+    </script>
+  </body>
+</html>
