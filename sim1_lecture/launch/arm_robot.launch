@@ -13,6 +13,9 @@
         type: effort_controllers/JointPositionController
         joint: arm1_joint
         pid: {p: 100.0, i: 0.01, d: 10.0}
+      joint_state_controller:
+        type: joint_state_controller/JointStateController
+        publish_rate: 10  
   </rosparam>
   <node name="controller_spawner" pkg="controller_manager"
         type="spawner" respawn="false"

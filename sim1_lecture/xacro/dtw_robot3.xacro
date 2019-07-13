@@ -14,15 +14,14 @@
       <child  link="${prefix}_link"/>
       <axis xyz="0 0 1" />
     </joint>
-    <transmission name="${prefix}_trans">
+    <transmission name="${prefix}_trans" type="SimpleTransmission">
       <type>transmission_interface/SimpleTransmission</type>
-      <joint name="${prefix}_joint">
-          <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
-      </joint>
       <actuator name="${prefix}_motor">
-        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
-        <mechanismReduction>1</mechanismReduction>
+        <mechanicalReduction>1</mechanicalReduction>
       </actuator>
+      <joint name="${prefix}_joint">
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      </joint>
     </transmission>
     <link name="${prefix}_link">
       <inertial>
@@ -115,6 +114,8 @@
   <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
       <robotNamespace>/dtw_robot</robotNamespace>
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+      <legacyModeNS>true</legacyModeNS>
     </plugin>
   </gazebo>
 </robot>
