@@ -12,7 +12,7 @@
 
   <group if="$(arg joy)">
     <node name="joy_node"   pkg="joy" type="joy_node" />
-    <node name="twist_publisher" pkg="basic_lecture" type="twist_publisher"/>
+    <node name="twist_publisher" pkg="basic_lecture" type="basic_twist_publisher"/>
   </group>
   <group unless="$(arg play)">
     <node name="robot_pose_publisher" pkg="robot_pose_publisher" type="robot_pose_publisher">
