@@ -15,7 +15,7 @@ find_package(catkin REQUIRED COMPONENTS
   image_geometry
   image_transport
   cv_bridge
-  obstacle_detector
+  jsk_recognition_msgs
 )
 
 find_package(OpenCV)
