@@ -1,5 +1,5 @@
-#include "ros/ros.h"
-#include "std_msgs/String.h"
+#include <ros/ros.h>
+#include <std_msgs/String.h>
 
 int main(int argc, char **argv){
   ros::init(argc, argv, "basic_simple_talker");
@@ -10,7 +10,7 @@ int main(int argc, char **argv){
   while (ros::ok()){
     std_msgs::String msg;
     msg.data = "hello world!";
-    ROS_INFO("%s", msg.data.c_str());
+    ROS_INFO("publish: %s", msg.data.c_str());
     chatter_pub.publish(msg);
 
     ros::spinOnce();
@@ -18,4 +18,3 @@ int main(int argc, char **argv){
   }
   return 0;
 }
-
