@@ -4,6 +4,7 @@ Panels:
     Name: Displays
     Property Tree Widget:
       Expanded:
+        - /TF1/Status1
         - /TF1/Frames1
         - /WheelOdometry1/Shape1
         - /CoppyTracking1/Shape1
@@ -28,16 +29,18 @@ Panels:
     Name: Time
     SyncMode: 0
     SyncSource: ""
-  - Class: qt_twist_panel
+  - Class: plugin_lecture/qt_twist_panel
     Frame: ""
     Name: qt_twist_panel
     Stamped: false
-    Topic: /dtw_robot1/diff_drive_controller/cmd_vel
-    max1: 0.2
-    max2: 0.2
-    max3: 1.5
+    Topic: ""
+    max1: ""
+    max2: ""
+    max3: ""
     radio1: false
-    radio2: true
+    radio2: false
+Toolbars:
+  toolButtonStyle: 2
 Visualization Manager:
   Class: ""
   Displays:
@@ -117,6 +120,8 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: false
+        base_link:
+          Value: true
         dtw_robot1/ball_link:
           Value: true
         dtw_robot1/base_link:
@@ -144,21 +149,8 @@ Visualization Manager:
       Show Names: false
       Tree:
         dtw_robot1/odom:
-          dtw_robot1/base_link:
-            dtw_robot1/ball_link:
-              {}
-            dtw_robot1/body_link:
-              {}
-            dtw_robot1/front_laser_link:
-              {}
-            dtw_robot1/head_camera_link:
-              {}
-            dtw_robot1/imu_link:
-              {}
-            dtw_robot1/left_wheel_link:
-              {}
-            dtw_robot1/right_wheel_link:
-              {}
+          base_link:
+            {}
           dtw_robot1/ground_truth:
             {}
       Update Interval: 0
