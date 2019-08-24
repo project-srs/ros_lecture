@@ -25,7 +25,7 @@ public:
   {
     std::string image_topic = nh_.resolveName("image");
     sub_ = it_.subscribeCamera(image_topic, 1, &FrameDrawer::imageCb, this);
-    pub_ = it_.advertise("output/image_raw", 1);
+    pub_ = it_.advertise("output_image", 1);
     cvInitFont(&font_, CV_FONT_HERSHEY_SIMPLEX, 0.5, 0.5);
     sub2_ = nh_.subscribe("objects", 1, &FrameDrawer::objectCb, this);
   }

@@ -28,6 +28,8 @@ Panels:
     Name: Time
     SyncMode: 0
     SyncSource: Image
+Toolbars:
+  toolButtonStyle: 2
 Visualization Manager:
   Class: ""
   Displays:
@@ -63,7 +65,7 @@ Visualization Manager:
       Value: true
     - Class: rviz/Image
       Enabled: true
-      Image Topic: /output/image_raw
+      Image Topic: /output_image
       Max Value: 1
       Median window: 5
       Min Value: 0
@@ -82,15 +84,18 @@ Visualization Manager:
           Value: true
         camera_link:
           Value: true
+        world:
+          Value: true
       Marker Scale: 1
       Name: TF
       Show Arrows: true
       Show Axes: true
       Show Names: true
       Tree:
-        base_link:
-          camera_link:
-            {}
+        world:
+          base_link:
+            camera_link:
+              {}
       Update Interval: 0
       Value: true
   Enabled: true

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<launch>
+  <machine name="remote1" address="remote1" env-loader="/home/pi/catkin_ws/devel/env.sh"  user="pi"  password="raspberry"/>
+  <machine name="remote2" address="remote2" env-loader="/home/pi/catkin_ws/devel/env.sh"  user="pi"  password="raspberry"/>
+
+  <group ns="head_camera">
+
+    <node name="uvc_camera_node" pkg="uvc_camera" type="uvc_camera_node" machine="remote1" output="screen">
+      <param name="camera_info_url" value="file://$(find cam_lecture)/config/camera.yaml"/>
+        <param name="width" value="800"/>
+        <param name="height" value="600"/>
+    </node>
+
+    <node name="image_proc" pkg="image_proc" type="image_proc" output="screen"/>
+
+    <node name="cam_call_camera_info" pkg="cam_lecture" type="cam_call_camera_info" output="screen">
+      <rosparam command="load" file="$(find cam_lecture)/config/camera.yaml" />
+    </node>
+
+    <node name="rviz" pkg="rviz" type="rviz" >
+    </node>
+  </group>
+</launch>
+

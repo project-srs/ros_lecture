@@ -74,22 +74,24 @@ int main(int argc, char** argv)
   ros::NodeHandle n;
   ros::NodeHandle pn("~"); 
 
-  ros::Duration(0.5).sleep();
+  ros::Duration(5.0).sleep();
   sensor_msgs::CameraInfo info;
   if(!get_camera_info(info, pn)){
     ROS_ERROR("Can not find rosparam");
     return -1;
   }
 
-  ros::ServiceClient client = n.serviceClient<sensor_msgs::SetCameraInfo>("/set_camera_info");
+  ros::ServiceClient client = n.serviceClient<sensor_msgs::SetCameraInfo>("set_camera_info");
   sensor_msgs::SetCameraInfo srv;
   srv.request.camera_info=info;
-  if(client.call(srv) && srv.response.success){
-    ROS_INFO("Success: set_camera_info");    
-  }
-  else{
-    ROS_ERROR("Fail: set_camera_info");
+  if(!client.call(srv)){
+    ROS_ERROR("Fail: service call");
     return -1;
   }
+  if(!srv.response.success){
+    ROS_ERROR("Fail: responce is bad");
+    return -1;
+  }
+  ROS_INFO("Success: set_camera_info");    
   return 0;
 }
