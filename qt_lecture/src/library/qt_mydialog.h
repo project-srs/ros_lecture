@@ -7,7 +7,7 @@ class MainDialog : public QDialog
 {
   Q_OBJECT
 public:
-  MainDialog(QWidget* parent);
+  MainDialog(QWidget* parent = 0);
 
 private Q_SLOTS:
   void setLabelText(); 
