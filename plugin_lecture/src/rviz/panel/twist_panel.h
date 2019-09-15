@@ -16,11 +16,11 @@
 #include <string>
 
 namespace plugin_lecture{
-class qt_twist_panel: public rviz::Panel{
+class TwistPanel: public rviz::Panel{
 Q_OBJECT
 public:
-  qt_twist_panel( QWidget* parent = 0 );
-  ~qt_twist_panel();
+  TwistPanel( QWidget* parent = 0 );
+  ~TwistPanel();
 
   virtual void load( const rviz::Config& config );
   virtual void save( rviz::Config config ) const;

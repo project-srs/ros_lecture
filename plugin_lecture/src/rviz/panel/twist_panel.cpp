@@ -1,3 +1,6 @@
+#include "qt_touch.h"
+#include "twist_panel.h"
+
 #include <ros/ros.h>
 #include <geometry_msgs/Twist.h>
 #include <geometry_msgs/TwistStamped.h>
@@ -15,11 +18,9 @@
 #include <QRadioButton>
 #include <QButtonGroup>
 
-#include "qt_touch.h"
-#include "qt_twist_panel.h"
 
 namespace plugin_lecture{
-qt_twist_panel::qt_twist_panel( QWidget* parent )
+TwistPanel::TwistPanel( QWidget* parent )
   : rviz::Panel( parent )
 {
   QVBoxLayout* layout = new QVBoxLayout;
@@ -75,13 +76,13 @@ qt_twist_panel::qt_twist_panel( QWidget* parent )
   touch_->setEnabled(false);
   touch_->update();
 }
-qt_twist_panel::~qt_twist_panel(){
+TwistPanel::~TwistPanel(){
   if(twist_publisher_){
     twist_publisher_.shutdown();
   }
 }
 
-void qt_twist_panel::tick()
+void TwistPanel::tick()
 {
   if( ros::ok())
   {
@@ -146,7 +147,7 @@ void qt_twist_panel::tick()
   }
 }
 
-void qt_twist_panel::save( rviz::Config config ) const
+void TwistPanel::save( rviz::Config config ) const
 {
   rviz::Panel::save( config );
   config.mapSetValue( "Topic", topic_edit_->text());
@@ -159,7 +160,7 @@ void qt_twist_panel::save( rviz::Config config ) const
   config.mapSetValue( "max3", max3_edit_->text());
 }
 
-void qt_twist_panel::load( const rviz::Config& config )
+void TwistPanel::load( const rviz::Config& config )
 {
   rviz::Panel::load( config );
 
@@ -175,4 +176,4 @@ void qt_twist_panel::load( const rviz::Config& config )
   if( config.mapGetString( "max3", &tmp_text ))max3_edit_->setText( tmp_text );  
 }
 }
-PLUGINLIB_EXPORT_CLASS(plugin_lecture::qt_twist_panel,rviz::Panel )
+PLUGINLIB_EXPORT_CLASS(plugin_lecture::TwistPanel,rviz::Panel )

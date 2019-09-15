@@ -137,8 +137,10 @@ include_directories(
 ## Declare a C++ library
 add_library(${PROJECT_NAME}
   src/plugin_calc_add.cpp
-  src/rviz/qt_twist_panel.cpp
-  src/rviz/qt_touch.cpp
+  src/rviz/panel/qt_touch.cpp
+  src/rviz/panel/twist_panel.cpp
+  src/rviz/tool/point_tool.cpp
+  src/rviz/display/point_display.cpp
   src/nodelets/plugin_nodelet_talker.cpp
   src/nodelets/plugin_nodelet_listener.cpp
 ) 

@@ -3,7 +3,15 @@
     <description>This is a add plugin.</description>
   </class>
 
-  <class name="plugin_lecture/qt_twist_panel" type="plugin_lecture::qt_twist_panel" base_class_type="rviz::Panel">
+  <class name="plugin_lecture/twist_panel" type="plugin_lecture::TwistPanel" base_class_type="rviz::Panel">
     <description>twist panel</description>
+  </class>
+
+  <class name="plugin_lecture/point_tool" type="plugin_lecture::PointTool" base_class_type="rviz::Tool">
+    <description>put marker and publish PointStamped</description>
+  </class>
+
+  <class name="plugin_lecture/point_display" type="plugin_lecture::PointDisplay" base_class_type="rviz::Display">
+    <description>display PointStamped</description>
   </class>
 </library>
