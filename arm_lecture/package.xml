@@ -61,11 +61,7 @@
   <exec_depend>std_msgs</exec_depend>
   <exec_depend>tf</exec_depend>
 
-  <depend>moveit_ros_move_group</depend>
-  <depend>moveit_fake_controller_manager</depend>
-  <depend>moveit_kinematics</depend>
-  <depend>moveit_planners_ompl</depend>
-  <depend>moveit_ros_visualization</depend>
+  <depend>moveit_ros_planning_interface</depend>
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>

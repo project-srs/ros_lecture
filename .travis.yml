@@ -20,12 +20,13 @@ before_install:
   # install ros
   - sudo sh -c "echo \"deb http://packages.ros.org/ros/ubuntu $ROS_CI_DESKTOP main\" > /etc/apt/sources.list.d/ros-latest.list"
   - sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
-  - sudo apt-get update -qq
+  - sudo apt update
   # ros base
-  - sudo apt-get install -y python-catkin-pkg python-rosdep python-wstool ros-$ROS_DISTRO-desktop-full
+  - sudo apt install -y python-catkin-pkg python-rosdep python-wstool ros-$ROS_DISTRO-desktop-full
   # additional apt package for build
-  - sudo apt-get install -y ros-$ROS_DISTRO-jsk-rviz-plugins
-  - sudo apt-get install -y libarmadillo-dev libarmadillo6 
+  - sudo apt install -y ros-$ROS_DISTRO-jsk-rviz-plugins
+  - sudo apt install -y ros-$ROS_DISTRO-moveit-ros
+  - sudo apt install -y libarmadillo-dev libarmadillo6 
   # source & rosdep
   - source /opt/ros/$ROS_DISTRO/setup.bash
   - sudo rosdep init
