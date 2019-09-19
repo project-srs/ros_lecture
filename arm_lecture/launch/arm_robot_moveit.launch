@@ -1,0 +1,55 @@
+<?xml version="1.0" ?>
+<launch>
+  <arg name="model" default="$(find arm_lecture)/urdf/arm_robot_sim.urdf" />
+  <param name="robot_description" textfile="$(arg model)" />
+
+  <!-- gazebo world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch"/>
+
+  <!-- gazebo model -->
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model arm_robot" />
+  <rosparam file="$(find arm_lecture)/config/trajectory_controller.yaml" command="load"/>
+  <node name="arm_robot_controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="arm_robot_trajectory_controller joint_state_controller"/>
+
+  <!-- common -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+
+  <!-- moveit setting -->
+  <param name="robot_description_semantic" textfile="$(find arm_lecture)/config/moveit/arm_robot.srdf" />
+  <group ns="robot_description_planning">
+    <rosparam command="load" file="$(find arm_lecture)/config/moveit/joint_limits.yaml"/>
+  </group>
+  <group ns="robot_description_kinematics">
+    <rosparam command="load" file="$(find arm_lecture)/config/moveit/kinematics.yaml"/>
+  </group>
+
+  <arg name="planning_adapters" value="default_planner_request_adapters/AddTimeParameterization
+				       default_planner_request_adapters/FixWorkspaceBounds
+				       default_planner_request_adapters/FixStartStateBounds
+				       default_planner_request_adapters/FixStartStateCollision
+				       default_planner_request_adapters/FixStartStatePathConstraints" />
+
+  <node name="move_group"  pkg="moveit_ros_move_group" type="move_group" respawn="false" output="screen" args="">
+    <!-- Set the display variable, in case OpenGL code is used internally -->
+    <env name="DISPLAY" value="$(optenv DISPLAY :0)" />
+
+    <!-- Publish the planning scene of the physical robot so that rviz plugin can know actual robot -->
+    <param name="planning_scene_monitor/publish_planning_scene" value="true" />
+    <param name="planning_scene_monitor/publish_geometry_updates" value="true" />
+    <param name="planning_scene_monitor/publish_state_updates" value="true" />
+    <param name="planning_scene_monitor/publish_transforms_updates" value="true" />
+
+    <!-- controller config -->
+    <param name="moveit_controller_manager" value="moveit_simple_controller_manager/MoveItSimpleControllerManager"/>
+    <rosparam file="$(find arm_lecture)/config/moveit/controllers.yaml"/>
+
+    <!-- planning config -->
+    <param name="planning_plugin" value="ompl_interface/OMPLPlanner" />
+    <param name="request_adapters" value="$(arg planning_adapters)" />
+    <param name="start_state_max_bounds_error" value="0.1" />
+    <rosparam command="load" file="$(find arm_lecture)/config/moveit/ompl_planning.yaml"/>
+  </node>
+
+  <!-- Rviz -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find arm_lecture)/config/display.rviz"/>
+</launch>

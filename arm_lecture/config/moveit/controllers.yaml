@@ -1,0 +1,14 @@
+
+controller_manager_ns: controller_manager
+controller_list:
+  - name: arm_robot_trajectory_controller
+    action_ns: follow_joint_trajectory
+    type: FollowJointTrajectory
+    default: true
+    joints:
+      - arm1_joint
+      - arm2_joint
+      - arm3_joint
+      - arm4_joint
+      - arm5_joint
+      - arm6_joint

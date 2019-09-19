@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<launch>
+  <arg name="model" default="$(find arm_lecture)/urdf/arm_robot_sim.urdf" />
+  <param name="robot_description" textfile="$(arg model)" />
+
+  <!-- gazebo world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+  </include>
+
+  <!-- gazebo model -->
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model arm_robot" />
+  <rosparam file="$(find arm_lecture)/config/trajectory_controller.yaml" command="load"/>
+  <node name="arm_robot_controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="arm_robot_trajectory_controller joint_state_controller"/>
+</launch>
