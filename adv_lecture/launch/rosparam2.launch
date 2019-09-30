@@ -1,0 +1,5 @@
+<launch>
+  <node name="adv_param2_display" pkg="adv_lecture" type="adv_param2_display" output="screen">
+    <rosparam command="load" file="$(find adv_lecture)/config/param2_config.yaml"/>
+  </node>
+</launch>

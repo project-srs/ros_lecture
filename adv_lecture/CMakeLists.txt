@@ -152,7 +152,8 @@ add_executable(reconfigure1 src/reconfigure1.cpp)
 add_executable(adv_robot_sim src/adv_robot_sim.cpp)
 add_executable(adv_time src/adv_time.cpp)
 add_executable(adv_call_plugin src/adv_call_plugin.cpp)
-add_executable(adv_param_display src/adv_param_display.cpp)
+add_executable(adv_param1_display src/adv_param1_display.cpp)
+add_executable(adv_param2_display src/adv_param2_display.cpp)
 
 add_executable(adv_nodetype_timer_driven  src/adv_nodetype_timer_driven.cpp)
 add_executable(adv_nodetype_event_driven  src/adv_nodetype_event_driven.cpp)
@@ -223,7 +224,10 @@ target_link_libraries(adv_action_client
 target_link_libraries(adv_action_server
   ${catkin_LIBRARIES}
 )
-target_link_libraries(adv_param_display
+target_link_libraries(adv_param1_display
+  ${catkin_LIBRARIES}
+)
+target_link_libraries(adv_param2_display
   ${catkin_LIBRARIES}
 )
 target_link_libraries(adv_nodetype_point_publisher
