@@ -14,8 +14,8 @@ void chatterCallback(const std_msgs::Float32MultiArray& msg)
 int main(int argc, char** argv)
 {
   ros::init(argc, argv, "basic_array_listener");
-  ros::NodeHandle n;
-  ros::Subscriber sub = n.subscribe("array", 1000, chatterCallback);
+  ros::NodeHandle nh;
+  ros::Subscriber sub = nh.subscribe("array", 1000, chatterCallback);
 
   ros::spin();
   return 0;

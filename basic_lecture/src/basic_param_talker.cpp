@@ -1,17 +1,19 @@
-#include "ros/ros.h"
-#include "std_msgs/String.h"
+#include <ros/ros.h>
+#include <std_msgs/String.h>
 #include <string>
 
-int main(int argc, char **argv){
+int main(int argc, char** argv)
+{
   ros::init(argc, argv, "basic_param_talker");
-  ros::NodeHandle n;
-  ros::NodeHandle pn("~");
-  ros::Publisher chatter_pub = n.advertise<std_msgs::String>("chatter", 10);
-  std::string msg_chatter="hello world!";
-  pn.getParam("content",msg_chatter);
+  ros::NodeHandle nh;
+  ros::NodeHandle pnh("~");
+  ros::Publisher chatter_pub = nh.advertise<std_msgs::String>("chatter", 10);
+  std::string msg_chatter = "hello world!";
+  pnh.getParam("content", msg_chatter);
 
   ros::Rate loop_rate(10);
-  while (ros::ok()){
+  while (ros::ok())
+  {
     std_msgs::String msg;
     msg.data = msg_chatter;
     ROS_INFO("%s", msg.data.c_str());
@@ -22,4 +24,3 @@ int main(int argc, char **argv){
   }
   return 0;
 }
-

@@ -4,15 +4,17 @@
 #include <string>
 #include <math.h>
 
-int main(int argc, char **argv){
+int main(int argc, char** argv)
+{
   ros::init(argc, argv, "info_marker_publisher1");
   ros::NodeHandle nh;
 
-  //publisher
+  // publisher
   ros::Publisher marker_pub = nh.advertise<visualization_msgs::Marker>("marker", 1);
 
-  ros::Rate loop_rate(10); 
-  while (ros::ok()){
+  ros::Rate loop_rate(10);
+  while (ros::ok())
+  {
     visualization_msgs::Marker marker;
     marker.header.frame_id = "/world";
     marker.header.stamp = ros::Time::now();
@@ -26,13 +28,13 @@ int main(int argc, char **argv){
     marker.scale.x = 0.5;
     marker.scale.y = 0.5;
     marker.scale.z = 0.2;
-    marker.pose.position.x=0;
-    marker.pose.position.y=0;
-    marker.pose.position.z=0;
-    marker.pose.orientation.x=0;
-    marker.pose.orientation.y=0;
-    marker.pose.orientation.z=0;
-    marker.pose.orientation.w=1;
+    marker.pose.position.x = 0;
+    marker.pose.position.y = 0;
+    marker.pose.position.z = 0;
+    marker.pose.orientation.x = 0;
+    marker.pose.orientation.y = 0;
+    marker.pose.orientation.z = 0;
+    marker.pose.orientation.w = 1;
     marker.color.r = 0.0f;
     marker.color.g = 1.0f;
     marker.color.b = 0.0f;
@@ -41,6 +43,6 @@ int main(int argc, char **argv){
 
     ros::spinOnce();
     loop_rate.sleep();
-  } 
+  }
   return 0;
 }

@@ -1,16 +1,16 @@
 #include <ros/ros.h>
-#include <basic_lecture/cmsg.h>
+#include <ros_lecture_msgs/Custom.h>
 
 int main(int argc, char** argv)
 {
   ros::init(argc, argv, "basic_cmsg_talker");
-  ros::NodeHandle n;
-  ros::Publisher pub = n.advertise<basic_lecture::cmsg>("chatter", 10);
+  ros::NodeHandle nh;
+  ros::Publisher pub = nh.advertise<ros_lecture_msgs::Custom>("chatter", 10);
 
   ros::Rate loop_rate(1);
   while (ros::ok())
   {
-    basic_lecture::cmsg data;
+    ros_lecture_msgs::Custom data;
     data.word = "hello";
     data.number = 10;
     pub.publish(data);

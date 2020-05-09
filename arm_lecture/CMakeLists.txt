@@ -137,6 +137,8 @@ include_directories(
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/arm_lecture_node.cpp)
 add_executable(moveit_commander src/moveit_commander.cpp)
+add_executable(arm_ik_test src/arm_ik_test.cpp)
+add_executable(arm_ik_node src/arm_ik_node.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -154,6 +156,12 @@ add_dependencies(moveit_commander ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_E
 #   ${catkin_LIBRARIES}
 # )
 target_link_libraries(moveit_commander
+  ${catkin_LIBRARIES}
+)
+target_link_libraries(arm_ik_test
+  ${catkin_LIBRARIES}
+)
+target_link_libraries(arm_ik_node
   ${catkin_LIBRARIES}
 )
 

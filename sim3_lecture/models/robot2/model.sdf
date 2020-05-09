@@ -1,0 +1,105 @@
+<?xml version='1.0'?>
+<sdf version="1.4">
+<model name="robot2">
+    <link name="link">
+      <pose>0 0 0.1 0 0 0</pose>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.5 0.5 0.2</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.5 0.5 0.2</size>
+          </box>
+        </geometry>
+      </visual>
+    </link>
+
+    <link name="yaw_link">
+      <pose>0 0 0.25 0 0 0</pose>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.2 0.2 0.1</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.2 0.2 0.1</size>
+          </box>
+        </geometry>
+      </visual>
+
+      <visual name="visual2">
+        <pose>0 0.05 0.1 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.1 0.05 0.2</size>
+          </box>
+        </geometry>
+      </visual>
+
+      <visual name="visual3">
+        <pose>0 -0.05 0.1 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.1 0.05 0.2</size>
+          </box>
+        </geometry>
+      </visual>
+    </link>
+
+    <link name="pitch_link">
+      <pose>0.0 0 0.4 0 0 0</pose>
+      <collision name="collision">
+        <pose>0.1 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.2 0.05 0.05</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <pose>0.1 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.2 0.05 0.05</size>
+          </box>
+        </geometry>
+      </visual>
+    </link>
+
+    <joint name='yaw_joint' type='revolute'>
+      <parent>link</parent>
+      <child>yaw_link</child>
+      <pose>0 0 0.5 0 0 0</pose>
+      <axis>
+        <use_parent_model_frame>true</use_parent_model_frame>
+        <xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+
+    <joint name='pitch_joint' type='revolute'>
+      <parent>yaw_link</parent>
+      <child>pitch_link</child>
+      <axis>
+        <use_parent_model_frame>true</use_parent_model_frame>
+        <xyz>0 1 0</xyz>
+      </axis>
+    </joint>
+
+    <plugin name="turret_controller" filename="libTurretPlugin.so">
+      <topic_name>cmd_pos</topic_name>
+      <yaw_joint_name>yaw_joint</yaw_joint_name>
+      <yaw_p>1.0</yaw_p>
+      <pitch_joint_name>pitch_joint</pitch_joint_name>
+      <pitch_p>1.0</pitch_p>
+    </plugin>
+  </model>
+</sdf>

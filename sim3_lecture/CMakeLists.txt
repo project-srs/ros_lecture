@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8.3)
 project(sim3_lecture)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
-# add_compile_options(-std=c++11)
+add_compile_options(-std=c++11)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -11,8 +11,11 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
+  geometry_msgs
   tf
+  gazebo_plugins
 )
+find_package(gazebo REQUIRED)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -119,12 +122,20 @@ catkin_package(
 include_directories(
 # include
   ${catkin_INCLUDE_DIRS}
+  ${GAZEBO_INCLUDE_DIRS}
+)
+link_directories(
+  ${Boost_LIBRARY_DIRS}
+  ${GAZEBO_LIBRARY_DIRS}
 )
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
 #   src/${PROJECT_NAME}/sim3_lecture.cpp
 # )
+add_library(TurretPlugin SHARED 
+  src/turret_plugin.cc
+)
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
@@ -150,6 +161,10 @@ include_directories(
 # target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
 # )
+target_link_libraries(TurretPlugin
+  ${catkin_LIBRARIES}
+  ${GAZEBO_LIBRARIES}
+)
 
 #############
 ## Install ##

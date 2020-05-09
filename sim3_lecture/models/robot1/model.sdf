@@ -1,0 +1,101 @@
+<?xml version='1.0'?>
+<sdf version="1.4">
+<model name="robot1">
+    <link name="link">
+      <pose>0 0 0.1 0 0 0</pose>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.5 0.5 0.2</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.5 0.5 0.2</size>
+          </box>
+        </geometry>
+      </visual>
+    </link>
+
+    <link name="head_link">
+      <pose>0 0 0.3 0 0 0</pose>
+      <inertial>
+        <mass>0.2</mass>
+        <inertia>
+          <ixx>0.0083</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>0.0083</iyy>
+          <iyz>0.0</iyz>
+          <izz>0.0083</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.1 0.1 0.2</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.1 0.1 0.2</size>
+          </box>
+        </geometry>
+      </visual>
+      <sensor type="ray" name="ray0">
+        <pose>0 0 0 0 0 0</pose>
+        <visualize>false</visualize>
+        <update_rate>10</update_rate>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>400</samples>
+              <resolution>1</resolution>
+              <min_angle>-1.57</min_angle>
+              <max_angle>1.57</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.10</min>
+            <max>20.0</max>
+            <resolution>0.01</resolution>
+          </range>
+          <noise>
+            <type>gaussian</type>
+            <mean>0.0</mean>
+            <stddev>0.01</stddev>
+          </noise>
+        </ray>
+        <plugin name="gazebo_ros_lidar_controller" filename="libgazebo_ros_laser.so">
+          <topicName>/laser/scan</topicName>
+          <frameName>laser_link</frameName>
+        </plugin>
+      </sensor>
+    </link>
+
+    <joint name='head_joint' type='fixed'>
+      <parent>link</parent>
+      <child>head_link</child>
+      <pose>0 0 0.5 0 0 0</pose>
+    </joint>
+
+    <plugin name="object_controller" filename="libgazebo_ros_planar_move.so">
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryTopic>odom</odometryTopic>
+      <odometryFrame>odom</odometryFrame>
+      <odometryRate>20.0</odometryRate>
+      <robotBaseFrame>base_link</robotBaseFrame>
+    </plugin>
+
+    <plugin name="ground_truth" filename="libgazebo_ros_p3d.so">
+      <frameName>map</frameName>
+      <bodyName>link</bodyName>
+      <topicName>true_odom</topicName>
+      <updateRate>30.0</updateRate>
+    </plugin>
+  </model>
+</sdf>

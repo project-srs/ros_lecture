@@ -4,7 +4,6 @@
 #include <QPainter>
 #include <QMouseEvent>
 #include <QSizePolicy>
-
 #include "qt_touch.h"
 
 TouchWidget::TouchWidget(QWidget* parent): QWidget( parent )
@@ -18,7 +17,6 @@ void TouchWidget::setEnabled( bool enable ){
   grayout=!enable;
   update();
 }
-
 
 void TouchWidget::paintEvent( QPaintEvent* event )
 {
@@ -79,6 +77,7 @@ void TouchWidget::mouseMoveEvent( QMouseEvent* event )
   set_value(tmp_x, tmp_y);
   update();
 }
+
 void TouchWidget::mousePressEvent( QMouseEvent* event )
 {
   float tmp_x=1.0*(event->x()-hcen)/rsize;
@@ -90,16 +89,19 @@ void TouchWidget::mousePressEvent( QMouseEvent* event )
   set_value(tmp_x, tmp_y);
   update();
 }
+
 void TouchWidget::leaveEvent( QEvent* event )
 {
   set_value(0, 0);
   update();
 }
+
 void TouchWidget::mouseReleaseEvent( QMouseEvent* event )
 {
   set_value(0, 0);
   update();
 }
+
 void TouchWidget::set_value(float x, float y){
   x_value=x;
   y_value=y;

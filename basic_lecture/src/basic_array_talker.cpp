@@ -4,8 +4,8 @@
 int main(int argc, char** argv)
 {
   ros::init(argc, argv, "basic_array_talker");
-  ros::NodeHandle n;
-  ros::Publisher pub = n.advertise<std_msgs::Float32MultiArray>("array", 10);
+  ros::NodeHandle nh;
+  ros::Publisher pub = nh.advertise<std_msgs::Float32MultiArray>("array", 10);
   
   ros::Rate loop_rate(1);
   while (ros::ok())

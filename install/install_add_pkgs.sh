@@ -8,8 +8,8 @@ sudo apt install -y ros-kinetic-joystick-drivers
 sudo apt install -y ros-kinetic-urdf-tutorial 
 
 # sim
-sudo apt install -y ros-kinetic-gazebo-ros
-sudo apt install -y ros-kinetic-gazebo-ros-control 
+sudo apt install -y ros-kinetic-gazebo-ros-pkgs
+sudo apt install -y ros-kinetic-gazebo-ros-control
 sudo apt install -y ros-kinetic-ros-control
 sudo apt install -y ros-kinetic-ros-controllers
 

@@ -13,7 +13,7 @@
       <parent link="${parent}"/>
       <child  link="${prefix}_link"/>
       <axis xyz="0 0 1" />
-      <limit velocity="12.0" effort="0.4" />
+      <limit velocity="24.0" effort="0.4" />
       <dynamics damping="0.1"/>
     </joint>
     <transmission name="${prefix}_trans">

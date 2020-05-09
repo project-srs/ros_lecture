@@ -13,11 +13,9 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
   geometry_msgs
+  ros_lecture_msgs
   tf
-  basic_lecture
   pluginlib
-  genmsg
-  actionlib_msgs
   message_filters
 )
 
@@ -69,19 +67,17 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate actions in the 'action' folder
-add_action_files(
-  FILES
-  Task.action
+# add_action_files(
+#   FILES
 #  Action1.action
 #  Action2.action
-)
+# )
 
 ## Generate added messages and services with any dependencies listed here
-generate_messages(
-  DEPENDENCIES
-  std_msgs
-  actionlib_msgs
-)
+# generate_messages(
+#   DEPENDENCIES
+#   std_msgs
+# )
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -102,9 +98,6 @@ generate_messages(
 #   cfg/DynReconf1.cfg
 #   cfg/DynReconf2.cfg
 # )
-generate_dynamic_reconfigure_options(
-  cfg/sample1.cfg
-)
 
 ###################################
 ## catkin specific configuration ##
@@ -147,9 +140,7 @@ include_directories(
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/adv_lecture_node.cpp)
-add_executable(adv_cmsg_listener src/adv_cmsg_listener.cpp)
-add_executable(reconfigure1 src/reconfigure1.cpp)
-add_executable(adv_robot_sim src/adv_robot_sim.cpp)
+add_executable(adv_reconfigure src/adv_reconfigure.cpp)
 add_executable(adv_time src/adv_time.cpp)
 add_executable(adv_call_plugin src/adv_call_plugin.cpp)
 add_executable(adv_param1_display src/adv_param1_display.cpp)
@@ -176,22 +167,15 @@ add_executable(adv_type_convert src/adv_type_convert.cpp)
 ## Add cmake target dependencies of the executable
 ## same as for the library above
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-add_dependencies(adv_cmsg_listener ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-add_dependencies(reconfigure1 adv_lecture_gencfg)
-add_dependencies(adv_action_client ${${PROJECT_NAME}_EXPORTED_TARGETS})
-add_dependencies(adv_action_server ${${PROJECT_NAME}_EXPORTED_TARGETS})
+add_dependencies(adv_reconfigure ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(adv_action_client ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(adv_action_server ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
 # target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
 # )
-target_link_libraries(adv_cmsg_listener
-  ${catkin_LIBRARIES}
-)
-target_link_libraries(reconfigure1
-  ${catkin_LIBRARIES}
-)
-target_link_libraries(adv_robot_sim
+target_link_libraries(adv_reconfigure
   ${catkin_LIBRARIES}
 )
 target_link_libraries(adv_orientation

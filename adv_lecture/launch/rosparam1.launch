@@ -8,4 +8,10 @@
 
   <rosparam command="load" file="$(find adv_lecture)/config/param1_config.yaml"/>
   <node name="node3" pkg="adv_lecture" type="adv_param1_display" output="screen"/>
+
+  <rosparam>
+    node4:
+      int_param: 4
+  </rosparam>
+  <node name="node4" pkg="adv_lecture" type="adv_param1_display" output="screen"/>
 </launch>

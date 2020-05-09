@@ -1,0 +1,14 @@
+my_costmap:
+  plugins: 
+    - {name: static_layer, type: "costmap_2d::StaticLayer"}
+    - {name: inflation_layer, type: "costmap_2d::InflationLayer"}
+  global_frame: dtw_robot1/map
+  robot_base_frame: dtw_robot1/base_link
+  update_frequency: 2.0
+  publish_frequency: 2.0
+  static_layer:
+    map_topic: "dtw_robot1/map"
+    track_unknown_space: false
+    subscribe_to_updates: true
+  inflation_layer:
+    inflation_radius: 0.25

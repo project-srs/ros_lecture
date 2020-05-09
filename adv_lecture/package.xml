@@ -66,11 +66,6 @@
   <exec_depend>std_msgs</exec_depend>
   <exec_depend>tf</exec_depend>
 
-  <build_depend>basic_lecture</build_depend>
-  <exec_depend>basic_lecture</exec_depend>
-  <build_depend>basic_lecture_containing_custom_msg</build_depend>
-  <exec_depend>basic_lecture_containing_custom_msg</exec_depend>
-
   <build_depend>actionlib</build_depend>
   <build_depend>actionlib_msgs</build_depend>
   <exec_depend>actionlib</exec_depend>

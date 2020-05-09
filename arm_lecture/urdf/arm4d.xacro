@@ -1,0 +1,114 @@
+<robot name="arm_robot" xmlns:xacro="http://ros.org/wiki/xacro">
+  <material name="red">
+    <color rgba="1.0 0.0 0.0 2.0"/>
+  </material>
+  <material name="gray">
+    <color rgba="0.4 0.4 0.6 2.0"/>
+  </material>
+  <material name="light_gray">
+    <color rgba="0.8 0.8 0.8 2.0"/>
+  </material>
+
+  <xacro:macro name="arm4d_macro" params="l1 l2 l3 l4 l5">
+    <link name="base_link"/>
+
+    <joint name="body_joint" type="fixed">
+      <parent link="base_link"/>
+      <child link="body_link"/>
+    </joint>
+    <link name="body_link">
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 ${l1/2}"/>
+        <geometry>
+          <box size="0.05 0.05 ${l1}"/>
+        </geometry>
+        <material name="gray"/>
+      </visual>
+    </link>
+
+    <joint name="arm1_joint" type="revolute">
+      <parent link="body_link"/>
+      <child link="arm1_link"/>
+      <origin rpy="0 0 0" xyz="0 0 ${l1}"/>
+      <axis xyz="0 0 1"/>
+      <limit effort="30" lower="-2.0" upper="2.0" velocity="1.5"/>
+    </joint>
+    <link name="arm1_link">
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 ${l2/2}"/>
+        <geometry>
+          <box size="0.05 0.05 ${l2}"/>
+        </geometry>
+        <material name="light_gray"/>
+      </visual>
+    </link>
+
+    <joint name="arm2_joint" type="revolute">
+      <parent link="arm1_link"/>
+      <child link="arm2_link"/>
+      <origin rpy="0 0 0" xyz="0 0 ${l2}"/>
+      <axis xyz="0 1 0"/>
+      <limit effort="30" lower="-2.0" upper="2.0" velocity="1.5"/>
+    </joint>
+    <link name="arm2_link">
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 ${l3/2}"/>
+        <geometry>
+          <box size="0.05 0.05 ${l3}"/>
+        </geometry>
+        <material name="gray"/>
+      </visual>
+    </link>
+
+    <joint name="arm3_joint" type="revolute">
+      <parent link="arm2_link"/>
+      <child link="arm3_link"/>
+      <origin rpy="0 0 0" xyz="0 0 ${l3}"/>
+      <axis xyz="0 1 0"/>
+      <limit effort="30" lower="-2.0" upper="2.0" velocity="1.5"/>
+    </joint>
+    <link name="arm3_link">
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 ${l4/2}"/>
+        <geometry>
+          <box size="0.05 0.05 ${l4}"/>
+        </geometry>
+        <material name="light_gray"/>
+      </visual>
+    </link>
+
+    <joint name="arm4_joint" type="revolute">
+      <parent link="arm3_link"/>
+      <child link="arm4_link"/>
+      <origin rpy="0 0 0" xyz="0 0 ${l4}"/>
+      <axis xyz="0 1 0"/>
+      <limit effort="30" lower="-2.0" upper="2.0" velocity="1.5"/>
+    </joint>
+    <link name="arm4_link">
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 ${l5/2}"/>
+        <geometry>
+          <box size="0.02 0.02 ${l5}"/>
+        </geometry>
+        <material name="gray"/>
+      </visual>
+    </link>
+
+    <joint name="target_joint" type="fixed">
+      <parent link="arm4_link"/>
+      <child link="target_link"/>
+      <origin rpy="0 0 0" xyz="0 0 ${l5}"/>
+    </joint>
+    <link name="target_link">
+      <visual>
+        <geometry>
+          <sphere radius="0.02"/>
+        </geometry>
+        <material name="red"/>
+      </visual>
+    </link>
+
+  </xacro:macro>  
+
+  <xacro:arm4d_macro l1="0.05" l2="0.05" l3="0.15" l4="0.15" l5="0.1"/>
+</robot>

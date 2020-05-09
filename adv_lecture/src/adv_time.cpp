@@ -1,30 +1,39 @@
 #include "ros/ros.h"
 #include "std_msgs/Empty.h"
+#include <time.h>
 
-int main(int argc, char **argv){
+int main(int argc, char** argv)
+{
   ros::init(argc, argv, "adv_time");
   ros::NodeHandle n;
-  ros::Publisher tick_pub = n.advertise<std_msgs::Empty>("time_tick", 1000);
+  ros::Publisher tick_pub = n.advertise<std_msgs::Empty>("time_tick", 10);
 
-	ros::spinOnce();
-  ros::Duration(1.0).sleep();
-  ros::Time ros_begin  = ros::Time::now();
+  ros::Time::waitForValid();
+  ros::Time ros_begin = ros::Time::now();
   ros::WallTime wall_begin = ros::WallTime::now();
-  
+
   ros::Rate loop_rate(1);
-  while(ros::ok()){
+  while (ros::ok())
+  {
+    ROS_INFO("TICK");
     std_msgs::Empty msg;
     tick_pub.publish(msg);
 
-    ros::Duration ros_duration  = ros::Time::now()-ros_begin;
-    ros::WallDuration wall_duration = ros::WallTime::now()-wall_begin;
-    ROS_INFO("TICK");
-    ROS_INFO("ROS: %u.%u",ros_duration.sec,ros_duration.nsec);
-    ROS_INFO("WALL:%u.%u",wall_duration.sec,wall_duration.nsec);
+    ros::Time ros_now = ros::Time::now();
+    ros::Duration ros_duration = ros_now - ros_begin;
+    ROS_INFO("ROS: %u.09%u", ros_duration.sec, ros_duration.nsec);
 
-		ros::spinOnce();
-		loop_rate.sleep();
+    ros::WallTime wall_now = ros::WallTime::now();
+    ros::WallDuration wall_duration = wall_now - wall_begin;
+    ROS_INFO("WALL:%u.%09u", wall_duration.sec, wall_duration.nsec);
+
+    char date[64];
+    time_t t = ros::Time::now().sec;
+    strftime(date, sizeof(date), "%Y/%m/%d %a %H:%M:%S", localtime(&t));
+    ROS_INFO("%s", date);
+
+    ros::spinOnce();
+    loop_rate.sleep();
   }
   return 0;
 }
-

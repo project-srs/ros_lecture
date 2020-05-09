@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <robot name="dtw_robot" xmlns:xacro="http://ros.org/wiki/xacro">
   <xacro:macro name="laser_macro" params="parent prefix xyz">
     <joint name="${prefix}_joint" type="fixed">

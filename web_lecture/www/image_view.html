@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+        <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+        <style type="text/css">
+        <!--
+            *{ padding:0px; margin:0px;}
+        -->
+        </style>
+        <title>ROS WEB DataBase</title>
+        <script src="https://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
+        <script src="https://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
+      </head>
+    <body>
+    <script type="text/javascript">
+    <!--
+if(!Listener){
+    var Listener = {
+        ros : null,
+        name : "",
+        init : function(){
+            this.ros = new ROSLIB.Ros();
+            this.ros.on('error', function(error) {
+                document.getElementById('state').innerHTML = "Error";
+            });
+            this.ros.on('connection', function(error) {
+                document.getElementById('state').innerHTML = "Connect";
+            });
+            this.ros.on('close', function(error) {
+                document.getElementById('state').innerHTML = "Close";
+            });
+            this.ros.connect('ws://' + location.hostname + ':9090');
+        },
+        shot : function(){
+            console.log("request");
+
+            var mongo_request = new ROSLIB.Service({
+                ros: this.ros,
+                name: '/shot',
+                serviceType: 'std_srv/Empty',
+            });
+
+            let req = new ROSLIB.ServiceRequest({});
+
+            mongo_request.callService(req, res => {
+            });
+        },
+        delete : function(){
+            console.log("delete");
+
+            var mongo_request = new ROSLIB.Service({
+                ros: this.ros,
+                name: '/delete',
+                serviceType: 'std_srv/Empty',
+            });
+
+            let req = new ROSLIB.ServiceRequest({});
+
+            mongo_request.callService(req, res => {
+            });
+        },
+        request : function(){
+            console.log("request");
+
+            var mongo_request = new ROSLIB.Service({
+                ros: this.ros,
+                name: '/request',
+                serviceType: 'web_lecture/StringStampList',
+            });
+
+            let req = new ROSLIB.ServiceRequest({});
+
+            mongo_request.callService(req, res => {
+                console.log("output")
+                console.dir(res.list)
+                var output = document.getElementById("output");
+                output.innerHTML = "";
+                for(item of res.list){
+                    console.log("list")
+                    let dateTime = new Date(item.stamp.secs * 1000);
+                    output.innerHTML +=dateTime.toString()
+                    output.innerHTML +="<br>"
+                    output.innerHTML +="<img src='data:image/jpg;base64," + item.data + "'/>"
+                    output.innerHTML +="<br><br>"
+                }
+            });
+        }
+    }
+    
+    Listener.init();
+    window.onload = function(){
+    };
+    window.onunload = function(){
+        Listener.ros.close();
+    };
+}
+        //-->
+    </script>
+    <p>status： <label id="state">Disconnect</label></p>
+    <script>
+        var url = "http://" +location.hostname + ":8080/stream?topic=/image_raw&type=ros_compressed"
+        document.write("<a href='" + url + "'>LiveView</a>");
+    </script>
+    <form action="javascript:Listener.shot();" id="ui1">
+      <input type="submit" value="shot" id="btn" /><br/>
+    </form>
+    <form action="javascript:Listener.delete();" id="ui2">
+      <input type="submit" value="delete" id="btn" /><br/>
+    </form>
+    <form action="javascript:Listener.request();" id="ui3">
+      <input type="submit" value="request" id="btn" /><br/>
+    </form>
+    <span id="output">Result</p>
+  </body>
+</html>

@@ -5,7 +5,7 @@
   <arg name="joy" default="false" />
   <arg name="play" default="false" />
   
-  <param name="robot_description" command="$(find xacro)/xacro.py $(arg model)" />
+  <param name="robot_description" command="$(find xacro)/xacro $(arg model) --inorder" />
   <param name="use_gui" value="$(arg gui)"/>
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
@@ -21,6 +21,6 @@
       <param name="publish_frequenc" value="20" />
       <remap from="robot_pose" to="/pose" />
     </node>
-    <node name="adv_robot_sim" pkg="adv_lecture" type="adv_robot_sim"/>
+    <node name="vis_robot_sim" pkg="vis_lecture" type="vis_robot_sim"/>
   </group>
 </launch>

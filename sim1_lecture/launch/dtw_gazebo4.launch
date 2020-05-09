@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
-  <arg name="position" default="wheel" /> <!-- wheel or gazebo -->
+  <arg name="position" default="wheel" /> <!-- wheel or tracker -->
   <arg name="model" default="$(find sim1_lecture)/xacro/dtw_robot3.xacro" />
   <arg name="rvizconfig" default="$(find sim1_lecture)/rviz/dtw_gazebo4_wheel.rviz" />  
   <param name="robot_description" command="$(find xacro)/xacro $(arg model) --inorder"/>
@@ -18,14 +18,12 @@
   <group if="$(eval position=='wheel')">
     <param name="/dtw_robot/diff_drive_controller/enable_odom_tf" value="true" />
   </group>
-
-  <group if="$(eval position=='gazebo')">
+  <group unless="$(eval position=='wheel')">
     <param name="/dtw_robot/diff_drive_controller/enable_odom_tf" value="false" />
-    <node name="sim1_model_tf_publisher" pkg="sim1_lecture" type="sim1_model_tf_publisher">
-      <param name="model_name" value="dtw_robot" />
-      <param name="base_frame" value="base_link" />
-      <param name="world_frame" value="odom" />
-    </node>
+  </group>
+
+  <group if="$(eval position=='tracker')">
+    <node name="sim1_odom_tf_converter" pkg="sim1_lecture" type="sim1_odom_tf_converter"/>
   </group>
 
   <rosparam command="load"  file="$(find sim1_lecture)/config/diff_drive_controller.yaml" ns="/dtw_robot"/>

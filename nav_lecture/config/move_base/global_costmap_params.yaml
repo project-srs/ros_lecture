@@ -1,5 +1,0 @@
-global_costmap:
-  #global_frame: dtw_robot1/map
-  #robot_base_frame: dtw_robot1/base_link
-  update_frequency: 2.0
-  static_map: true

@@ -1,4 +1,3 @@
-<?xml version="1.0"?>
 <robot name="dtw_robot" xmlns:xacro="http://ros.org/wiki/xacro">
   <xacro:include filename="$(find sim2_lecture)/xacro/move_macro.xacro" />
   <xacro:include filename="$(find sim2_lecture)/xacro/camera_macro.xacro" />

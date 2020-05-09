@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<launch>
+  <arg name="model" default="$(find arm_lecture)/urdf/arm4d.xacro" />
+  <param name="robot_description" command="$(find xacro)/xacro.py $(arg model)"/>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+  <node name="arm_ik_node" pkg="arm_lecture" type="arm_ik_node" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find arm_lecture)/config/arm4d_display.rviz"/>
+</launch>

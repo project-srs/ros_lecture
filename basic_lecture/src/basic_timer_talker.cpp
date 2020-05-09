@@ -2,7 +2,7 @@
 #include <std_msgs/String.h>
 
 ros::Publisher chatter_pub;
-void timer_callback(const ros::TimerEvent&)
+void timer_callback(const ros::TimerEvent& e)
 {
   std_msgs::String msg;
   msg.data = "hello world!";
@@ -13,10 +13,10 @@ void timer_callback(const ros::TimerEvent&)
 int main(int argc, char** argv)
 {
   ros::init(argc, argv, "basic_timer_talker");
-  ros::NodeHandle n;
-  chatter_pub = n.advertise<std_msgs::String>("chatter", 10);
+  ros::NodeHandle nh;
+  chatter_pub = nh.advertise<std_msgs::String>("chatter", 10);
 
-  ros::Timer timer = n.createTimer(ros::Duration(0.1), timer_callback);
+  ros::Timer timer = nh.createTimer(ros::Duration(0.1), timer_callback);
   ros::spin();
   return 0;
 }

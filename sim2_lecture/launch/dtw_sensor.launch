@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <launch>
   <arg name="model" default="$(find sim2_lecture)/xacro/dtw_move_only.xacro" />
   <arg name="rvizconfig" default="$(find sim2_lecture)/rviz/dtw_sensor.rviz" />  

@@ -2,18 +2,21 @@
 #include <ros/ros.h>
 
 geometry_msgs::PointStamped input2_last;
-void input2_callback(const geometry_msgs::PointStamped& point_msg) {
+void input2_callback(const geometry_msgs::PointStamped& point_msg)
+{
   input2_last = point_msg;
 }
 
 ros::Publisher output_pub;
-void input1_callback(const geometry_msgs::PointStamped& point_msg) {
+void input1_callback(const geometry_msgs::PointStamped& point_msg)
+{
   geometry_msgs::PointStamped point_data;
   point_data.point.x = point_msg.point.x + input2_last.point.x;
   output_pub.publish(point_data);
 }
 
-int main(int argc, char** argv) {
+int main(int argc, char** argv)
+{
   ros::init(argc, argv, "adv_nodetype_semi_event_driven");
   ros::NodeHandle nh;
   ros::NodeHandle pnh("~");

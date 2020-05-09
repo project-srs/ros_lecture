@@ -26,6 +26,7 @@ before_install:
   # additional apt package for build
   - sudo apt install -y ros-$ROS_DISTRO-jsk-rviz-plugins
   - sudo apt install -y ros-$ROS_DISTRO-moveit-ros
+  - sudo apt install -y ros-$ROS_DISTRO-move-base
   - sudo apt install -y libarmadillo-dev libarmadillo6 
   # source & rosdep
   - source /opt/ros/$ROS_DISTRO/setup.bash
@@ -43,7 +44,7 @@ install:
   - cd ~/catkin_ws/src
   - ln -s $CI_SOURCE_PATH .
   # additional src package for build
-  - git clone https://github.com/tysik/obstacle_detector.git
+  # - git clone https://github.com/tysik/obstacle_detector.git
 
 script:
   # build

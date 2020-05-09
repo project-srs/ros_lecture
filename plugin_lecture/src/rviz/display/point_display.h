@@ -8,20 +8,23 @@
 #include <geometry_msgs/PointStamped.h>
 #endif
 
-namespace Ogre{
+namespace Ogre
+{
 class SceneNode;
 }
 
-namespace rviz{
+namespace rviz
+{
 class ColorProperty;
 class FloatProperty;
 class IntProperty;
-}
+}  // namespace rviz
 
-namespace plugin_lecture{
-
-class PointDisplay: public rviz::MessageFilterDisplay<geometry_msgs::PointStamped>{
-Q_OBJECT
+namespace plugin_lecture
+{
+class PointDisplay : public rviz::MessageFilterDisplay<geometry_msgs::PointStamped>
+{
+  Q_OBJECT
 public:
   PointDisplay();
   virtual ~PointDisplay();
@@ -34,13 +37,13 @@ private Q_SLOTS:
   void updateHistoryLength();
 
 private:
-  void processMessage( const geometry_msgs::PointStamped::ConstPtr& msg );
+  void processMessage(const geometry_msgs::PointStamped::ConstPtr& msg);
   Ogre::SceneNode* frame_node_;
   boost::shared_ptr<rviz::Arrow> vis_arrow_;
   rviz::ColorProperty* color_property_;
   rviz::FloatProperty* alpha_property_;
 };
 
-} // namespace plugin_lecture
+}  // namespace plugin_lecture
 
-#endif // POINT_DISPLAY_H
+#endif  // POINT_DISPLAY_H

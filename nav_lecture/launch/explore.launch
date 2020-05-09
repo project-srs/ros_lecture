@@ -1,0 +1,10 @@
+<launch>
+    <group ns="/dtw_robot1">
+        <node pkg="explore_lite" type="explore" respawn="false" name="explore" output="screen">
+            <param name="robot_base_frame" value="dtw_robot1/base_link"/>
+            <param name="costmap_topic" value="map"/>
+            <param name="visualize" value="true"/>
+        </node>
+    </group>
+
+</launch>

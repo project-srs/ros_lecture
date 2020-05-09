@@ -1,0 +1,7 @@
+global_costmap:
+  footprint: [[-0.2, -0.12], [-0.2, 0.12], [0.05, 0.12], [0.05, -0.12]]
+  inflation_radius: 0.55
+  update_frequency: 2.0
+  static_map: true
+  #global_frame: dtw_robot1/odom
+  #robot_base_frame: dtw_robot1/base_link

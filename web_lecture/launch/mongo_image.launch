@@ -1,0 +1,16 @@
+<launch>
+  <node name="uvc_camera_node" pkg="uvc_camera" type="uvc_camera_node" />
+
+  <include file="$(find mongodb_store)/launch/mongodb_store.launch">
+    <arg name="db_path" value="mongodb" />
+    <arg name="port" value="27017" />
+  </include>
+
+  <!-- server -->
+  <include file="$(find roswww)/launch/roswww.launch" />
+  <include file="$(find rosbridge_server)/launch/rosbridge_websocket.launch" />
+  <node pkg="web_video_server" type="web_video_server" name="web_video_server" />
+
+  <!-- app -->
+  <node name="mongo_image" pkg="web_lecture" type="mongo_image.py" output="screen"/>
+</launch>

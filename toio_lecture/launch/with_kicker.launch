@@ -1,0 +1,11 @@
+<launch>
+    <arg name="rvizconfig" default="$(find toio_lecture)/config/setting.rviz" />
+    <group ns="toio">
+        <node name="toio_bridge" pkg="toio_lecture" type="toio_bridge.py" output="screen" respawn="true">
+            <param name="address" value="F0:5D:68:8E:A8:7C"/>
+            <param name="iface" value="1"/>
+        </node>
+        <node name="toio_kicker" pkg="toio_lecture" type="toio_kicker.py" output="screen" respawn="false"/>
+    </group>
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" output="screen"/>
+</launch>

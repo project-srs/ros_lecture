@@ -1,6 +1,7 @@
 #ifndef Q_MOC_RUN
-# include <ros/ros.h>
-# include <rviz/panel.h>
+#include <ros/ros.h>
+#include <rviz/panel.h>
+#include <string>
 #endif
 
 #include <QLineEdit>
@@ -13,17 +14,17 @@
 #include <QButtonGroup>
 #include <QTimer>
 
-#include <string>
-
-namespace plugin_lecture{
-class TwistPanel: public rviz::Panel{
-Q_OBJECT
+namespace plugin_lecture
+{
+class TwistPanel : public rviz::Panel
+{
+  Q_OBJECT
 public:
-  TwistPanel( QWidget* parent = 0 );
+  TwistPanel(QWidget* parent = 0);
   ~TwistPanel();
 
-  virtual void load( const rviz::Config& config );
-  virtual void save( rviz::Config config ) const;
+  virtual void load(const rviz::Config& config);
+  virtual void save(rviz::Config config) const;
 
 public Q_SLOTS:
   void tick();
@@ -52,4 +53,4 @@ public:
   bool pub_stamped_;
   std::string pub_frame_;
 };
-}
+}  // namespace plugin_lecture

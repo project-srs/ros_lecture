@@ -1,16 +1,19 @@
 #include <string.h>
 #include <ros/ros.h>
 
-int main(int argc, char **argv) {
+int main(int argc, char** argv)
+{
   ros::init(argc, argv, "basic_logger");
-  ros::NodeHandle n;
+  ros::NodeHandle nh;
   ros::Rate loop_rate(1);
-  /*if( ros::console::set_logger_level(ROSCONSOLE_DEFAULT_NAME,
-    ros::console::levels::Debug) ) { ros::console::notifyLoggerLevelsChanged();
-  }*/
+  // if (ros::console::set_logger_level(ROSCONSOLE_DEFAULT_NAME, ros::console::levels::Debug))
+  // {
+  //   ros::console::notifyLoggerLevelsChanged();
+  // }
 
   int count = 0;
-  while (ros::ok()) {
+  while (ros::ok())
+  {
     ROS_DEBUG("log:%i", count);
     ROS_INFO("log:%i", count);
     ROS_WARN("log:%i", count);

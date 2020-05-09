@@ -1,0 +1,4 @@
+<launch>
+    <node name="reconf1" pkg="adv_lecture" type="adv_reconfigure" output="screen"/>
+    <node name="reconf2" pkg="adv_lecture" type="adv_reconfigure" output="screen"/>
+</launch>
