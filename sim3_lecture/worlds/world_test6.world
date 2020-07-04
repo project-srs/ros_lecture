@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <world name="default">
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <include>
+      <static>true</static>
+      <uri>model://surface1</uri>
+      <pose>0 0 0 0 0 0</pose>
+    </include>
+  </world>
+</sdf>
+
+<!-- heightmap link
+http://sdformat.org/spec?ver=1.7&elem=geometry#geometry_heightmap
+https://github.com/AS4SR/general_info/wiki/Creating-Heightmaps-for-Gazebo
+gazebo have a cache with model. you should do `rm -rf ~/.gazebo/` in develop -->

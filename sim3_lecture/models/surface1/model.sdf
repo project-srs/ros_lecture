@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <model name="heightmap">
+    <static>true</static>
+    <link name="link">
+      <collision name="collision">
+        <geometry>
+          <heightmap>
+            <uri>model://surface1/steps1.png</uri>
+            <size>5 5 3</size>
+            <pos>0 0 0.2</pos>
+          </heightmap>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <heightmap>
+            <use_terrain_paging>false</use_terrain_paging>
+            <texture>
+              <diffuse>model://surface1/color.png</diffuse>
+              <normal>model://surface1/flat2.png</normal>
+              <size>5</size>
+            </texture>
+            <uri>model://surface1/steps1.png</uri>
+            <size>5 5 3</size>
+            <pos>0 0 0.2</pos>
+          </heightmap>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>
