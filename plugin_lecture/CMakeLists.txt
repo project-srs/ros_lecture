@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8.3)
 project(plugin_lecture)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
-# add_compile_options(-std=c++11)
+add_compile_options(-std=c++11)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -141,6 +141,7 @@ add_library(${PROJECT_NAME}
   src/rviz/panel/twist_panel.cpp
   src/rviz/tool/point_tool.cpp
   src/rviz/display/point_display.cpp
+  src/rviz/overlay/log_display.cpp
   src/nodelets/plugin_nodelet_talker.cpp
   src/nodelets/plugin_nodelet_listener.cpp
 ) 

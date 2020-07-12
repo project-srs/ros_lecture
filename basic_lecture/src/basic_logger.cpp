@@ -19,7 +19,7 @@ int main(int argc, char** argv)
     ROS_WARN("log:%i", count);
     ROS_ERROR("log:%i", count);
     ROS_FATAL("log:%i", count);
-
+    count++;
     ros::spinOnce();
     loop_rate.sleep();
   }

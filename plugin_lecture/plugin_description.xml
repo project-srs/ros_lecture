@@ -14,4 +14,8 @@
   <class name="plugin_lecture/point_display" type="plugin_lecture::PointDisplay" base_class_type="rviz::Display">
     <description>display PointStamped</description>
   </class>
+
+  <class name="plugin_lecture/log_display" type="plugin_lecture::LogDisplay" base_class_type="rviz::Display">
+    <description>display rosout</description>
+  </class>
 </library>
