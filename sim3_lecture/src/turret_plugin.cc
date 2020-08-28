@@ -40,10 +40,10 @@ void TurretPlugin::OnUpdate() {
   auto pitch = model_->GetJoint(pitch_joint_name_);
 #if GAZEBO_MAJOR_VERSION >= 8
   yaw->SetVelocity(0, -yaw_p_ * (yaw->Position(0) - yaw_target_));
-  pitch->SetVelocity(0, -pitch_p_ * (pitch->GetAngle(0).Radian() - pitch_target_));
+  pitch->SetVelocity(0, -pitch_p_ * (pitch->Position(0) - pitch_target_));
 #else
   yaw->SetVelocity(0, -yaw_p_ * (yaw->GetAngle(0).Radian() - yaw_target_));
-  pitch->SetVelocity(0, -pitch_p_ * (pitch->Position(0) - pitch_target_));
+  pitch->SetVelocity(0, -pitch_p_ * (pitch->GetAngle(0).Radian() - pitch_target_));
 #endif
 }
 

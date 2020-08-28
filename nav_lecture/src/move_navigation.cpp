@@ -12,11 +12,20 @@ enum class NavState{
 
 class MoveNavigation {
 public:
+#if ROS_VERSION_MINIMUM(1,14,0)
   MoveNavigation() : tfBuffer(), tfListener(tfBuffer), global_costmap_("global_costmap", tfBuffer), local_costmap_("local_costmap", tfBuffer) {
+#else
+  MoveNavigation() : global_costmap_("global_costmap", tf_), local_costmap_("local_costmap", tf_) {
+#endif
     twist_pub_ = nh_.advertise<geometry_msgs::Twist>("/dtw_robot1/diff_drive_controller/cmd_vel", 10);
     goal_sub_ = nh_.subscribe("/move_base_simple/goal", 10, &MoveNavigation::goalCallback, this);
     global_planner_.initialize("global_planner", &global_costmap_);
+#if ROS_VERSION_MINIMUM(1,14,0)
     local_planner_.initialize("local_planner", &tfBuffer, &local_costmap_);
+#else
+    local_planner_.initialize("local_planner", &tf_, &local_costmap_);
+#endif
+
     nav_state_ = NavState::STANDBY;
     timer_ = nh_.createTimer(ros::Duration(0.2), &MoveNavigation::timerCallback, this);
   }
