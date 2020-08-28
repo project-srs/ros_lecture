@@ -12,11 +12,11 @@ enum class NavState{
 
 class MoveNavigation {
 public:
-  MoveNavigation() : global_costmap_("global_costmap", tf_), local_costmap_("local_costmap", tf_) {
+  MoveNavigation() : tfBuffer(), tfListener(tfBuffer), global_costmap_("global_costmap", tfBuffer), local_costmap_("local_costmap", tfBuffer) {
     twist_pub_ = nh_.advertise<geometry_msgs::Twist>("/dtw_robot1/diff_drive_controller/cmd_vel", 10);
     goal_sub_ = nh_.subscribe("/move_base_simple/goal", 10, &MoveNavigation::goalCallback, this);
     global_planner_.initialize("global_planner", &global_costmap_);
-    local_planner_.initialize("local_planner", &tf_, &local_costmap_);
+    local_planner_.initialize("local_planner", &tfBuffer, &local_costmap_);
     nav_state_ = NavState::STANDBY;
     timer_ = nh_.createTimer(ros::Duration(0.2), &MoveNavigation::timerCallback, this);
   }
@@ -79,7 +79,9 @@ public:
     }
   }
   ros::NodeHandle nh_;
-  tf::TransformListener tf_;
+  tf::TransformListener tf_; // obsolute
+  tf2_ros::Buffer tfBuffer;
+  tf2_ros::TransformListener tfListener;
   ros::Publisher twist_pub_;
   ros::Subscriber goal_sub_;
   ros::Timer timer_;

@@ -20,18 +20,31 @@ void TurretPlugin::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf){
 }
 
 void TurretPlugin::OnUpdate() {
+#if GAZEBO_MAJOR_VERSION >= 8
+  common::Time current_time = world_->SimTime();
+#else
   common::Time current_time = world_->GetSimTime();
+#endif
   if((current_time - last_time_).Double() > (1.0/2.0)){
       last_time_ = current_time;
+#if GAZEBO_MAJOR_VERSION >= 8
+      ignition::math::Pose3d pose = this->link_->WorldPose();
+#else
       ignition::math::Pose3d pose = this->link_->GetWorldPose().Ign();
+#endif
       printf("pos: %f %f %f\n", pose.Pos().X(), pose.Pos().Y(), pose.Pos().Z());
       printf("rot: %f %f %f\n", pose.Rot().Roll(), pose.Rot().Pitch(), pose.Rot().Yaw());
   }  
 
   auto yaw = model_->GetJoint(yaw_joint_name_);
-  yaw->SetVelocity(0, -yaw_p_ * (yaw->GetAngle(0).Radian() - yaw_target_));  
   auto pitch = model_->GetJoint(pitch_joint_name_);
-  pitch->SetVelocity(0, -pitch_p_ * (pitch->GetAngle(0).Radian() - pitch_target_));  
+#if GAZEBO_MAJOR_VERSION >= 8
+  yaw->SetVelocity(0, -yaw_p_ * (yaw->Position(0) - yaw_target_));
+  pitch->SetVelocity(0, -pitch_p_ * (pitch->GetAngle(0).Radian() - pitch_target_));
+#else
+  yaw->SetVelocity(0, -yaw_p_ * (yaw->GetAngle(0).Radian() - yaw_target_));
+  pitch->SetVelocity(0, -pitch_p_ * (pitch->Position(0) - pitch_target_));
+#endif
 }
 
 void TurretPlugin::Reset() {
