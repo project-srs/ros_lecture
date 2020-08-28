@@ -1,3 +1,3 @@
 #!/bin/sh
 
-sudo apt install git vim
+sudo apt install git vim terminator
