@@ -87,10 +87,13 @@ public:
       twist_pub_.publish(cmd_vel);
     }
   }
+
   ros::NodeHandle nh_;
-  tf::TransformListener tf_; // obsolute
+#if ROS_VERSION_MINIMUM(1,14,0)
   tf2_ros::Buffer tfBuffer;
   tf2_ros::TransformListener tfListener;
+#endif
+  tf::TransformListener tf_; // obsolute
   ros::Publisher twist_pub_;
   ros::Subscriber goal_sub_;
   ros::Timer timer_;
