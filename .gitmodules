@@ -1,3 +1,3 @@
-[submodule "app_lecture/rosbridgecpp"]
-	path = app_lecture/rosbridgecpp
-	url = https://github.com/ppianpak/rosbridgecpp.git
+[submodule "app_lecture/Simple-WebSocket-Server"]
+	path = app_lecture/Simple-WebSocket-Server
+	url = https://gitlab.com/eidheim/Simple-WebSocket-Server.git
