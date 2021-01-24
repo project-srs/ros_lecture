@@ -51,5 +51,7 @@ install:
 
 script:
   # build
+  - cd ~/catkin_ws/src/ros_lecture
+  - git submodule update --init --recursive
   - cd ~/catkin_ws
   - catkin_make
