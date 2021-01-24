@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<launch>
+  <node pkg="libuvc_camera" type="camera_node" name="mycam">
+    <param name="width" value="1280"/>
+    <param name="height" value="720"/>
+    <param name="frame_rate" value="30"/>
+    <param name="video_mode" value="mjpeg"/>
+  </node>
+  <node name="image_view" pkg="image_view" type="image_view" >
+    <remap from="image" to="/image_raw"/>
+  </node>
+</launch>
+
