@@ -2,13 +2,16 @@ cmake_minimum_required(VERSION 3.0.2)
 project(app_lecture)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
-# add_compile_options(-std=c++11)
+add_compile_options(-std=c++11)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED)
-add_subdirectory(rosbridgecpp)
+find_package(catkin REQUIRED COMPONENTS
+  roscpp
+  json_transport
+)
+add_subdirectory(Simple-WebSocket-Server)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -114,8 +117,8 @@ catkin_package(
 ## Your package locations should be listed before other locations
 include_directories(
 # include
-# ${catkin_INCLUDE_DIRS}
-  rosbridgecpp
+  ${catkin_INCLUDE_DIRS}
+  Simple-WebSocket-Server
 )
 
 ## Declare a C++ library
@@ -132,7 +135,12 @@ include_directories(
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/app_lecture_node.cpp)
-add_executable(app_client_basic src/app_client_basic.cpp)
+
+
+# add_executable(app_client_basic src/app_client_basic.cpp)
+add_executable(json_example src/json_example.cpp)
+add_executable(ws_server_example src/ws_server_example.cpp)
+add_executable(ws_client_example src/ws_client_example.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -148,7 +156,13 @@ add_executable(app_client_basic src/app_client_basic.cpp)
 # target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
 # )
-target_link_libraries(app_client_basic simple-websocket-server)
+
+target_link_libraries(ws_server_example
+  simple-websocket-server
+)
+target_link_libraries(ws_client_example
+  simple-websocket-server
+)
 
 #############
 ## Install ##
