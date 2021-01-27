@@ -15,6 +15,7 @@ find_package(catkin REQUIRED COMPONENTS
   costmap_2d
   base_local_planner
   navfn
+  ifopt
 )
 
 ## System dependencies are found with CMake's conventions
@@ -141,6 +142,7 @@ include_directories(
 add_executable(nav_gazebo_odom src/nav_gazebo_odom.cpp)
 add_executable(costmap_test src/costmap_test.cpp)
 add_executable(move_navigation src/move_navigation.cpp)
+add_executable(opt_test src/opt_test.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -163,6 +165,9 @@ target_link_libraries(costmap_test
   ${catkin_LIBRARIES}
 )
 target_link_libraries(move_navigation
+  ${catkin_LIBRARIES}
+)
+target_link_libraries(opt_test
   ${catkin_LIBRARIES}
 )
 
