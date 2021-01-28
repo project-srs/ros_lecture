@@ -31,6 +31,7 @@ before_install:
   - sudo apt install -y ros-$ROS_DISTRO-moveit-ros
   - sudo apt install -y ros-$ROS_DISTRO-move-base
   - sudo apt install -y ros-$ROS_DISTRO-json-transport
+  - sudo apt install -y ros-$ROS_DISTRO-ifopt
   # - sudo apt install -y libarmadillo-dev libarmadillo6
   # source & rosdep
   - source /opt/ros/$ROS_DISTRO/setup.bash
