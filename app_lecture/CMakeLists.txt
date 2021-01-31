@@ -15,7 +15,16 @@ add_subdirectory(Simple-WebSocket-Server)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
+find_package(OpenCV REQUIRED)
+find_library(PTHREAD_LIBRARY pthread)
 
+set(CMAKE_AUTOMOC ON)
+find_package(Qt5 ${rviz_QT_VERSION} EXACT REQUIRED
+  Core
+  Widgets
+)
+set(QT_LIBRARIES Qt5::Widgets)
+add_definitions(-DQT_NO_KEYWORDS)
 
 ## Uncomment this if the package has a setup.py. This macro ensures
 ## modules and global scripts declared therein get installed
@@ -118,6 +127,7 @@ catkin_package(
 include_directories(
 # include
   ${catkin_INCLUDE_DIRS}
+  ${OpenCV_INCLUDE_DIRS}
   Simple-WebSocket-Server
 )
 
@@ -141,6 +151,9 @@ include_directories(
 add_executable(json_example src/json_example.cpp)
 add_executable(ws_server_example src/ws_server_example.cpp)
 add_executable(ws_client_example src/ws_client_example.cpp)
+add_executable(rosbridge_client_example src/rosbridge_client_example.cpp)
+add_executable(mjpeg_opencv src/mjpeg_opencv.cpp)
+add_executable(mjpeg_qt src/mjpeg_qt.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -162,6 +175,18 @@ target_link_libraries(ws_server_example
 )
 target_link_libraries(ws_client_example
   simple-websocket-server
+)
+target_link_libraries(rosbridge_client_example
+  simple-websocket-server
+)
+target_link_libraries(mjpeg_opencv
+  ${PTHREAD_LIBRARY}
+  ${OpenCV_LIBRARIES}
+)
+target_link_libraries(mjpeg_qt
+  ${PTHREAD_LIBRARY}
+  ${OpenCV_LIBRARIES}
+  ${QT_LIBRARIES}
 )
 
 #############
