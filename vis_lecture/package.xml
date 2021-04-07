@@ -62,6 +62,7 @@
   <exec_depend>rospy</exec_depend>
   <exec_depend>std_msgs</exec_depend>
   <exec_depend>tf</exec_depend>
+  <exec_depend>jsk_rviz_plugins</exec_depend>
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>
