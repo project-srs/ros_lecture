@@ -18,6 +18,9 @@ find_package(catkin REQUIRED COMPONENTS
   ifopt
 )
 
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(CPPAD cppad REQUIRED)
+
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 
@@ -123,6 +126,7 @@ catkin_package(
 include_directories(
 # include
   ${catkin_INCLUDE_DIRS}
+  ${CPPAD_INCLUDEDIR}
 )
 
 ## Declare a C++ library
@@ -142,7 +146,9 @@ include_directories(
 add_executable(nav_gazebo_odom src/nav_gazebo_odom.cpp)
 add_executable(costmap_test src/costmap_test.cpp)
 add_executable(move_navigation src/move_navigation.cpp)
-add_executable(opt_sample src/opt_sample.cpp)
+add_executable(optimize_sample1 src/optimize_sample1.cpp)
+add_executable(optimize_sample2 src/optimize_sample2.cpp)
+add_executable(ad_sample src/ad_sample.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -167,7 +173,13 @@ target_link_libraries(costmap_test
 target_link_libraries(move_navigation
   ${catkin_LIBRARIES}
 )
-target_link_libraries(opt_sample
+target_link_libraries(optimize_sample1
+  ${catkin_LIBRARIES}
+)
+target_link_libraries(optimize_sample2
+  ${catkin_LIBRARIES}
+)
+target_link_libraries(ad_sample
   ${catkin_LIBRARIES}
 )
 
