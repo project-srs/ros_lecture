@@ -56,6 +56,7 @@
   <depend>moveit_ros</depend>
   <depend>ifopt</depend>
   <depend>cppad</depend>
+  <depend>range_sensor_layer</depend>
 
   <exec_depend>gazebo_ros</exec_depend>
 
