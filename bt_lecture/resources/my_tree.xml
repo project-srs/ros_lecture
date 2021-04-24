@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<root main_tree_to_execute="BehaviorTree">
+    <!-- ////////// -->
+    <BehaviorTree ID="BehaviorTree">
+        <Fallback>
+            <Sequence>
+                <Action ID="MoveObject" action="{action}" move_base_finished="{move_base_finished}" move_base_idle="{move_base_idle}" pose_queue_size="{pose_queue_size}"/>
+                <Action ID="WaitObject" action="{action}" wait_duration="3"/>
+            </Sequence>
+            <Sequence>
+                <Action ID="ReturnObject" action="{action}" home_pose_far="{home_pose_far}" move_base_finished="{move_base_finished}" move_base_idle="{move_base_idle}"/>
+                <Action ID="WaitObject" action="{action}" wait_duration="3"/>
+            </Sequence>
+            <Action ID="StandbyObject" action="{action}"/>
+        </Fallback>
+    </BehaviorTree>
+    <!-- ////////// -->
+    <TreeNodesModel>
+        <Action ID="MoveObject">
+            <output_port name="action"/>
+            <input_port name="move_base_finished"/>
+            <input_port name="move_base_idle"/>
+            <input_port name="pose_queue_size"/>
+        </Action>
+        <Action ID="ReturnObject">
+            <output_port name="action"/>
+            <input_port name="home_pose_far"/>
+            <input_port name="move_base_finished"/>
+            <input_port name="move_base_idle"/>
+        </Action>
+        <Action ID="StandbyObject">
+            <output_port name="action"/>
+        </Action>
+        <Action ID="WaitObject">
+            <output_port name="action"/>
+            <input_port default="1" name="wait_duration"/>
+        </Action>
+    </TreeNodesModel>
+    <!-- ////////// -->
+</root>
+
