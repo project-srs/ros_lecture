@@ -53,7 +53,6 @@
   <depend>std_msgs</depend>
   <depend>tf</depend>
   <depend>move_base</depend>
-  <depend>moveit_ros</depend>
   <depend>ifopt</depend>
   <depend>cppad</depend>
   <depend>range_sensor_layer</depend>

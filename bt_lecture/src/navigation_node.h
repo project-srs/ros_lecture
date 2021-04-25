@@ -165,9 +165,6 @@ public:
     std::cout << this->name() << ": halt" << std::endl;
     CoroActionNode::halt();
   }
-
-private:
-  int counter_{ 0 };
 };
 
 class StandbyObject : public BT::SyncActionNode
