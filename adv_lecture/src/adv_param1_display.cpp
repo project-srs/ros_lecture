@@ -2,7 +2,7 @@
 
 int main(int argc, char** argv)
 {
-  ros::init(argc, argv, "do_dishes_client");
+  ros::init(argc, argv, "param_sample");
   ros::NodeHandle nh;
   ros::NodeHandle pnh("~");
   int param_data = 0;
