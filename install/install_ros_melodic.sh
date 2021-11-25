@@ -9,6 +9,8 @@ sudo apt-get -y upgrade
 sudo apt-get -y install ros-melodic-desktop-full
 apt-cache search ros-melodic
 
+sudo apt-get install python-rosdep
+
 sudo rosdep init
 rosdep update
 
