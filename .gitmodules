@@ -10,3 +10,6 @@
 [submodule "externals/obstacle_detector"]
 	path = externals/obstacle_detector
 	url = https://github.com/tysik/obstacle_detector.git
+[submodule "externals/ROS-TCP-Endpoint"]
+	path = externals/ROS-TCP-Endpoint
+	url = https://github.com/Unity-Technologies/ROS-TCP-Endpoint.git
