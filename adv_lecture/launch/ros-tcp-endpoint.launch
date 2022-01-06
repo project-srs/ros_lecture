@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<launch>
+  <param name="ROS_IP" value="" />
+  <node name="default_server_endpoint" pkg="ros_tcp_endpoint" type="default_server_endpoint.py" output="screen" />
+</launch>
