@@ -16,3 +16,6 @@
 [submodule "externals/BehaviorTree.CPP"]
 	path = externals/BehaviorTree.CPP
 	url = https://github.com/BehaviorTree/BehaviorTree.CPP.git
+[submodule "externals/json_transport"]
+	path = externals/json_transport
+	url = git@github.com:project-srs/json_transport.git
