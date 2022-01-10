@@ -13,3 +13,6 @@
 [submodule "externals/ROS-TCP-Endpoint"]
 	path = externals/ROS-TCP-Endpoint
 	url = https://github.com/Unity-Technologies/ROS-TCP-Endpoint.git
+[submodule "externals/BehaviorTree.CPP"]
+	path = externals/BehaviorTree.CPP
+	url = https://github.com/BehaviorTree/BehaviorTree.CPP.git
