@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <robot name="camera_robot" xmlns:xacro="http://ros.org/wiki/xacro">
   <material name="gray">
-    <color rgba="0.5 0.5 0.5 2.5"/>
+    <color rgba="0.5 0.5 0.5 1.0"/>
   </material>
   <material name="red">
-    <color rgba="1.0 0.0 0.0 2.5"/>
+    <color rgba="1.0 0.0 0.0 1.0"/>
   </material>
 
   <link name="world" />

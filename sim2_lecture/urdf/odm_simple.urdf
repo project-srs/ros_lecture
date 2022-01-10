@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot name="odm_robot" xmlns:xacro="http://ros.org/wiki/xacro">
   <material name="red">
-    <color rgba="1.0 0 0 2.5"/>
+    <color rgba="1.0 0 0 1.0"/>
   </material>
 
   <link name="base_link"/>
