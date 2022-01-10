@@ -1,12 +1,12 @@
 <robot name="arm_robot" xmlns:xacro="http://ros.org/wiki/xacro">
   <material name="red">
-    <color rgba="1.0 0.0 0.0 2.0"/>
+    <color rgba="1.0 0.0 0.0 1.0"/>
   </material>
   <material name="gray">
-    <color rgba="0.4 0.4 0.6 2.0"/>
+    <color rgba="0.4 0.4 0.6 1.0"/>
   </material>
   <material name="light_gray">
-    <color rgba="0.8 0.8 0.8 2.0"/>
+    <color rgba="0.8 0.8 0.8 1.0"/>
   </material>
 
   <xacro:macro name="arm4d_macro" params="l1 l2 l3 l4 l5">

@@ -1,6 +1,6 @@
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
   <material name="red">
-    <color rgba="1.0 0.0 0.0 2.0"/>
+    <color rgba="1.0 0.0 0.0 1.0"/>
   </material>
     
   <xacro:macro name="box_macro" params="suffix parent radius">

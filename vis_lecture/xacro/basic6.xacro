@@ -2,7 +2,7 @@
   <xacro:arg name="length" default="1.0"/>
 
   <material name="red">
-    <color rgba="1.0 0.0 0.0 2.0"/>
+    <color rgba="1.0 0.0 0.0 1.0"/>
   </material>
 
   <link name="base_link"/>
