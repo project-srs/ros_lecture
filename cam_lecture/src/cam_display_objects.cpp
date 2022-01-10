@@ -1,6 +1,6 @@
 #include <ros/ros.h>
 #include <image_transport/image_transport.h>
-#include <opencv/cv.h>
+
 #include <cv_bridge/cv_bridge.h>
 #include <image_geometry/pinhole_camera_model.h>
 #include <tf/transform_listener.h>
@@ -16,7 +16,6 @@ class FrameDrawer{
   tf::TransformListener tf_listener_;
   image_geometry::PinholeCameraModel cam_model_;
   std::vector<std::string> frame_ids_;
-  CvFont font_;
   jsk_recognition_msgs::ObjectArray last_objects_;
 
 public:
@@ -26,7 +25,6 @@ public:
     std::string image_topic = nh_.resolveName("image");
     sub_ = it_.subscribeCamera(image_topic, 1, &FrameDrawer::imageCb, this);
     pub_ = it_.advertise("output_image", 1);
-    cvInitFont(&font_, CV_FONT_HERSHEY_SIMPLEX, 0.5, 0.5);
     sub2_ = nh_.subscribe("objects", 1, &FrameDrawer::objectCb, this);
   }
 
