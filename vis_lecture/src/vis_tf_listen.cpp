@@ -1,41 +1,49 @@
 #include <ros/ros.h>
-#include <geometry_msgs/PoseStamped.h>
-#include <tf/transform_listener.h>
+#include <geometry_msgs/TransformStamped.h>
+#include <geometry_msgs/Twist.h>
+#include <geometry_msgs/Pose.h>
+#include <turtlesim/Spawn.h>
+#include <tf2_ros/transform_listener.h>
+#include <tf2_geometry_msgs/tf2_geometry_msgs.h>
 
-#include <string>
-#include <math.h>
+class ListenTest
+{
+public:
+  ListenTest() : nh_(), tfBuffer_(), tfListener_(tfBuffer_)
+  {
+    timer_ = nh_.createTimer(ros::Duration(0.5), [&](const ros::TimerEvent& e) {
+      geometry_msgs::TransformStamped transformStamped;
+      try
+      {
+        transformStamped = tfBuffer_.lookupTransform("base_link", "dynamic_tf", ros::Time(0));
+      }
+      catch (tf2::TransformException& ex)
+      {
+        ROS_WARN("%s", ex.what());
+        return;
+      }
+      auto& trans = transformStamped.transform.translation;
+      ROS_INFO("world->dynamic_tf: %f %f %f", trans.x, trans.y, trans.z);
+
+      geometry_msgs::Pose object_d, object_w;
+      object_d.position.z = 1.0;
+      object_d.orientation.w = 1.0;
+      tf2::doTransform(object_d, object_w, transformStamped);
+      ROS_INFO("object_w x:%f, y:%f, z:%f", object_w.position.x, object_w.position.y, object_w.position.z);
+    });
+  }
+
+private:
+  ros::NodeHandle nh_;
+  ros::Timer timer_;
+  tf2_ros::Buffer tfBuffer_;
+  tf2_ros::TransformListener tfListener_;
+};
 
 int main(int argc, char** argv)
 {
-  ros::init(argc, argv, "vis_tf_listen");
-  ros::NodeHandle nh;
-
-  tf::TransformListener ln;
-
-  ros::Rate loop_rate(10);
-  while (ros::ok())
-  {
-    geometry_msgs::PoseStamped source_pose;
-    source_pose.header.frame_id = "body_link";
-    source_pose.header.stamp = ros::Time::now();
-    source_pose.pose.orientation.w = 1.0;
-
-    geometry_msgs::PoseStamped target_pose;
-    std::string target_frame = "base_link";
-    try
-    {
-      ln.waitForTransform(source_pose.header.frame_id, target_frame, source_pose.header.stamp, ros::Duration(1.0));
-      ln.transformPose(target_frame, source_pose, target_pose);
-
-      ROS_INFO("x:%+5.2f, y:%+5.2f,z:%+5.2f", target_pose.pose.position.x, target_pose.pose.position.y,
-               target_pose.pose.position.z);
-    }
-    catch (...)
-    {
-      ROS_INFO("tf error");
-    }
-    ros::spinOnce();
-    loop_rate.sleep();
-  }
+  ros::init(argc, argv, "my_tf2_listener");
+  ListenTest listen_test;
+  ros::spin();
   return 0;
-}
+};
