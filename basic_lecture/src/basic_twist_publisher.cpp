@@ -30,13 +30,13 @@ public:
     nh_.getParam("max_z", max_z);
 
     geometry_msgs::Twist cmd_vel;
-    if(assign_x < last_joy_.axes.size()){
+    if(0 <= assign_x && assign_x < last_joy_.axes.size()){
       cmd_vel.linear.x = max_x * last_joy_.axes[assign_x];
     }
-    if(assign_y < last_joy_.axes.size()){
+    if(0 <= assign_y && assign_y < last_joy_.axes.size()){
       cmd_vel.linear.y = max_y * last_joy_.axes[assign_y];
     }
-    if(assign_z < last_joy_.axes.size()){
+    if(0 <= assign_z && assign_z < last_joy_.axes.size()){
       cmd_vel.angular.z = max_z * last_joy_.axes[assign_z];
     }
     cmd_pub_.publish(cmd_vel);
