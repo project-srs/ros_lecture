@@ -12,7 +12,7 @@
   <node name="arm_robot_controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="arm_robot_trajectory_controller joint_state_controller"/>
 
   <!-- common -->
-  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
 
   <!-- moveit setting -->
   <param name="robot_description_semantic" textfile="$(find arm_lecture)/config/moveit/arm_robot.srdf" />
