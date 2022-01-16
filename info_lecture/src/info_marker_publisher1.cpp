@@ -16,7 +16,7 @@ int main(int argc, char** argv)
   while (ros::ok())
   {
     visualization_msgs::Marker marker;
-    marker.header.frame_id = "/world";
+    marker.header.frame_id = "world";
     marker.header.stamp = ros::Time::now();
     marker.ns = "basic_shapes";
     marker.id = 0;

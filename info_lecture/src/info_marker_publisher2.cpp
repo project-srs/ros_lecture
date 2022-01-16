@@ -55,7 +55,7 @@ int main(int argc, char** argv)
     marker_array.markers.resize(2);
 
     // marker0
-    marker_array.markers[0].header.frame_id = "/base_link";
+    marker_array.markers[0].header.frame_id = "base_link";
     marker_array.markers[0].header.stamp = ros::Time::now();
     marker_array.markers[0].ns = "cmd_vel_display";
     marker_array.markers[0].id = 0;
@@ -75,7 +75,7 @@ int main(int argc, char** argv)
     marker_array.markers[0].color.a = 1.0f;
 
     // marker1
-    marker_array.markers[1].header.frame_id = "/base_link";
+    marker_array.markers[1].header.frame_id = "base_link";
     marker_array.markers[1].header.stamp = ros::Time::now();
     marker_array.markers[1].ns = "cmd_vel_display";
     marker_array.markers[1].id = 1;
