@@ -41,8 +41,7 @@
     <remap from="wheel2/state" to="/odm_robot/joint_controller2/state" />
   </node>
 
-  <node name="sim1_odom_tf_converter" pkg="sim1_lecture" type="sim1_odom_tf_converter">
-  </node>
+  <node name="sim1_odom_tf_converter" pkg="sim1_lecture" type="sim1_odom_tf_converter"/>
 
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" output="screen" ns="/odm_robot"/>
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />

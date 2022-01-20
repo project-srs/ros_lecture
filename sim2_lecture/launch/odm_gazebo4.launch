@@ -44,17 +44,13 @@
     <remap from="wheel2/state" to="/odm_robot/joint_controller2/state" />
   </node>
 
-  <node name="sim1_model_tf_publisher" pkg="sim1_lecture" type="sim1_model_tf_publisher">
-    <param name="model_name" value="odm_robot" />
-    <param name="base_frame" value="base_link" />
-    <param name="world_frame" value="odom" />
-  </node>
-
   <node name="liftup_sus" pkg="sim2_lecture" type="liftup_sus.py" respawn="false" output="screen">
     <remap from="sus0" to="/odm_robot/sus_controller0/command" />
     <remap from="sus1" to="/odm_robot/sus_controller1/command" />
     <remap from="sus2" to="/odm_robot/sus_controller2/command" />
   </node>
+
+  <node name="sim1_odom_tf_converter" pkg="sim1_lecture" type="sim1_odom_tf_converter"/>
 
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" output="screen" ns="/odm_robot"/>
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
