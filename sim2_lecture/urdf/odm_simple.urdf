@@ -62,6 +62,7 @@
       <odometryFrame>odom</odometryFrame>
       <odometryRate>20.0</odometryRate>
       <robotBaseFrame>base_link</robotBaseFrame>
+      <cmdTimeout>2.0</cmdTimeout>
     </plugin>
   </gazebo>
 </robot>
