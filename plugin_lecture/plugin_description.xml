@@ -1,5 +1,5 @@
 <library path="lib/libplugin_lecture">
-  <class name="plugin_lecture/add" type="plugin_lecture::add" base_class_type="calc_base">
+  <class name="plugin_lecture/add" type="plugin_lecture::add" base_class_type="ros_lecture_base::calc_base">
     <description>This is a add plugin.</description>
   </class>
 

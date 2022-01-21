@@ -14,7 +14,7 @@ find_package(catkin REQUIRED COMPONENTS
   tf
   pluginlib
   nodelet
-  adv_lecture
+  ros_lecture_base
   rviz
 )
 
