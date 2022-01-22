@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import rosbag
 import numpy as np
 import matplotlib.pyplot as plt
@@ -18,7 +18,7 @@ bag = rosbag.Bag(filename)
 np_poses=None
 for topic, msg, t in bag.read_messages():
     if topic=="/pose":
-	np_pose=np.array([[0.0, 0.0, 0.0, 0.0, 0.0]])
+        np_pose=np.array([[0.0, 0.0, 0.0, 0.0, 0.0]])
         np_pose[0,0]=msg.position.x
         np_pose[0,1]=msg.position.y
         np_pose[0,2]=msg.position.z

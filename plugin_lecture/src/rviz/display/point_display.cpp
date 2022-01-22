@@ -1,6 +1,5 @@
 #include "point_display.h"
 #include <OGRE/OgreSceneNode.h>
-#include <OGRE/OgreSceneManager.h>
 #include <tf/transform_listener.h>
 #include <rviz/visualization_manager.h>
 #include <rviz/properties/color_property.h>
