@@ -1,0 +1,130 @@
+<?xml version='1.0'?>
+<sdf version="1.4">
+  <model name="env_large_room">
+    <link name="base">
+      <inertial>
+        <mass>100.0</mass>
+        <inertia>
+          <ixx>33.4</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>41.7</iyy>
+          <iyz>0.0</iyz>
+          <izz>8.42</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision1">
+        <pose>-2 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1.0 0.1 2.0</size>
+          </box>
+        </geometry>
+      </collision>
+      <collision name="collision2">
+        <pose>-1 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1.0 0.1 2.0</size>
+          </box>
+        </geometry>
+      </collision>
+      <collision name="collision3">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1.0 0.1 2.0</size>
+          </box>
+        </geometry>
+      </collision>
+      <collision name="collision4">
+        <pose>1 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1.0 0.1 2.0</size>
+          </box>
+        </geometry>
+      </collision>
+      <collision name="collision5">
+        <pose>2 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1.0 0.1 2.0</size>
+          </box>
+        </geometry>
+      </collision>
+
+      <visual name="visual1">
+        <pose>-2 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1.0 0.1 2.0</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://env_wall/materials/test_texture.material</uri>
+            <name>WallTexture01</name>
+          </script>
+        </material>
+      </visual>
+      <visual name="visual2">
+        <pose>-1 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1.0 0.1 2.0</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://env_wall/materials/test_texture.material</uri>
+            <name>WallTexture01</name>
+          </script>
+        </material>
+      </visual>
+      <visual name="visual3">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1.0 0.1 2.0</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://env_wall/materials/test_texture.material</uri>
+            <name>WallTexture01</name>
+          </script>
+        </material>
+      </visual>
+      <visual name="visual4">
+        <pose>1 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1.0 0.1 2.0</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://env_wall/materials/test_texture.material</uri>
+            <name>WallTexture01</name>
+          </script>
+        </material>
+      </visual>
+      <visual name="visual5">
+        <pose>2 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>1.0 0.1 2.0</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://env_wall/materials/test_texture.material</uri>
+            <name>WallTexture01</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+
+  </model>
+</sdf>

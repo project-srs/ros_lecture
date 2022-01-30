@@ -1,0 +1,32 @@
+material TestTexture
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        // Relative to the location of the material script
+        texture texture1.png
+        // Repeat the texture over the surface (4 per face)
+        scale 0.5 0.5
+      }
+    }
+  }
+}
+
+material WallTexture01
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        // Relative to the location of the material script
+        texture wall01.jpg
+        scale 1.0 0.5
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <model name="env_carpet">
+    <static>true</static>
+    <link name="link">
+      <visual name="visual">
+        <geometry>
+          <plane>
+            <normal>0 0 1</normal>
+            <size>2.0 1.7</size>
+          </plane>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://env_carpet/materials/test_texture.material</uri>
+            <name>CarpetTexture</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>

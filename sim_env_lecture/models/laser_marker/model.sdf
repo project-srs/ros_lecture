@@ -1,0 +1,39 @@
+<?xml version='1.0'?>
+<sdf version="1.4">
+  <model name="laser_marker">
+    <link name="base">
+      <inertial>
+        <mass>100.0</mass>
+        <inertia>
+          <ixx>33.4</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>41.7</iyy>
+          <iyz>0.0</iyz>
+          <izz>8.42</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <mesh>
+            <uri>model://laser_marker/mesh/laser_marker_ros.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://laser_marker/mesh/laser_marker_ros.stl</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Blue</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+
+  </model>
+</sdf>

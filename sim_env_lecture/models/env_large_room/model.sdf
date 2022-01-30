@@ -1,0 +1,115 @@
+<?xml version='1.0'?>
+<sdf version="1.4">
+  <model name="env_large_room">
+    <static>true</static>
+
+    <include>
+      <name>wall1</name>
+      <uri>model://env_long_wall</uri>
+      <pose>-2.5 5.0 1.0 0 0 0</pose>
+    </include>
+    <include>
+      <name>wall2</name>
+      <uri>model://env_long_wall</uri>
+      <pose>2.5 5.0 1.0 0 0 0</pose>
+    </include>
+    <include>
+      <name>wall3</name>
+      <uri>model://env_long_wall</uri>
+      <pose>5.0 2.5 1.0 0 0 1.5707</pose>
+    </include>
+    <include>
+      <name>wall4</name>
+      <uri>model://env_long_wall</uri>
+      <pose>5.0 -2.5 1.0 0 0 1.5707</pose>
+    </include>
+    <include>
+      <name>wall5</name>
+      <uri>model://env_long_wall</uri>
+      <pose>2.5 -5.0 1.0 0 0 0</pose>
+    </include>
+    <include>
+      <name>wall6</name>
+      <uri>model://env_long_wall</uri>
+      <pose>-2.5 -5.0 1.0 0 0 0</pose>
+    </include>
+    <include>
+      <name>wall7</name>
+      <uri>model://env_long_wall</uri>
+      <pose>-5.0 -2.5 1.0 0 0 1.5707</pose>
+    </include>
+    <include>
+      <name>wall8</name>
+      <uri>model://env_long_wall</uri>
+      <pose>-5.0 2.5 1.0 0 0 1.5707</pose>
+    </include>
+
+    <include>
+      <name>wall9</name>
+      <uri>model://env_long_wall</uri>
+      <pose>-3.5 -2.5 1.0 0 0 1.5707</pose>
+    </include>
+
+    <include>
+      <name>wallp1</name>
+      <uri>model://env_wall</uri>
+      <pose>4.5 2 1.0 0 0 0</pose>
+    </include>
+
+    <include>
+      <name>flooring</name>
+      <uri>model://env_flooring</uri>
+      <pose>0 0 0 0 0 0</pose>
+    </include>
+
+    <include>
+      <name>carpet</name>
+      <uri>model://env_carpet</uri>
+      <pose>-2.3 -4 0.001 0 0 0</pose>
+    </include>
+
+    <include>
+      <name>curtain1</name>
+      <uri>model://env_curtain</uri>
+      <pose>4.9 -0.5 0.82 0 0 0</pose>
+    </include>
+
+    <include>
+      <name>wood_shelf1</name>
+      <uri>model://env_wood_shelf</uri>
+      <pose> 4.6 1.2 0 0 3.1415</pose>
+    </include>
+
+    <include>
+      <name>wood_shelf2</name>
+      <uri>model://env_wood_shelf</uri>
+      <pose> 4.6 -2.0 0 0 3.1415</pose>
+    </include>
+
+    <include>
+      <name>curtain2</name>
+      <uri>model://env_curtain</uri>
+      <pose>1.8 4.9 0.82 0 0 1.5707</pose>
+    </include>
+
+    <include>
+      <name>curtain3</name>
+      <uri>model://env_curtain</uri>
+      <pose>-1.8 4.9 0.82 0 0 1.5707</pose>
+    </include>
+
+    <include>
+      <name>curtain4</name>
+      <uri>model://env_curtain</uri>
+      <pose>0 -4.9 0.82 0 0 -1.5707</pose>
+    </include>
+
+    <include>
+      <name>wood_shelf3</name>
+      <uri>model://env_wood_shelf</uri>
+      <pose>-3.8 4.6 0 0 0 1.5707</pose>
+    </include>
+
+  </model>
+
+</sdf>

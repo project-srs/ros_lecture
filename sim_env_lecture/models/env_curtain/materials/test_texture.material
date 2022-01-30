@@ -1,0 +1,31 @@
+material CurtainTexture
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        // Relative to the location of the material script
+        texture curtain.jpg
+        scale 1.0 1.0
+      }
+    }
+  }
+}
+
+material WoodTecture1
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        // Relative to the location of the material script
+        texture wood.jpg
+        scale 1.0 1.0
+      }
+    }
+  }
+}
