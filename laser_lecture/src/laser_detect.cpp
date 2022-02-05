@@ -84,7 +84,7 @@ public:
 
     // match to pc
     TempShape original_temp = getOriginalTemplate();
-    std::vector<DetectedObject> matched_objects = matchObject(original_temp, cloud, detected_objects);
+    std::vector<DetectedObject> matched_objects = matchObject(original_temp, cloud, detected_objects, 0.02);
 
     // output
     pose_array_pub_.publish(generatePoses(matched_objects, scan_in->header));
@@ -174,7 +174,7 @@ public:
     return output;
   }
 
-  std::vector<DetectedObject> matchObject(TempShape temp, sensor_msgs::PointCloud cloud, std::vector<DetectedObject> input){
+  std::vector<DetectedObject> matchObject(TempShape temp, sensor_msgs::PointCloud cloud, std::vector<DetectedObject> input, float threshold){
     std::vector<DetectedObject> output;
     for(auto in : input){
       sensor_msgs::PointCloud pc = extractPointCloud(cloud, in.reference_index, 10);
@@ -210,7 +210,7 @@ public:
           }
         }
       }
-      if(last_score < 0.03){
+      if(last_score < threshold){
         output.push_back(current_object);
       }
     }
