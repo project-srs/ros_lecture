@@ -62,6 +62,7 @@
   <exec_depend>std_msgs</exec_depend>
   <exec_depend>tf</exec_depend>
   <depend>cv_bridge</depend>
+  <depend>vision_msgs</depend>
 
   <exec_depend>gazebo_ros</exec_depend>
 

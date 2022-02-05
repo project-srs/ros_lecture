@@ -1,48 +1,61 @@
 #include <ros/ros.h>
 #include <geometry_msgs/PoseArray.h>
-#include <jsk_recognition_msgs/ObjectArray.h>
-
 #include <gazebo_msgs/ModelStates.h>
+#include <vision_msgs/Detection3DArray.h>
 
-float publish_rate=20.0;
-ros::Publisher poses_pub;
-gazebo_msgs::ModelStates last_model;
+class ModelReader{
 
-void models_callback(const gazebo_msgs::ModelStates& model_msg){    
-  last_model=model_msg;
-}
-
-void poses_callback(const ros::TimerEvent&){
-  int model_size=last_model.name.size();
-  jsk_recognition_msgs::ObjectArray poses_msg;
-  poses_msg.objects.resize(model_size);
-  poses_msg.header.frame_id="world";
-
-  for(int i=0;i<model_size;i++){
-    poses_msg.objects[i].name=last_model.name[i];
-    poses_msg.objects[i].dimensions.x=last_model.pose[i].position.x;
-    poses_msg.objects[i].dimensions.y=last_model.pose[i].position.y;
-    poses_msg.objects[i].dimensions.z=last_model.pose[i].position.z;
+public:
+  ModelReader()
+    : nh_(""), pnh_("~")
+  {
+    detect_pub_ = nh_.advertise<vision_msgs::Detection3DArray>("objects", 1);
+    model_sub_ = nh_.subscribe("/gazebo/model_states", 1, &ModelReader::modelsCallback, this);
+    timer_ = nh_.createTimer(ros::Duration(0.1), &ModelReader::timerCallback, this);
+    pnh_.getParamCached("target_list", target_list_);
+    std::string str = "";
+    for(auto t: target_list_){
+      str += t+", ";
+    }
+    ROS_INFO("target %s", str.c_str());
   }
-  poses_pub.publish(poses_msg);
-}
 
-int main(int argc, char **argv){
-  ros::init(argc, argv, "cam_model_objects");
-  ros::NodeHandle nh;
-  ros::NodeHandle pnh("~");
+  void modelsCallback(const gazebo_msgs::ModelStates& model_msg){    
+    last_model_=model_msg;
+  }
 
-  //rosparam
-  pnh.getParam("publish_rate", publish_rate);
+  void timerCallback(const ros::TimerEvent& e){
+    vision_msgs::Detection3DArray output;
+    output.header.stamp = e.current_real;
 
-  //publisher
-  poses_pub = nh.advertise<jsk_recognition_msgs::ObjectArray>("objects", 1);
+    for(auto t : target_list_){
+      auto itr = find(last_model_.name.begin(), last_model_.name.end(), t);
+      if(itr == last_model_.name.end()){
+        ROS_INFO_THROTTLE(2.0, "not match %s\n", t.c_str());
+      }
+      else{
+        vision_msgs::Detection3D detect;
+        detect.header.frame_id = "world";
+        detect.header.stamp = e.current_real;
+        int index = std::distance(last_model_.name.begin(), itr);
+        detect.bbox.center = last_model_.pose[index];
+        output.detections.push_back(detect);
+      }
+    }
+    detect_pub_.publish(output);
+  }
 
-  //subscriibe
-  ros::Subscriber model_sub   = nh.subscribe("/gazebo/model_states", 1, models_callback);
+  ros::NodeHandle nh_;
+  ros::NodeHandle pnh_;
+  ros::Publisher detect_pub_;
+  ros::Subscriber model_sub_;
+  gazebo_msgs::ModelStates last_model_;
+  ros::Timer timer_;
+  std::vector<std::string> target_list_;
+};
 
-  //timer
-  ros::Timer poses_timer = nh.createTimer(ros::Duration(1.0/publish_rate), poses_callback);
+int main(int argc, char** argv){
+  ros::init(argc, argv, "cam_model_object");
+  ModelReader model_reader;
   ros::spin();
-  return 0;
 }

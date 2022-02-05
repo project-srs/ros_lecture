@@ -1,7 +1,7 @@
 <?xml version='1.0'?>
 <sdf version="1.4">
   <model name="env_large_room">
-    <link name="base">
+    <link name="base_link">
       <inertial>
         <mass>100.0</mass>
         <inertia>
@@ -14,42 +14,68 @@
         </inertia>
       </inertial>
       <collision name="collision">
+        <pose>0 0 0.01 0 0 0</pose>
         <geometry>
           <box>
-            <size>0.2 0.2 0.2</size>
+            <size>0.2 0.2 0.02</size>
           </box>
         </geometry>
       </collision>
       <visual name="visual">
+        <pose>0 0 0.01 0 0 0</pose>
         <geometry>
           <box>
-            <size>0.2 0.2 0.2</size>
+            <size>0.2 0.2 0.02</size>
           </box>
         </geometry>
         <material>
           <script>
             <uri>file://media/materials/scripts/gazebo.material</uri>
-            <name>Gazebo/Red</name>
+            <name>Gazebo/Gray</name>
           </script>
         </material>
       </visual>
-      <material>Gazebo/Red</material>
+    </link>
 
+    <link name="lidar">
+      <pose>0 0 0.07 0 0 0</pose>
+      <collision name="collision">
+        <geometry>
+          <cylinder>
+            <radius>0.05</radius>
+            <length>0.03</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <cylinder>
+            <radius>0.05</radius>
+            <length>0.03</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Blue</name>
+          </script>
+        </material>
+      </visual>
       <sensor type="ray" name="lidar">
         <pose>0 0 0 0 0 0</pose>
-        <visualize>true</visualize>
+        <!-- <visualize>true</visualize> -->
         <update_rate>10</update_rate>
         <ray>
           <scan>
             <horizontal>
               <samples>200</samples>
               <resolution>1</resolution>
-              <min_angle>-1.5707</min_angle>
-              <max_angle>1.5707</max_angle>
+              <min_angle>-3.1415</min_angle>
+              <max_angle>3.1415</max_angle>
             </horizontal>
           </scan>
           <range>
-            <min>0.30</min>
+            <min>0.07</min>
             <max>20.0</max>
             <resolution>0.005</resolution>
           </range>
@@ -65,6 +91,128 @@
         </plugin>
       </sensor>
     </link>
+    <joint name='lidar_joint' type='fixed'>
+      <parent>base_link</parent>
+      <child>lidar</child>
+      <pose>0 0 0 0 0 0</pose>
+    </joint>
 
+    <link name="camera">
+      <pose>0 0 0.2 0 0 0</pose>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.01 0.06 0.02</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual1">
+        <geometry>
+          <box>
+            <size>0.01 0.06 0.02</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Blue</name>
+          </script>
+        </material>
+      </visual>
+      <visual name="visual2">
+        <pose>0.005 0 0 0 1.5707 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.007</radius>
+            <length>0.005</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Blue</name>
+          </script>
+        </material>
+      </visual>
+      <sensor type="camera" name="camera1">
+        <!-- <visualize>true</visualize> -->
+        <update_rate>10.0</update_rate>
+        <camera name="head">
+          <horizontal_fov>1.3</horizontal_fov>
+          <image>
+            <width>800</width>
+            <height>600</height>
+            <format>R8G8B8</format>
+          </image>
+          <clip>
+            <near>0.02</near>
+            <far>300</far>
+          </clip>
+          <noise>
+            <type>gaussian</type>
+            <mean>0.0</mean>
+            <stddev>0.007</stddev>
+          </noise>
+        </camera>
+        <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+          <alwaysOn>true</alwaysOn>
+          <updateRate>0.0</updateRate>
+          <cameraName>head_camera</cameraName>
+          <imageTopicName>image_raw</imageTopicName>
+          <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+          <frameName>camera_optical_link</frameName>
+          <hackBaseline>0.0</hackBaseline>
+          <distortionK1>0.0</distortionK1>
+          <distortionK2>0.0</distortionK2>
+          <distortionK3>0.0</distortionK3>
+          <distortionT1>0.0</distortionT1>
+          <distortionT2>0.0</distortionT2>
+        </plugin>
+      </sensor>
+    </link>
+    <joint name='camera_joint' type='fixed'>
+      <parent>base_link</parent>
+      <child>camera</child>
+      <pose>0 0 0 0 0 0</pose>
+    </joint>
+
+    <link name="bar">
+      <pose>-0.09 0 0.1 0 0 0</pose>
+      <collision name="collision">
+        <geometry>
+          <cylinder>
+            <radius>0.01</radius>
+            <length>0.2</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <cylinder>
+            <radius>0.01</radius>
+            <length>0.2</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Gray</name>
+          </script>
+        </material>
+      </visual>
+    </link>
+
+    <joint name='bar_joint' type='fixed'>
+      <parent>base_link</parent>
+      <child>bar</child>
+      <pose>0 0 0 0 0 0</pose>
+    </joint>
+
+    <plugin name="ground_truth" filename="libgazebo_ros_p3d.so">
+      <frameName>world</frameName>
+      <bodyName>base_link</bodyName>
+      <topicName>/tracker</topicName>
+      <updateRate>10.0</updateRate>
+    </plugin>
   </model>
 </sdf>

@@ -16,6 +16,7 @@ find_package(catkin REQUIRED COMPONENTS
   image_transport
   cv_bridge
   jsk_recognition_msgs
+  vision_msgs
 )
 
 find_package(OpenCV)
@@ -144,6 +145,8 @@ include_directories(
 add_executable(cam_call_camera_info src/cam_call_camera_info.cpp)
 add_executable(cam_display_objects src/cam_display_objects.cpp)
 add_executable(cam_model_objects src/cam_model_objects.cpp)
+add_executable(cam_color_detector src/cam_color_detector.cpp)
+add_executable(cam_reprojection src/cam_reprojection.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -166,6 +169,12 @@ target_link_libraries(cam_model_objects
   ${catkin_LIBRARIES}
 )
 target_link_libraries(cam_display_objects
+  ${catkin_LIBRARIES}
+)
+target_link_libraries(cam_color_detector
+  ${catkin_LIBRARIES}
+)
+target_link_libraries(cam_reprojection
   ${catkin_LIBRARIES}
 )
 

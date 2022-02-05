@@ -2,7 +2,7 @@
 <launch>
     <arg name="rvizconfig" default="$(find cam_lecture)/rviz/orb.rviz" />
 
-    <!-- <include file="$(find realsense2_camera)/launch/rs_rgbd.launch"/> -->
+    <include file="$(find realsense2_camera)/launch/rs_rgbd.launch"/>
     <node pkg="tf2_ros" type="static_transform_publisher" name="link_broadcaster" args="0 0 0 0 0 0 1 base_link camera_link" />
 
 

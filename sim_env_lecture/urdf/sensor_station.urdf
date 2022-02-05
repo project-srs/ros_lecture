@@ -1,0 +1,75 @@
+<robot name="test_robot">
+  <material name="gray">
+    <color rgba="0.5 0.5 0.5 1.0"/>
+  </material>
+  <material name="blue">
+    <color rgba="0.0 0.0 1.0 1.0"/>
+  </material>
+
+  <link name="base_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0.01"/>
+      <geometry>
+        <box size="0.2 0.2 0.02" />
+      </geometry>
+      <material name="gray"/>
+    </visual>
+  </link>
+
+  <joint name="laser_joint" type="fixed">
+    <parent link="base_link"/>
+    <child  link="laser_link"/>
+    <origin rpy="0 0 0" xyz="0 0 0.07"/>
+  </joint>
+  <link name="laser_link">
+    <visual>
+      <geometry>
+        <cylinder radius="0.05" length="0.03" />
+      </geometry>
+      <material name="blue"/>
+    </visual>
+  </link>
+
+  <joint name="camera_joint" type="fixed">
+    <parent link="base_link"/>
+    <child  link="camera_link"/>
+    <origin rpy="0 0 0" xyz="0 0 0.2"/>
+  </joint>
+  <link name="camera_link">
+    <visual>
+      <geometry>
+        <box size="0.01 0.06 0.02" />
+      </geometry>
+      <material name="blue"/>
+    </visual>
+    <visual>
+      <origin rpy="0 1.5707 0" xyz="0.005 0 0"/>
+      <geometry>
+        <cylinder radius="0.007" length="0.005" />
+      </geometry>
+      <material name="blue"/>
+    </visual>
+  </link>
+
+  <joint name="camera_optical_joint" type="fixed">
+    <parent link="camera_link"/>
+    <child  link="camera_optical_link"/>
+    <origin rpy="-1.5707 0 -1.5707" xyz="0 0 0"/>
+  </joint>
+  <link name="camera_optical_link"/>
+
+  <joint name="bar_joint" type="fixed">
+    <parent link="base_link"/>
+    <child  link="bar_link"/>
+    <origin rpy="0 1.5707 0" xyz="-0.09 0 0.1"/>
+  </joint>
+  <link name="bar_link">
+    <visual>
+      <origin rpy="0 1.5707 0" xyz="0.005 0 0"/>
+      <geometry>
+        <cylinder radius="0.01" length="0.2" />
+      </geometry>
+      <material name="gray"/>
+    </visual>
+  </link>
+</robot>
