@@ -23,7 +23,9 @@
   </group>
 
   <group if="$(eval position=='tracker')">
-    <node name="sim1_odom_tf_converter" pkg="sim1_lecture" type="sim1_odom_tf_converter"/>
+    <node name="sim1_odom_tf_converter" pkg="sim1_lecture" type="sim1_odom_tf_converter">
+      <param name="parent_frame_id" value="odom"/>
+    </node>
   </group>
 
   <rosparam command="load"  file="$(find sim1_lecture)/config/diff_drive_controller.yaml" ns="/dtw_robot"/>
