@@ -3,7 +3,7 @@
 	url = https://gitlab.com/eidheim/Simple-WebSocket-Server.git
 [submodule "externals/navigation_layers"]
 	path = externals/navigation_layers
-	url = https://github.com/project-srs/navigation_layers.git
+	url = https://github.com/DLu/navigation_layers.git
 [submodule "externals/Groot"]
 	path = externals/Groot
 	url = https://github.com/BehaviorTree/Groot.git
@@ -18,4 +18,4 @@
 	url = https://github.com/BehaviorTree/BehaviorTree.CPP.git
 [submodule "externals/json_transport"]
 	path = externals/json_transport
-	url = git@github.com:project-srs/json_transport.git
+	url = https://github.com/locusrobotics/json_transport.git
