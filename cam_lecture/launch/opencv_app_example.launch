@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="sensor_station_coke.world" />
+  </include>
+
+  <node name="hsv_color_filter" pkg="opencv_apps" type="hsv_color_filter" >
+    <remap from="/image" to="/head_camera/image_raw" />
+    <remap from="~image" to="output/image_raw" />
+    <param name="h_limit_max" value="360" />
+    <param name="h_limit_min" value="330" />
+    <param name="s_limit_max" value="200" />
+    <param name="s_limit_min" value="80" />
+    <param name="v_limit_max" value="256" />
+    <param name="v_limit_min" value="0" />
+  </node>
+
+  <node name="original_image_view" pkg="image_view" type="image_view" >
+    <remap from="image" to="/head_camera/image_raw"/>
+  </node>
+  <node name="filtered_image_view" pkg="image_view" type="image_view" >
+    <remap from="image" to="/output/image_raw"/>
+  </node>
+</launch>

@@ -6,11 +6,6 @@
 
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="world_name" value="sensor_station_coke.world" />
-    <arg name="paused" value="false"/>
-    <arg name="use_sim_time" value="true"/>
-    <arg name="gui" value="true"/>
-    <arg name="headless" value="false"/>
-    <arg name="debug" value="false"/>
   </include>
 
   <node name="cam_color_detect" pkg="cam_lecture" type="cam_color_detector" output="screen">

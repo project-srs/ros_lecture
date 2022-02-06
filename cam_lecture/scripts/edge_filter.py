@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import rospy
 import sys
 import cv2
@@ -12,14 +12,14 @@ class cvBridgeDemo:
         rospy.init_node(self.node_name)
         rospy.on_shutdown(self.cleanup)
         self.bridge = CvBridge()
-        self.image_sub = rospy.Subscriber("input_image", Image, self.image_callback, queue_size=1)
-        self.image_pub = rospy.Publisher("output_image", Image, queue_size=1)
+        self.image_sub = rospy.Subscriber("/head_camera/image_raw", Image, self.image_callback, queue_size=1)
+        self.image_pub = rospy.Publisher("/output/image_raw", Image, queue_size=1)
 
     def image_callback(self, ros_image):
         try:
             input_image = self.bridge.imgmsg_to_cv2(ros_image, "bgr8")
-        except CvBridgeError, e:
-            print e
+        except CvBridgeError as e:
+            print(e)
         output_image = self.process_image(input_image)
         self.image_pub.publish(self.bridge.cv2_to_imgmsg(output_image, "mono8"))
         

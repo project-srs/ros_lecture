@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="sensor_station_coke.world" />
+  </include>
+
+  <node name="edge_filter" pkg="cam_lecture" type="edge_filter.py" />
+
+  <node name="original_image_view" pkg="image_view" type="image_view" >
+    <remap from="image" to="/head_camera/image_raw"/>
+  </node>
+  <node name="filtered_image_view" pkg="image_view" type="image_view" >
+    <remap from="image" to="/output/image_raw"/>
+  </node>
+</launch>
