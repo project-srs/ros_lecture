@@ -1,0 +1,90 @@
+<?xml version="1.0" ?>
+<sdf version='1.6'>
+  <world name='default'>
+    <include>
+      <name>large_room</name>
+      <uri>model://env_large_room</uri>
+      <static>true</static>
+      <pose>0 0 0 0 0 0</pose>
+    </include>
+ 
+    <include>
+      <name>sensor_station</name>
+      <uri>model://sensor_station</uri>
+      <pose>0 0 0 0 0 0</pose>
+    </include>
+
+    <include>
+      <name>laser_marker1</name>
+      <uri>model://laser_marker</uri>
+      <pose>2.0 0.0 0 0 0 -3.1415</pose>
+    </include>
+
+    <include>
+      <name>laser_marker2</name>
+      <uri>model://laser_marker</uri>
+      <pose>2.0 1.5 0 0 0 -2.5</pose>
+    </include>
+
+    <include>
+      <name>room_light1</name>
+      <uri>model://env_room_light</uri>
+      <pose>-3 -3 2 0 0 0</pose>
+    </include>
+    <include>
+      <name>room_light2</name>
+      <uri>model://env_room_light</uri>
+      <pose>-3 0 2 0 0 0</pose>
+    </include>
+    <include>
+      <name>room_light3</name>
+      <uri>model://env_room_light</uri>
+      <pose>-3 3 2 0 0 0</pose>
+    </include>
+
+    <include>
+      <name>room_light4</name>
+      <uri>model://env_room_light</uri>
+      <pose>0 -3 2 0 0 0</pose>
+    </include>
+    <include>
+      <name>room_light5</name>
+      <uri>model://env_room_light</uri>
+      <pose>0 0 2 0 0 0</pose>
+    </include>
+    <include>
+      <name>room_light6</name>
+      <uri>model://env_room_light</uri>
+      <pose>0 3 2 0 0 0</pose>
+    </include>
+
+    <include>
+      <name>room_light7</name>
+      <uri>model://env_room_light</uri>
+      <pose>3 -3 2 0 0 0</pose>
+    </include>
+    <include>
+      <name>room_light8</name>
+      <uri>model://env_room_light</uri>
+      <pose>3 0 2 0 0 0</pose>
+    </include>
+    <include>
+      <name>room_light</name>
+      <uri>model://env_room_light</uri>
+      <pose>3 3 2 0 0 0</pose>
+    </include>
+
+    <scene>
+      <ambient>0.6 0.6 0.6 1</ambient>
+      <background>0.6 0.6 0.6 1</background>
+      <shadows>1</shadows>
+    </scene>
+    <physics type='ode'>
+      <max_step_size>0.005</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>200</real_time_update_rate>
+    </physics>
+
+
+  </world>
+</sdf>

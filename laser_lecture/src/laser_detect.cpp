@@ -66,7 +66,7 @@ struct TempShape{
 class LaserGroup{
 public:
   LaserGroup() : nh_(), pnh_("~") {
-    laser_sub_ = nh_.subscribe("/laser/scan", 10, &LaserGroup::laserCallback, this);
+    laser_sub_ = nh_.subscribe("/front_laser/scan", 10, &LaserGroup::laserCallback, this);
     markers_pub_ = nh_.advertise<visualization_msgs::MarkerArray>("marker_array", 1);
     pose_array_pub_ = nh_.advertise<geometry_msgs::PoseArray>("detected_poses", 1);
   }
@@ -77,7 +77,7 @@ public:
     projector_.projectLaser(*scan_in, cloud);
 
     // extract curve feature
-    std::vector<CurveFeature> curve_feature = extractFeatureFromPc(cloud, 0.4, 0.7);
+    std::vector<CurveFeature> curve_feature = extractFeatureFromPc(cloud, 0.4, 0.6);
 
     // convert to object
     std::vector<DetectedObject> detected_objects = extractObjectFromFeatures(curve_feature);
@@ -177,7 +177,7 @@ public:
   std::vector<DetectedObject> matchObject(TempShape temp, sensor_msgs::PointCloud cloud, std::vector<DetectedObject> input, float threshold){
     std::vector<DetectedObject> output;
     for(auto in : input){
-      sensor_msgs::PointCloud pc = extractPointCloud(cloud, in.reference_index, 10);
+      sensor_msgs::PointCloud pc = extractPointCloud(cloud, in.reference_index, 15);
       DetectedObject current_object = in;
       std::vector<SearchItem> search_list = {
         {0, 0, 0},

@@ -1,6 +1,6 @@
 scan_filter_chain:
 - name: box
-  type: LaserScanBoxFilter
+  type: laser_filters/LaserScanBoxFilter
   params:
     box_frame: base_link
     min_x: -0.19

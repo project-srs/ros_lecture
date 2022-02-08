@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
+  <arg name="model" default="$(find sim_env_lecture)/urdf/sensor_station.urdf" />
   <arg name="rvizconfig" default="$(find laser_lecture)/rviz/detect_marker.rviz" />  
+  <param name="robot_description" command="$(find xacro)/xacro $(arg model) --inorder"/>
 
   <!-- gazebo world -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name" value="env_large_room.world"/>
-    <arg name="paused" value="false"/>
-    <arg name="use_sim_time" value="true"/>
-    <arg name="gui" value="true"/>
-    <arg name="headless" value="false"/>
-    <arg name="debug" value="false"/>
+    <arg name="world_name" value="sensor_station_laser_marker.world"/>
   </include>
 
   <node name="laser_detect" pkg="laser_lecture" type="laser_detect" output="screen" />
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />   
 
   <!-- rviz -->
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />

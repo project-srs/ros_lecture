@@ -6,8 +6,8 @@ obstacle_extractor:
   #circles_from_visibles: true
   #discard_converted_segments: true
   #transform_coordinates: true
-  #min_group_points: 5
-  #max_group_distance: 0.1
+  min_group_points: 3
+  max_group_distance: 0.05
   #distance_proportion: 0.00628
   #max_split_distance: 0.2
   #max_merge_separation: 0.2

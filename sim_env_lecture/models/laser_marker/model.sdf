@@ -2,6 +2,7 @@
 <sdf version="1.4">
   <model name="laser_marker">
     <link name="base">
+      <pose>0.15 0 0 0 0 1.5707</pose>
       <inertial>
         <mass>100.0</mass>
         <inertia>
