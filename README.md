@@ -17,6 +17,14 @@ cd ~/catkin_ws/src
 git clone https://github.com/project-srs/ros_lecture.git
 ```
 
+## pre build
+
+```shell
+cd ~/catkin_ws/src/ros_lecture
+git submodule update --init --recursive
+rosdep install -i -y --from-paths ./
+```
+
 ## build
 
 ```shell
