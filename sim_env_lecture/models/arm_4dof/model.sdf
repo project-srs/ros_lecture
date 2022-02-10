@@ -1,0 +1,221 @@
+<?xml version='1.0'?>
+<sdf version="1.4">
+  <model name="arm_4dof">
+    <link name="body_link">
+      <pose>0 0 0.03 0 0 0</pose>
+      <inertial>
+        <mass>2.0</mass>
+        <inertia>
+          <ixx>0.0083</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>0.0083</iyy>
+          <iyz>0.0</iyz>
+          <izz>0.0083</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.3 0.3 0.06</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.3 0.3 0.06</size>
+          </box>
+        </geometry>
+      </visual>
+    </link>
+
+    <joint name='arm0_joint' type='fixed'>
+      <parent>body_link</parent>
+      <child>arm0_link</child>
+      <pose>0 0 0.08 0 0 0</pose>
+      <axis>
+        <use_parent_model_frame>true</use_parent_model_frame>
+        <xyz>0 0 1</xyz>
+      </axis>
+    </joint>
+    <link name="arm0_link">
+      <pose>0 0 0.11 0 0 0</pose>
+      <inertial>
+        <mass>0.1</mass>
+        <inertia>
+          <ixx>0.0083</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>0.0083</iyy>
+          <iyz>0.0</iyz>
+          <izz>0.0083</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.04 0.04 0.1</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.04 0.04 0.1</size>
+          </box>
+        </geometry>
+      </visual>
+    </link>
+
+    <joint name='arm1_joint' type='fixed'>
+      <parent>arm0_link</parent>
+      <child>arm1_link</child>
+      <pose>0 0 0.16 0 0 0</pose>
+      <axis>
+        <use_parent_model_frame>true</use_parent_model_frame>
+        <xyz>0 1 0</xyz>
+      </axis>
+    </joint>
+    <link name="arm1_link">
+      <pose>0 -0.04 0.26 0 0 0</pose>
+      <inertial>
+        <mass>0.1</mass>
+        <inertia>
+          <ixx>0.0083</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>0.0083</iyy>
+          <iyz>0.0</iyz>
+          <izz>0.0083</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.04 0.04 0.2</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.04 0.04 0.2</size>
+          </box>
+        </geometry>
+      </visual>
+    </link>
+
+    <joint name='arm2_joint' type='fixed'>
+      <parent>arm1_link</parent>
+      <child>arm2_link</child>
+      <pose>0 0 0.36 0 0 0</pose>
+      <axis>
+        <use_parent_model_frame>true</use_parent_model_frame>
+        <xyz>0 1 0</xyz>
+      </axis>
+    </joint>
+    <link name="arm2_link">
+      <pose>0 0 0.46 0 0 0</pose>
+      <inertial>
+        <mass>0.1</mass>
+        <inertia>
+          <ixx>0.0083</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>0.0083</iyy>
+          <iyz>0.0</iyz>
+          <izz>0.0083</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.04 0.04 0.2</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.04 0.04 0.2</size>
+          </box>
+        </geometry>
+      </visual>
+    </link>
+
+    <joint name='arm3_joint' type='fixed'>
+      <parent>arm2_link</parent>
+      <child>arm3_link</child>
+      <pose>0 0 0.56 0 0 0</pose>
+      <axis>
+        <use_parent_model_frame>true</use_parent_model_frame>
+        <xyz>0 1 0</xyz>
+      </axis>
+    </joint>
+    <link name="arm3_link">
+      <pose>0 0 0.62 0 0 0</pose>
+      <inertial>
+        <mass>0.1</mass>
+        <inertia>
+          <ixx>0.0083</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>0.0083</iyy>
+          <iyz>0.0</iyz>
+          <izz>0.0083</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision1">
+        <pose>0 0.04 -0.04 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.04 0.04 0.04</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual1">
+        <pose>0 0.04 -0.04 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.04 0.04 0.04</size>
+          </box>
+        </geometry>
+      </visual>
+      <collision name="collision2">
+        <pose>0 0.02 -0.01 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.04 0.08 0.02</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual2">
+        <pose>0 0.02 -0.01 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.04 0.08 0.02</size>
+          </box>
+        </geometry>
+      </visual>
+      <collision name="collision3">
+        <pose>0 0 0.03 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.01</radius>
+            <length>0.06</length>
+          </cylinder>
+        </geometry>
+      </collision>
+      <visual name="visual3">
+        <pose>0 0 0.025 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.005</radius>
+            <length>0.06</length>
+          </cylinder>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>
