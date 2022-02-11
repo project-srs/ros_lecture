@@ -15,7 +15,7 @@ public:
   MainDialog(QWidget* parent);
 
 private:
-  QLineEdit* lineEdit;
+  QLineEdit* lineEdit_;
   ros::NodeHandle nh_;
   ros::Subscriber string_sub_;
   void stringCallback(const std_msgs::String& msg); 

@@ -19,8 +19,8 @@ int main(int argc, char** argv)
   layout->addWidget(label);
   window->setLayout(layout);
 
-  QObject::connect(button, SIGNAL( clicked() ),	&app, SLOT(quit()) );
-  QObject::connect(edit, SIGNAL(textChanged(QString)), label, SLOT(setText(QString)) );
+  QObject::connect(button, &QPushButton::clicked, &app, &QApplication::quit);
+  QObject::connect(edit, &QLineEdit::textChanged, label, &QLabel::setText);
 
   window->show();
 

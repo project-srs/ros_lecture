@@ -12,7 +12,7 @@ MainDialog::MainDialog(QWidget* parent): QDialog(parent)
   setButton = new QPushButton(tr("Set") );
   lineEdit = new QLineEdit;
 
-  connect(setButton,SIGNAL(clicked()),this,SLOT(setLabelText()));
+  connect(setButton, &QPushButton::clicked, this, &MainDialog::setLabelText);
 
   QVBoxLayout* layout = new QVBoxLayout;
   layout->addWidget(label);

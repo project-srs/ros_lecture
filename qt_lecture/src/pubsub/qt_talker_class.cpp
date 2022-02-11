@@ -10,12 +10,12 @@
 #include "qt_talker_class.h"
 
 MainDialog::MainDialog(QWidget* parent): QDialog(parent),nh_(){
-  setButton = new QPushButton("publish");
+  setButton_ = new QPushButton("publish");
 
-  connect(setButton,SIGNAL(clicked()),this,SLOT(publishString()));
+  connect(setButton_, &QPushButton::clicked, this, &MainDialog::publishString);
 
   QVBoxLayout* layout = new QVBoxLayout;
-  layout->addWidget(setButton);
+  layout->addWidget(setButton_);
   setLayout(layout);
 
   string_pub_ = nh_.advertise<std_msgs::String>("chatter", 10);

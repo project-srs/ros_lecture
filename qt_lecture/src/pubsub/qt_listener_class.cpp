@@ -11,10 +11,10 @@
 #include "qt_listener_class.h"
 
 MainDialog::MainDialog(QWidget* parent): QDialog(parent),nh_(){
-  lineEdit = new QLineEdit;
+  lineEdit_ = new QLineEdit;
 
   QVBoxLayout* layout = new QVBoxLayout;
-  layout->addWidget(lineEdit);
+  layout->addWidget(lineEdit_);
   setLayout(layout);
 
   string_sub_ = nh_.subscribe("chatter", 10, &MainDialog::stringCallback, this);
@@ -23,6 +23,6 @@ MainDialog::MainDialog(QWidget* parent): QDialog(parent),nh_(){
 
 void MainDialog::stringCallback(const std_msgs::String& string_msg){
   QString text = QString::fromStdString(string_msg.data);
-  lineEdit->setText(text);
+  lineEdit_->setText(text);
   ROS_INFO("sub: %s", string_msg.data.c_str());
 }

@@ -16,7 +16,7 @@ public:
 private Q_SLOTS:
   void publishString(); 
 private:
-  QPushButton* setButton;
+  QPushButton* setButton_;
   ros::NodeHandle nh_;
   ros::Publisher string_pub_; 
 };
