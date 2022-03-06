@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <include file="$(find mavros)/launch/apm.launch">
+  </include>
+
+  <rosparam ns="/mavros/conn/timesync_rate">0.0</rosparam>
+  <node name="mavparam" pkg="hard_lecture" type="mavparam.py" output="screen"/>
+  <node name="mavros_bridge" pkg="hard_lecture" type="hard_mavros_bridge"/>
+</launch>

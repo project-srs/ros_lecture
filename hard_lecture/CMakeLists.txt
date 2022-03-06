@@ -12,6 +12,7 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
   tf
+  mavros_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -139,6 +140,7 @@ add_executable(hard_serialport src/hard_serialport.cpp)
 add_executable(hard_serialport_retry src/hard_serialport_retry.cpp)
 add_executable(hard_gy955 src/hard_gy955.cpp)
 add_executable(hard_imu_to_pose src/hard_imu_to_pose.cpp)
+add_executable(hard_mavros_bridge src/hard_mavros_bridge.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -164,6 +166,9 @@ target_link_libraries(hard_gy955
   ${catkin_LIBRARIES}
 )
 target_link_libraries(hard_imu_to_pose
+  ${catkin_LIBRARIES}
+)
+target_link_libraries(hard_mavros_bridge
   ${catkin_LIBRARIES}
 )
 

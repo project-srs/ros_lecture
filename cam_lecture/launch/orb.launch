@@ -12,5 +12,5 @@
     <!-- <group ns="/camera/color">
         <node name="image_proc" pkg="image_proc" type="image_proc" output="screen"/>
     </group> -->
-    <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+    <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" /> -->
 </launch>

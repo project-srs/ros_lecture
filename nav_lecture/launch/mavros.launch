@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <include file="$(find hard_lecture)/launch/apm.launch">
+  </include>
+
+  <node name="basic_twist_publisher" pkg="basic_lecture" type="basic_twist_publisher">
+    <remap from="cmd_vel" to="/mavros/setpoint_velocity/cmd_vel_unstamped"/>
+    <remap from="joy" to="/mavros_bridge/joy"/>
+  </node>
+
+</launch>

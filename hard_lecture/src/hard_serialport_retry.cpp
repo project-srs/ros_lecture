@@ -68,6 +68,7 @@ public:
 				return "";
 			}
 		}
+		return "";
 	}
 	void ss_close(void){
 		close(fd);
