@@ -57,7 +57,8 @@ public:
   sensor_msgs::Joy convertRCtoJoy(const mavros_msgs::RCIn& msg) {
     sensor_msgs::Joy joy;
     joy.axes.resize(4);
-    if(4 <= msg.channels.size()){
+    joy.buttons.resize(1);
+    if(5 <= msg.channels.size()){
       float x = -((float)msg.channels[2]-1510)/410;
       float y = -((float)msg.channels[0]-1510)/410;
       float z = -((float)msg.channels[1]-1510)/410;
@@ -66,6 +67,15 @@ public:
       joy.axes[1] = y;
       joy.axes[2] = z;
       joy.axes[3] = r;
+
+      auto getButton = [](const int b){
+        int output = 0;
+        if (b < 1300) output = -1;
+        else if(b < 1700) output =0;
+        else output = 1;
+        return output;
+      };
+      joy.buttons[0] = getButton(msg.channels[4]);
     }
     return joy;
   }

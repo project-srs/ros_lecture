@@ -6,7 +6,7 @@ import rospy
 if __name__ == "__main__":
     rospy.init_node('mavpram_setter')
 
-    rospy.sleep(5.0)
+    rospy.sleep(10.0)
     rospy.wait_for_service('/mavros/param/pull')
     pull_param = rospy.ServiceProxy('/mavros/param/pull', ParamPull)
     res0 = pull_param(False)
