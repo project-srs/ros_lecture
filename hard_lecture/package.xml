@@ -64,7 +64,7 @@
 
   <depend>mavros_msgs</depend>
   <depend>mavros</depend>
-  <depend>mavros_extra</depend>
+  <depend>mavros_extras</depend>
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>

@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
-  <!-- <include file="$(find mavros)/launch/apm.launch">
-  </include> -->
   <arg name="fcu_url" default="/dev/ttyACM0:57600" />
 
   <node pkg="mavros" type="mavros_node" name="mavros" clear_params="true" output="screen">
@@ -11,11 +9,6 @@
     <rosparam command="load" file="$(find mavros)/launch/apm_pluginlists.yaml" />
     <rosparam command="load" file="$(find hard_lecture)/config/apm_config.yaml" />
   </node>
-
-  <!-- <rosparam ns="/mavros/conn/timesync_rate">0.0</rosparam>
-  <rosparam ns="/mavros/setpoint_velocity/mav_frame">BODY_NED</rosparam>
-  <rosparam ns="/mavros/local_position/tf/send">true</rosparam>
-  <rosparam ns="/mavros/local_position/tf/frame_id">odom</rosparam> -->
 
   <node name="mavparam" pkg="hard_lecture" type="mavparam.py" output="screen"/>
   <node name="mavros_bridge" pkg="hard_lecture" type="hard_mavros_bridge"/>
