@@ -7,8 +7,8 @@ class CameraInfoModifier
 public:
   CameraInfoModifier() : nh_(), pnh_("~")
   {
-    camera_info_pub_ = nh_.advertise<sensor_msgs::CameraInfo>("camera_info", 10);
-    camera_info_sub_ = nh_.subscribe("camera_info_modified", 1, &CameraInfoModifier::callback, this);
+    camera_info_pub_ = nh_.advertise<sensor_msgs::CameraInfo>("camera_info_modified", 10);
+    camera_info_sub_ = nh_.subscribe("camera_info", 1, &CameraInfoModifier::callback, this);
   }
 
   void callback(const sensor_msgs::CameraInfo& msg)
@@ -18,9 +18,9 @@ public:
     float baseline_x = 0.0f;
     pnh_.getParamCached("baseline_x", baseline_x);
 
-    if(4 <= output.P.size() && output.P[0] != 0){
-        output.P[3] = - baseline_x / output.P[0];
-        ROS_INFO_THROTTLE(1.0, "override %f", output.P[3]);
+    if(4 <= output.P.size()){
+        output.P[3] = - baseline_x * output.P[0];
+        ROS_INFO_ONCE("override P[3] %f", output.P[3]);
     }
     camera_info_pub_.publish(output);
   }
