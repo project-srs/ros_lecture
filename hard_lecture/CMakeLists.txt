@@ -141,6 +141,7 @@ add_executable(hard_serialport_retry src/hard_serialport_retry.cpp)
 add_executable(hard_gy955 src/hard_gy955.cpp)
 add_executable(hard_imu_to_pose src/hard_imu_to_pose.cpp)
 add_executable(hard_mavros_bridge src/hard_mavros_bridge.cpp)
+add_executable(camera_info_modifier src/camera_info_modifier.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -169,6 +170,9 @@ target_link_libraries(hard_imu_to_pose
   ${catkin_LIBRARIES}
 )
 target_link_libraries(hard_mavros_bridge
+  ${catkin_LIBRARIES}
+)
+target_link_libraries(camera_info_modifier
   ${catkin_LIBRARIES}
 )
 
