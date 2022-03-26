@@ -150,6 +150,7 @@ add_executable(optimize_sample1 src/optimize_sample1.cpp)
 add_executable(optimize_sample2 src/optimize_sample2.cpp)
 add_executable(ad_sample src/ad_sample.cpp)
 add_executable(nav_twist_publisher src/nav_twist_publisher.cpp)
+add_executable(pose_inverter src/pose_inverter.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -184,6 +185,9 @@ target_link_libraries(ad_sample
   ${catkin_LIBRARIES}
 )
 target_link_libraries(nav_twist_publisher
+  ${catkin_LIBRARIES}
+)
+target_link_libraries(pose_inverter
   ${catkin_LIBRARIES}
 )
 
