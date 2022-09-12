@@ -19,6 +19,3 @@
 [submodule "externals/json_transport"]
 	path = externals/json_transport
 	url = https://github.com/locusrobotics/json_transport.git
-[submodule "externals/ydlidar_ros"]
-	path = externals/ydlidar_ros
-	url = https://github.com/YDLIDAR/ydlidar_ros.git
