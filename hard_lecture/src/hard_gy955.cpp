@@ -354,6 +354,7 @@ public:
       sum += data[j];
     }
     printf(":%i %i\n", (int)data.size(), sum % 256);
+    return 0;
   }
 
   sensor_msgs::Imu convert_data(std::vector<unsigned char> data)
