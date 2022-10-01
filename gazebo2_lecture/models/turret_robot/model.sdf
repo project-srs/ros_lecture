@@ -1,6 +1,6 @@
 <?xml version='1.0'?>
 <sdf version="1.4">
-<model name="robot2">
+<model name="turret_robot">
     <link name="link">
       <pose>0 0 0.1 0 0 0</pose>
       <collision name="collision">

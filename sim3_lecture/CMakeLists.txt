@@ -133,9 +133,9 @@ link_directories(
 # add_library(${PROJECT_NAME}
 #   src/${PROJECT_NAME}/sim3_lecture.cpp
 # )
-add_library(TurretPlugin SHARED 
-  src/turret_plugin.cc
-)
+# add_library(TurretPlugin SHARED 
+#   src/turret_plugin.cc
+# )
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
@@ -161,10 +161,10 @@ add_library(TurretPlugin SHARED
 # target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
 # )
-target_link_libraries(TurretPlugin
-  ${catkin_LIBRARIES}
-  ${GAZEBO_LIBRARIES}
-)
+# target_link_libraries(TurretPlugin
+#   ${catkin_LIBRARIES}
+#   ${GAZEBO_LIBRARIES}
+# )
 
 #############
 ## Install ##
