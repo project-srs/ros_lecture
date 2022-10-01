@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<robot name="dtw_robot">
+  <material name="gray">
+    <color rgba="0.5 0.5 0.5 1.0"/>
+  </material>
+  <material name="red">
+    <color rgba="1.0 0.0 0.0 1.0"/>
+  </material>
+
+  <link name="base_link"/>
+
+  <joint name="body_joint" type="fixed">
+    <origin xyz="0 0 0.1" rpy="0 0 0" />
+    <parent link="base_link"/>
+    <child  link="body_link"/>
+  </joint>
+  <link name="body_link">
+    <visual>
+      <origin xyz="-0.1 0 0" rpy="0 0 0" />
+      <geometry>
+        <box size="0.4 0.3 0.1" />
+      </geometry>
+      <material name="gray" />
+    </visual>
+  </link>
+
+  <joint name="back_ball_joint" type="fixed">
+    <origin xyz="-0.23 0 -0.05" rpy="0 0 0" />
+    <parent link="body_link"/>
+    <child  link="back_ball_link"/>
+  </joint>
+  <link name="back_ball_link">
+    <visual>
+      <geometry>
+        <sphere radius="0.05" />
+      </geometry>
+      <material name="gray" />
+    </visual>
+  </link>
+
+  <joint name="left_wheel_joint" type="fixed">
+    <origin xyz="0 0.18 0" rpy="-1.5707 0 0" />
+    <parent link="body_link"/>
+    <child  link="left_wheel_link"/>
+  </joint>
+  <link name="left_wheel_link">
+    <visual>
+      <geometry>
+        <cylinder length="0.04" radius="0.072" />
+      </geometry>
+      <material name="red" />
+    </visual>
+  </link>
+
+  <joint name="right_wheel_joint" type="fixed">
+    <origin xyz="0 -0.18 0" rpy="-1.5707 0 0" />
+    <parent link="body_link"/>
+    <child  link="right_wheel_link"/>
+  </joint>
+  <link name="right_wheel_link">
+    <visual>
+      <geometry>
+        <cylinder length="0.04" radius="0.072" />
+      </geometry>
+      <material name="red" />
+    </visual>
+  </link>
+</robot>
