@@ -397,9 +397,9 @@
         <camera name="head_camera">
           <horizontal_fov>1.2</horizontal_fov>
           <image>
+            <format>R8G8B8</format>
             <width>800</width>
             <height>600</height>
-            <format>R8G8B8</format>
           </image>
           <clip>
             <near>0.02</near>
@@ -428,13 +428,204 @@
           <CxPrime>0.0</CxPrime>
           <Cx>0.0</Cx>
           <Cy>0.0</Cy>
-          <focalLength>-0.25</focalLength>
-          <hackBaseline>0.12</hackBaseline>
+          <focalLength>0.0</focalLength> <!-- use computed_focal_length -->
+          <hackBaseline>0.12</hackBaseline> <!-- use for P[3] -->
           <distortionK1>0.05</distortionK1>
           <distortionK2>-0.05</distortionK2>
           <distortionK3>0.0</distortionK3>
           <distortionT1>0.0</distortionT1>
           <distortionT2>0.0</distortionT2>
+        </plugin>
+      </sensor>
+
+      <sensor name="depth_camera" type="depth">
+        <always_on>true</always_on>
+        <update_rate>20</update_rate>
+        <visualize>false</visualize>
+        <camera>
+          <horizontal_fov>1.2</horizontal_fov>
+          <image>
+            <format>R8G8B8</format>
+            <width>80</width>
+            <height>60</height>
+          </image>
+          <clip>
+            <near>0.02</near>
+            <far>300</far>
+          </clip>
+        </camera>
+        <plugin filename="libgazebo_ros_depth_camera.so" name="depth_camera_controller">
+          <imageTopicName>/depth_camera/color/image_raw</imageTopicName>
+          <cameraInfoTopicName>/depth_camera/color/camera_info</cameraInfoTopicName>
+          <pointCloudTopicName>/depth_camera/point</pointCloudTopicName>
+          <depthImageTopicName>/depth_camera/depth/image_raw</depthImageTopicName>
+          <depthImageCameraInfoTopicName>/depth_camera/depth/camera_info</depthImageCameraInfoTopicName>
+          <pointCloudCutoff>0.4</pointCloudCutoff>
+          <cameraName>camera2</cameraName>
+          <frameName>depth_camera_link</frameName>
+          <updateRate>10.0</updateRate>
+          <CxPrime>0.0</CxPrime>
+          <Cx>0.0</Cx>
+          <Cy>0.0</Cy>
+          <focalLength>0.0</focalLength> <!-- use computed_focal_length -->
+          <hackBaseline>0.12</hackBaseline> <!-- use for P[3] -->
+          <distortionK1>0.05</distortionK1>
+          <distortionK2>-0.05</distortionK2>
+          <distortionK3>0.0</distortionK3>
+          <distortionT1>0.0</distortionT1>
+          <distortionT2>0.0</distortionT2>
+        </plugin>
+      </sensor>
+    </link>
+
+    <joint name='left_back_sonar_joint' type='fixed'>
+      <parent>body_link</parent>
+      <child>left_back_sonar_link</child>
+      <pose>0 0 0 0 0 0</pose>
+    </joint>
+    <link name="left_back_sonar_link">
+      <pose>-0.27 0.17 0.1 0 0 2.97</pose>
+      <inertial>
+        <mass>0.05</mass>
+        <inertia>
+          <ixx>0.0000033</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>0.0000033</iyy>
+          <iyz>0.0</iyz>
+          <izz>0.0000033</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.02 0.02 0.02</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.02 0.02 0.02</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Blue</name>
+          </script>
+        </material>
+      </visual>
+      <sensor type="ray" name="sonar1">
+        <always_on>true</always_on>
+        <pose>0 0 0 0 0 0</pose>
+        <visualize>true</visualize>
+        <update_rate>10</update_rate>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>3</samples>
+              <resolution>1</resolution>
+              <min_angle>-0.05</min_angle>
+              <max_angle>0.05</max_angle>
+            </horizontal>
+            <vertical>
+              <samples>3</samples>
+              <resolution>1</resolution>
+              <min_angle>-0.02</min_angle>
+              <max_angle>0.02</max_angle>
+            </vertical>
+         </scan>
+          <range>
+            <min>0.2</min>
+            <max>4</max>
+            <resolution>0.02</resolution>
+          </range>
+        </ray>
+        <plugin filename="libgazebo_ros_range.so" name="gazebo_ros_range">
+          <robotNamespace></robotNamespace>
+          <frameName>left_back_sonar_link</frameName>
+          <topicName>left_back_sonar/range</topicName>
+          <radiation>ultrasound</radiation>
+          <fov>0.1</fov>
+          <gaussianNoise>0.005</gaussianNoise>
+          <updateRate>10</updateRate>
+        </plugin>
+      </sensor>
+    </link>
+
+    <joint name='right_back_sonar_joint' type='fixed'>
+      <parent>body_link</parent>
+      <child>right_back_sonar_link</child>
+      <pose>0 0 0 0 0 0</pose>
+    </joint>
+    <link name="right_back_sonar_link">
+      <pose>-0.27 -0.17 0.1 0 0 -2.97</pose>
+      <inertial>
+        <mass>0.05</mass>
+        <inertia>
+          <ixx>0.0000033</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>0.0000033</iyy>
+          <iyz>0.0</iyz>
+          <izz>0.0000033</izz>
+        </inertia>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.02 0.02 0.02</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.02 0.02 0.02</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Blue</name>
+          </script>
+        </material>
+      </visual>
+      <sensor type="ray" name="sonar2">
+        <always_on>true</always_on>
+        <pose>0 0 0 0 0 0</pose>
+        <visualize>true</visualize>
+        <update_rate>10</update_rate>
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>3</samples>
+              <resolution>1</resolution>
+              <min_angle>-0.05</min_angle>
+              <max_angle>0.05</max_angle>
+            </horizontal>
+            <vertical>
+              <samples>3</samples>
+              <resolution>1</resolution>
+              <min_angle>-0.02</min_angle>
+              <max_angle>0.02</max_angle>
+            </vertical>
+         </scan>
+          <range>
+            <min>0.2</min>
+            <max>4</max>
+            <resolution>0.02</resolution>
+          </range>
+        </ray>
+        <plugin filename="libgazebo_ros_range.so" name="gazebo_ros_range">
+          <robotNamespace></robotNamespace>
+          <frameName>right_back_sonar_link</frameName>
+          <topicName>right_back_sonar/range</topicName>
+          <radiation>ultrasound</radiation>
+          <fov>0.1</fov>
+          <gaussianNoise>0.005</gaussianNoise>
+          <updateRate>10</updateRate>
         </plugin>
       </sensor>
     </link>

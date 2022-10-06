@@ -22,5 +22,8 @@
       <uri>model://cabinet</uri>
       <pose>3 -1 0 0 0 0</pose>
     </include>
+    <include>
+      <uri>model://cafe</uri>
+    </include>
   </world>
 </sdf>

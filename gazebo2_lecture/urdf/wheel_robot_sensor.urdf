@@ -82,4 +82,33 @@
       <material name="blue" />
     </visual>
   </link>
+
+  <joint name="head_camera_joint" type="fixed">
+    <origin xyz="0 0 0.15" rpy="-1.5707 0 -1.5707" />
+    <parent link="body_link"/>
+    <child  link="head_camera_link"/>
+  </joint>
+  <link name="head_camera_link" />
+
+  <joint name="depth_camera_joint" type="fixed">
+    <origin xyz="0 0 0.15" rpy="-1.5707 0 -1.5707" />
+    <parent link="body_link"/>
+    <child  link="depth_camera_link"/>
+  </joint>
+  <link name="depth_camera_link" />
+
+  <joint name="left_back_sonar_joint" type="fixed">
+    <origin xyz="-0.27 0.17 0" rpy="0 0 2.97" />
+    <parent link="body_link"/>
+    <child  link="left_back_sonar_link"/>
+  </joint>
+  <link name="left_back_sonar_link" />
+
+  <joint name="right_back_sonar_joint" type="fixed">
+    <origin xyz="-0.27 -0.17 0" rpy="0 0 -2.97" />
+    <parent link="body_link"/>
+    <child  link="right_back_sonar_link"/>
+  </joint>
+  <link name="right_back_sonar_link" />
+
 </robot>
