@@ -97,6 +97,13 @@
   </joint>
   <link name="depth_camera_link" />
 
+  <joint name="main_imu_joint" type="fixed">
+    <origin xyz="-0.10 0 0.15" rpy="0 0 0" />
+    <parent link="body_link"/>
+    <child  link="main_imu_link"/>
+  </joint>
+  <link name="main_imu_link"/>
+
   <joint name="left_back_sonar_joint" type="fixed">
     <origin xyz="-0.27 0.17 0" rpy="0 0 2.97" />
     <parent link="body_link"/>
