@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <robot name="dtw_robot" xmlns:xacro="http://ros.org/wiki/xacro">
-  <xacro:macro name="laser_macro" params="parent prefix xyz">
+  <xacro:macro name="laser_macro" params="parent prefix xyz robot_name">
     <joint name="${prefix}_joint" type="fixed">
       <parent link="${parent}"/>
       <child  link="${prefix}_link"/>
@@ -49,7 +49,7 @@
         </ray>
         <plugin name="gazebo_ros_lidar_controller" filename="libgazebo_ros_laser.so">
           <topicName>${prefix}/scan</topicName>
-          <frameName>${prefix}_link</frameName>
+          <frameName>${robot_name}/${prefix}_link</frameName>
         </plugin>
       </sensor>
     </gazebo>

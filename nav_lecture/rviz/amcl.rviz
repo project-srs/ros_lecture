@@ -5,8 +5,8 @@ Panels:
     Property Tree Widget:
       Expanded:
         - /TF1/Frames1
-      Splitter Ratio: 0.729106605
-    Tree Height: 290
+      Splitter Ratio: 0.729106605052948
+    Tree Height: 282
   - Class: rviz/Selection
     Name: Selection
   - Class: rviz/Tool Properties
@@ -15,7 +15,7 @@ Panels:
       - /2D Nav Goal1
       - /Publish Point1
     Name: Tool Properties
-    Splitter Ratio: 0.588679016
+    Splitter Ratio: 0.5886790156364441
   - Class: rviz/Views
     Expanded:
       - /Current View1
@@ -26,16 +26,20 @@ Panels:
     Name: Time
     SyncMode: 0
     SyncSource: LaserScan
-  - Class: qt_twist_panel
+  - Class: plugin_lecture/twist_panel
     Frame: ""
-    Name: qt_twist_panel
+    Name: twist_panel
     Stamped: false
     Topic: /dtw_robot1/diff_drive_controller/cmd_vel
-    max1: 0.2
-    max2: 0.2
+    max1: 0.5
+    max2: ""
     max3: 1.5
     radio1: false
     radio2: true
+Preferences:
+  PromptSaveOnExit: true
+Toolbars:
+  toolButtonStyle: 2
 Visualization Manager:
   Class: ""
   Displays:
@@ -45,7 +49,7 @@ Visualization Manager:
       Color: 160; 160; 164
       Enabled: true
       Line Style:
-        Line Width: 0.0299999993
+        Line Width: 0.029999999329447746
         Value: Lines
       Name: Grid
       Normal Cell Count: 0
@@ -104,6 +108,11 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        sonar_back_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
       Name: RobotModel
       Robot Description: /dtw_robot1/robot_description
       TF Prefix: dtw_robot1
@@ -135,6 +144,9 @@ Visualization Manager:
           Value: true
         dtw_robot1/right_wheel_link:
           Value: true
+        dtw_robot1/sonar_back_link:
+          Value: true
+      Marker Alpha: 1
       Marker Scale: 1
       Name: TF
       Show Arrows: false
@@ -158,6 +170,8 @@ Visualization Manager:
                 {}
               dtw_robot1/right_wheel_link:
                 {}
+              dtw_robot1/sonar_back_link:
+                {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -175,22 +189,20 @@ Visualization Manager:
       Enabled: true
       Invert Rainbow: false
       Max Color: 255; 255; 255
-      Max Intensity: 0
       Min Color: 0; 0; 0
-      Min Intensity: 0
       Name: LaserScan
       Position Transformer: XYZ
       Queue Size: 10
       Selectable: true
       Size (Pixels): 3
-      Size (m): 0.00999999978
+      Size (m): 0.009999999776482582
       Style: Flat Squares
       Topic: /dtw_robot1/front_laser/scan
       Unreliable: false
       Use Fixed Frame: true
       Use rainbow: true
       Value: true
-    - Alpha: 0.699999988
+    - Alpha: 0.699999988079071
       Class: rviz/Map
       Color Scheme: map
       Draw Behind: false
@@ -201,17 +213,18 @@ Visualization Manager:
       Use Timestamp: false
       Value: true
     - Alpha: 1
-      Arrow Length: 0.300000012
-      Axes Length: 0.300000012
-      Axes Radius: 0.00999999978
+      Arrow Length: 0.30000001192092896
+      Axes Length: 0.30000001192092896
+      Axes Radius: 0.009999999776482582
       Class: rviz/PoseArray
       Color: 255; 25; 0
       Enabled: true
-      Head Length: 0.0700000003
-      Head Radius: 0.0299999993
+      Head Length: 0.07000000029802322
+      Head Radius: 0.029999999329447746
       Name: PoseArray
-      Shaft Length: 0.230000004
-      Shaft Radius: 0.00999999978
+      Queue Size: 10
+      Shaft Length: 0.23000000417232513
+      Shaft Radius: 0.009999999776482582
       Shape: Arrow (Flat)
       Topic: /dtw_robot1/particlecloud
       Unreliable: false
@@ -231,7 +244,10 @@ Visualization Manager:
     - Class: rviz/FocusCamera
     - Class: rviz/Measure
     - Class: rviz/SetInitialPose
+      Theta std deviation: 0.2617993950843811
       Topic: /initialpose
+      X std deviation: 0.5
+      Y std deviation: 0.5
     - Class: rviz/SetGoal
       Topic: /move_base_simple/goal
     - Class: rviz/PublishPoint
@@ -241,25 +257,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 6.29636145
+      Distance: 6.296361446380615
       Enable Stereo Rendering:
-        Stereo Eye Separation: 0.0599999987
+        Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
+      Field of View: 0.7853981852531433
       Focal Point:
-        X: 0.223295808
-        Y: 0.684920192
-        Z: -0.410633028
+        X: 0.22329580783843994
+        Y: 0.6849201917648315
+        Z: -0.41063302755355835
       Focal Shape Fixed Size: true
-      Focal Shape Size: 0.0500000007
+      Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
-      Near Clip Distance: 0.00999999978
-      Pitch: 0.774796247
+      Near Clip Distance: 0.009999999776482582
+      Pitch: 0.7747962474822998
       Target Frame: <Fixed Frame>
-      Value: Orbit (rviz)
-      Yaw: 1.17499912
+      Yaw: 1.1749991178512573
     Saved: ~
 Window Geometry:
   Displays:
@@ -267,7 +283,7 @@ Window Geometry:
   Height: 846
   Hide Left Dock: false
   Hide Right Dock: false
-  QMainWindow State: 000000ff00000000fd00000004000000000000016a000002c4fc0200000009fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000006100fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c0061007900730100000028000001ae000000d700fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb0000001c00710074005f00740077006900730074005f00700061006e0065006c01000001dc000001100000011000ffffff000000010000010f000002c4fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a005600690065007700730100000028000002c4000000ad00fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000004b00000003efc0100000002fb0000000800540069006d00650100000000000004b00000030000fffffffb0000000800540069006d006501000000000000045000000000000000000000022b000002c400000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd00000004000000000000016a000002b0fc020000000afb0000001200530065006c0065006300740069006f006e00000001e10000009b0000005c00fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000003d000001a2000000c900fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261fb0000001c00710074005f00740077006900730074005f00700061006e0065006c00000001e5000001080000000000000000fb0000001600740077006900730074005f00700061006e0065006c01000001e5000001080000010800ffffff000000010000010f000002b0fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073010000003d000002b0000000a400fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000004f30000003efc0100000002fb0000000800540069006d00650100000000000004f3000002eb00fffffffb0000000800540069006d006501000000000000045000000000000000000000026e000002b000000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Selection:
     collapsed: false
   Time:
@@ -276,8 +292,8 @@ Window Geometry:
     collapsed: false
   Views:
     collapsed: false
-  Width: 1200
-  X: 65
-  Y: 60
-  qt_twist_panel:
+  Width: 1267
+  X: 72
+  Y: 27
+  twist_panel:
     collapsed: false
